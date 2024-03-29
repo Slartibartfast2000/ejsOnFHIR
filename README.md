@@ -1,4 +1,4 @@
-# ejsOnFHIR
+# ejsOnFHIR Prototype
 
 ejsOnFHIR is a blah blah.
 
@@ -50,3 +50,15 @@ That is so funny! :joy:
   "age": 25
 }
 ```
+
+## Prototype Steps
+
+1. installed npm xml and dom
+
+```bash
+npm install @xmldom/xmldom
+```
+
+2. Added code to traverse the xml
+
+3. Created empty EJS Div template
