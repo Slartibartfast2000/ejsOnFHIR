@@ -1,15 +1,45 @@
+const path = require('path');
+
 const parseXML = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
 const fileIO = require('./js/fileio');
 
-
 const xmlFilePath = 'FHIR/Patient.schema.xml'; // Provide the path to your XML file
 const parsedData = parseXML(xmlFilePath);
+
+console.log('First argument:', process.argv[2]);
+console.log('Second argument:', process.argv[3]);
+
+outputFilename = "./src/views/myHTML.html";
+generate = "html";
+
+if (!process.argv[2] )
+{
+    outputFilename = "./src/views/" + process.argv[2];    
+}
+
+
+console.log(process.argv[3]);
+
+if (process.argv[3]==="partial")
+{
+    console.log(process.argv[3])
+    generate="partial";    
+    const dirname = path.dirname(outputFilename);
+    const basename = path.basename(outputFilename, path.extname(outputFilename));
+
+    // Concatenate the directory name, file name without extension, and new extension
+    outputFilename = path.join(dirname, `${basename}.ejs`);
+
+}
+console.debug("Command line options: ");
+console.log("outputFilename=", outputFilename);
+console.log("generate=", generate);
+
 const crlf = "\r\n";
 
 myPartialEJS= "";
 
 myPartialEJS += "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>My HTML Page</title><style></style></head><body>" + crlf;
-
 
 myPartialEJS += "<div><form><table>"
 
