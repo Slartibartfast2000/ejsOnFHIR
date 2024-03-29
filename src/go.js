@@ -1,41 +1,26 @@
 const path = require('path');
 
+const processArgs = require('./js/processArgs');
+
 const parseXML = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
 const fileIO = require('./js/fileio');
 
-const xmlFilePath = 'FHIR/Patient.schema.xml'; // Provide the path to your XML file
-const parsedData = parseXML(xmlFilePath);
+//const xmlFilePath = 'FHIR/Patient.schema.xml'; // Provide the path to your XML file
 
-console.log('First argument:', process.argv[2]);
-console.log('Second argument:', process.argv[3]);
+//outputFilename = "./src/views/myHTML.html";
+//outputType = "partial";
+console.debug("");
+console.debug("**************************************************************************************");
+console.debug("****************************** START *************************************************");
+console.debug("**************************************************************************************");
+console.debug("");
 
-outputFilename = "./src/views/myHTML.html";
-generate = "html";
-
-if (!process.argv[2] )
-{
-    outputFilename = "./src/views/" + process.argv[2];    
-}
-
-console.log(process.argv[3]);
-
-if (process.argv[3]==="partial")
-{
-    console.log(process.argv[3])
-    generate="partial";    
-    const dirname = path.dirname(outputFilename);
-    const basename = path.basename(outputFilename, path.extname(outputFilename));
-
-    // Concatenate the directory name, file name without extension, and new extension
-    outputFilename = path.join(dirname, `${basename}.ejs`);
-
-}
-console.debug("Command line options: ");
-console.log("outputFilename=", outputFilename);
-console.log("generate=", generate);
+const myparameters = processArgs.processArgs(process.argv);
 
 const crlf = "\r\n";
 const tab = "\t";
+
+const parsedData = parseXML(myparameters.xmlFilePath);
 
 myPartialEJS= "";
 
@@ -66,7 +51,7 @@ myPartialEJS +="</body>";
 
 ///const data = "hello";
 
-fileIO.writeToFile(outputFilename, myPartialEJS, (err) => {
+fileIO.writeToFile(myparameters.outputFilename, myPartialEJS, (err) => {
     if (err) {
         console.error('Error writing to file:', err);
         return;
@@ -74,4 +59,4 @@ fileIO.writeToFile(outputFilename, myPartialEJS, (err) => {
     console.log('File written successfully.');
 });
 
-console.log(myPartialEJS);
+//console.log(myPartialEJS);
