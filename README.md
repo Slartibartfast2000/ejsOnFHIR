@@ -53,12 +53,20 @@ That is so funny! :joy:
 
 ## Prototype Steps
 
-1. installed npm xml and dom
+Installed npm xml and dom
 
 ```bash
 npm install @xmldom/xmldom
 ```
 
-2. Added code to traverse the xml
+Added code to traverse the xml
 
-3. Created empty EJS Div template
+```bash
+src/xmlParser2.js
+```
+
+Created empty EJS Div template
+
+```bash
+src/views/base.ejs
+```
