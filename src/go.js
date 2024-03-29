@@ -1,14 +1,8 @@
-const path = require('path');
-
 const processArgs = require('./js/processArgs');
 
-const parseXML = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
+const parseXMLSchema = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
 const fileIO = require('./js/fileio');
 
-//const xmlFilePath = 'FHIR/Patient.schema.xml'; // Provide the path to your XML file
-
-//outputFilename = "./src/views/myHTML.html";
-//outputType = "partial";
 console.debug("");
 console.debug("**************************************************************************************");
 console.debug("****************************** START *************************************************");
@@ -20,7 +14,7 @@ const myparameters = processArgs.processArgs(process.argv);
 const crlf = "\r\n";
 const tab = "\t";
 
-const parsedData = parseXML(myparameters.xmlFilePath);
+const parsedData = parseXMLSchema(myparameters.xmlFilePath);
 
 myPartialEJS= "";
 
@@ -30,7 +24,7 @@ myPartialEJS += "<div><form><table>" + crlf + tab;
 
 for (const elementName in parsedData) {
     if (parsedData.hasOwnProperty(elementName)) {
-        console.log("Element Name:", elementName);
+       // console.log("Element Name:", elementName);
 
         myPartialEJS += "<label for='text-input'>" + elementName + ":</label>" + crlf;
 
@@ -40,14 +34,14 @@ for (const elementName in parsedData) {
         for (const attributeName in attributes) {
             if (attributes.hasOwnProperty(attributeName)) {
                 const attributeValue = attributes[attributeName];
-                console.log("Attribute Name:", attributeName, ", Value:", attributeValue);
+               // console.log("Attribute Name:", attributeName, ", Value:", attributeValue);
             }
         }
     }
 }
 
 myPartialEJS += "<table></form></div>";
-myPartialEJS +="</body>";
+myPartialEJS += "</body>";
 
 ///const data = "hello";
 
