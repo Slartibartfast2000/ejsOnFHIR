@@ -22,6 +22,7 @@ node dependencies
 npm init -y
 npm install express
 npm install ejs
+npm install jsonpath-plus
 ```
 
 ## Installation
