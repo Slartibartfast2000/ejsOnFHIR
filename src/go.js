@@ -17,7 +17,6 @@ if (!process.argv[2] )
     outputFilename = "./src/views/" + process.argv[2];    
 }
 
-
 console.log(process.argv[3]);
 
 if (process.argv[3]==="partial")
@@ -64,11 +63,9 @@ for (const elementName in parsedData) {
 myPartialEJS += "<table></form></div>";
 myPartialEJS +="</body>";
 
-filePath = "./src/views/myHTML.html";
-
 ///const data = "hello";
 
-fileIO.writeToFile(filePath, myPartialEJS, (err) => {
+fileIO.writeToFile(outputFilename, myPartialEJS, (err) => {
     if (err) {
         console.error('Error writing to file:', err);
         return;
