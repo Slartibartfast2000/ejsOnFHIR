@@ -35,12 +35,13 @@ console.log("outputFilename=", outputFilename);
 console.log("generate=", generate);
 
 const crlf = "\r\n";
+const tab = "\t";
 
 myPartialEJS= "";
 
 myPartialEJS += "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>My HTML Page</title><style></style></head><body>" + crlf;
 
-myPartialEJS += "<div><form><table>"
+myPartialEJS += "<div><form><table>" + crlf + tab;
 
 for (const elementName in parsedData) {
     if (parsedData.hasOwnProperty(elementName)) {
