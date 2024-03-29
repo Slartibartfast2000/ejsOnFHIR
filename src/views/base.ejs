@@ -1,0 +1,38 @@
+<div class="container mt-4">
+    <h2>Quick Search Results</h2>
+    <div id="table-container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>DoB (Age)</th>
+            <th>Sex</th>
+            <th>Address</th>
+            <th>Caseload</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tableData.forEach(row => { %>
+            <tr>
+              <td><%= row.id %></td>
+              <td><%= row.nameFamily %>, <%= row.nameGiven %></td>
+              <td><%= row.birthDate %>
+                <% 
+                  // Calculate the age based on the user's birthdate
+                  const birthdate = new Date(row.dob);
+                  const today = new Date();
+                  const age = today.getFullYear() - birthdate.getFullYear() - (today.getMonth() < birthdate.getMonth() || (today.getMonth() === birthdate.getMonth() && today.getDate() < birthdate.getDate()) ? 1 : 0);
+                %>
+          (<%= age %>)
+              </td>
+              <td><%= row.sex %></td>
+              <td><%= row.address %>, <%= row.postcode %></td>
+              
+              <td><input type="button" value="Add" id="<% row.id %>"  /></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>

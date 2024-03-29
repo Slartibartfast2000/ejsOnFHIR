@@ -2,13 +2,30 @@ var xpath = require('xpath');
 var dom = require('@xmldom/xmldom').DOMParser;
 var fs = require('fs');
 
-// Read XML from file
-var xml = fs.readFileSync('FHIR/Patient.schema.xml', 'utf8');
+function parseXML(filePath) {
+    var xml = fs.readFileSync(filePath, 'utf8');
+    var doc = new dom().parseFromString(xml, 'text/xml');
+    var elements = xpath.select("//*", doc);
 
-var doc = new dom().parseFromString(xml, 'text/xml');
+    var result = {};
 
-var nodes = xpath.select("/", doc);
+    elements.forEach(function(element) {
+        var elementName = element.localName;
+        var attributes = {};
 
-console.log(nodes[0].localName + ": " + nodes[0].firstChild.data);
-console.log("Node: " + nodes[0].toString());
+        if (element.attributes) {
+            for (var i = 0; i < element.attributes.length; i++) {
+                var attribute = element.attributes[i];
+                attributes[attribute.name] = attribute.value;
+            }
+        }
+
+        // Add the element and its attributes to the result object
+        result[elementName] = attributes;
+    });
+
+    return result;
+}
+module.exports = parseXML;
+
 
