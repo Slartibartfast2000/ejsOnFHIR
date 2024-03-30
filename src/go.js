@@ -1,5 +1,5 @@
 const processArgs = require('./js/processArgs');
-
+//compose pallett
 const parseXMLSchema = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
 const fileIO = require('./js/fileio');
 
