@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FHIR Patient Form</title>
+</head>
+<body>
+    <h2>Patient Information</h2>
+    <form action="#" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" value="<%= firstName %>" required><br><br>
+        
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" value="<%= lastName %>" required><br><br>
+        
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="male" <%= gender === 'male' ? 'selected' : '' %>>Male</option>
+            <option value="female" <%= gender === 'female' ? 'selected' : '' %>>Female</option>
+            <option value="other" <%= gender === 'other' ? 'selected' : '' %>>Other</option>
+        </select><br><br>
+        
+        <label for="birthDate">Birth Date:</label>
+        <input type="date" id="birthDate" name="birthDate" value="<%= birthDate %>" required><br><br>
+        
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" cols="50" required><%= address %></textarea><br><br>
+
+        <h2>Encounter Information</h2>
+        <div>
+            <label for="encounterType">Encounter Type:</label>
+            <input type="text" id="encounterType" name="encounterType" required><br><br>
+            
+            <label for="encounterDate">Encounter Date:</label>
+            <input type="date" id="encounterDate" name="encounterDate" required><br><br>
+            
+            <label for="practitioner">Practitioner:</label>
+            <input type="text" id="practitioner" name="practitioner" required><br><br>
+            
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required><br><br>
+        </div>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
