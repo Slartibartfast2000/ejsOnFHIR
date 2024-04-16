@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
         birthDate: '',
         address: ''
     };
-    res.render('chatGptPatient', formData);
+    res.render('myFile', formData);
 });
 
 // Start the server

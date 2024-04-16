@@ -5,6 +5,13 @@ ejsOnFHIR is a blah blah.
 FHIRR4
 FHIR Schema File
 
+## create EJS based on xml schema
+
+
+```bash
+node src/go.js -s FHIR/Patient.schema.xml -o myFile.ejs -t partial
+```
+
 ## FHIR Server for testing
 
 Docker Desktop installed and running
