@@ -11,18 +11,18 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 // Route to render the HTML form
 app.get('/', (req, res) => {
     // Sample data for the form
-    const formData = {
+    const viewData = {
         firstName: '',
         lastName: '',
         gender: '',
         birthDate: '',
         address: ''
     };
-    res.render('myFile', formData);
+    res.render('testHTML', formData);
 });
 
 // Start the server
