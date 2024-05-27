@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
         birthDate: '',
         address: ''
     };
-    res.render('testHTML', viewData);
+    res.render('testHTML', viewData );
 });
 
 // Start the server
