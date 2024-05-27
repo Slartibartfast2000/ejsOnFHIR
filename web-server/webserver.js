@@ -33,8 +33,9 @@ function readJSONFile(filepath) {
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 // Route to render the HTML form
 app.get('/Patient', async (req, res) => {
-    const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
-    console.log('JSON Data:', patientData);
+   // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
+   var obj = JSON.parse(fs.readFileSync('../FHIR/data/Patient.json', 'utf8')); 
+   console.log('JSON Data:', obj);
     // Sample data for the form
     var Patient = {
         id: 'id',
