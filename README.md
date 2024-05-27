@@ -90,4 +90,25 @@ Browse to
 http://localhost:3000/
 ```
 
-h
+
+
+## Dev-env Browser-sync config
+
+Browser-sync is a useful debug tool for real time reload of web pages.
+
+Install ...
+```bash
+npm install -g browser-sync
+```
+
+For Windows, browser-sync.ps1 should be used... note this will need local Administrator permissions if running powershell.
+--files should be set to the root folder of the app
+--proxy should be the port node is executing on
+
+!!!note This will be need to be executed from the npm folder unless npm is in the PATH
+
+
+```
+.\browser-sync.ps1 start --proxy "http://localhost:3000" --files "C:\inchware\repo\uni\ip\ejsOnFHIR"  --no-notify
+
+```

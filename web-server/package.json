@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "./node_modules/.bin/nodemon -L webserver.js",
+    "debug-windows": ".\\node_modules\\.bin\\nodemon -L webserver.js"
   },
   "author": "",
   "license": "ISC",
