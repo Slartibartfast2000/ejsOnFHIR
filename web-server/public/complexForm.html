@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex Form</title>
+</head>
+<body>
+    <form name="Patient" action="/Patient" method="post" class="Patient">
+        <input type="text" name="name" value="John Doe">
+        <input type="date" name="birthDate" value="2023-05-27">
+        <input type="text" name="address[street]" value="123 Main St">
+        <input type="text" name="address[city]" value="Springfield">
+        <input type="text" name="address[state]" value="IL">
+        <input type="checkbox" name="hobbies[]" value="reading"> Reading
+        <input type="checkbox" name="hobbies[]" value="traveling"> Traveling
+        <input type="checkbox" name="hobbies[]" value="coding"> Coding
+        <input type="hidden" name="userId" value="12345">
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

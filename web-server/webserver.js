@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -12,19 +13,44 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+function readJSONFile(filepath) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(filepath, 'utf8', (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                try {
+                    const jsonData = JSON.parse(data);
+                    resolve(jsonData);
+                } catch (parseErr) {
+                    reject(parseErr);
+                }
+            }
+        });
+    });
+}
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 // Route to render the HTML form
-app.get('/', (req, res) => {
+app.get('/Patient', async (req, res) => {
+    const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
+    console.log('JSON Data:', patientData);
     // Sample data for the form
     var Patient = {
-        firstName: 'myFirstName',
-        lastName: 'myLastName',
+        id: 'id',
+        use: 'official',
+        given: 'name.given',
+        family: 'name.family',
         gender: 'myGender',
         birthDate: '1980-02-28',
         address: 'myAddress'
     };
-    //res.render('eh', viewData );
+  
     res.render('pages/index',  { Patient } );
+});
+
+app.get('/complexForm.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'complexForm.html'));
 });
 
 app.post('/Patient', (req, res) => {
