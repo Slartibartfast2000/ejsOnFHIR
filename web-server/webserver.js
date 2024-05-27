@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-
+var patient = require('./patient');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
@@ -36,6 +36,9 @@ app.get('/Patient', async (req, res) => {
    // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
    var obj = JSON.parse(fs.readFileSync('../FHIR/data/Patient.json', 'utf8')); 
    console.log('JSON Data:', obj);
+   patient.foo();
+   patient.bar();
+   
     // Sample data for the form
     var Patient = {
         id: 'id',
