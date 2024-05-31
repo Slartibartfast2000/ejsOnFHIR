@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 var patient = require('./patient');
+const patientRoute = require('./routes/patientRoute');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,6 +32,9 @@ function readJSONFile(filepath) {
     });
 }
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+
+app.use('/patientform', patientRoute);
+
 // Route to render the HTML form
 app.get('/Patient', async (req, res) => {
    // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
@@ -38,7 +42,7 @@ app.get('/Patient', async (req, res) => {
    console.log('JSON Data:', obj);
    patient.foo();
    patient.bar();
-   
+
     // Sample data for the form
     var Patient = {
         id: 'id',
