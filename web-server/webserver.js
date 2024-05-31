@@ -73,6 +73,7 @@ app.post('/Patient', (req, res) => {
         data: patientData
     });
 });
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

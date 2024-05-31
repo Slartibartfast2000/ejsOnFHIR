@@ -1,11 +1,13 @@
 <form name="Patient" action="Patient" method="post" class="Patient">
    
     <!-- <input type="date" name="Patient.birthDate" value='<%= Patient.birthDate %>' /> -->
-    <input type="text" name="Patient.id" value='<%= Patient.id %>' />
-    
-    <input type="text" name="Patient[Patient.given]" value='<%= Patient.given %>' />
+    <input type="hidden" name="Patient.id" value='<%= Patient.id %>' />
+    <br/>
+
+    <input type="text" name="Patient[Patient.given[hi]]" value='<%= Patient.given %>' />
+    <br/>
     <input type="text" name="Patient[Patient.family]" value='<%= Patient.family %>' />
-    
-    <%- include('../partials/date'); %>
+    <br/>
+    <%- include('../../partials/date'); %>
     <input type="submit" value="Save"/>
 </form>

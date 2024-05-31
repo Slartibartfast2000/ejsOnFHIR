@@ -8,4 +8,10 @@ const patientController = require("../controllers/patientController");
 router.get("/", patientController.getPatientList);
 
 
+router.get("Patient/{id}", fhirController.get);
+
+
+
+
+
 module.exports = router;
