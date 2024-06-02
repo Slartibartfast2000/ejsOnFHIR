@@ -2,7 +2,7 @@ const axios = require('axios');
 
 
 async function getResource(req, res) {
-  console.debug("getRsource:");
+  console.debug("fhirController.getResource:");
     
   const { resourceType, id } = req.params;
     const baseUrl = 'http://localhost:8080/fhir'; // Replace with your actual FHIR API base URL
