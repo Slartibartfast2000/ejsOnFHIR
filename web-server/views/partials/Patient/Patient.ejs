@@ -39,10 +39,10 @@
                         console.debug('1');
 
                         const parts = name.split('[');
-                        console.debug(parts);
+                        console.debug("parts", parts);
                         
                         const propName = parts[0];
-                        console.debug(propName);
+                        console.debug("propName:" , propName);
                         
                         const index = parts[1].replace(']', '');
                         
@@ -51,12 +51,15 @@
                         }
 
                         formData[propName][index] = value;
+                        console.debug("value", value);
+                        console.debug("formData[propName][index]",formData[propName][index]);                       
                     } else {
                         formData[name] = value;
                     }
                 }
             } 
         });
+        console.debug(formData);
         
         const jsonString = JSON.stringify(formData);
         console.debug(jsonString);
