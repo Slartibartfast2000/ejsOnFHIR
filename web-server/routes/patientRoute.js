@@ -5,14 +5,6 @@ const Axios = require("axios");
 const patientController = require("../controllers/patientController");
 
 
-router.get("/", patientController.getPatientList);
-
-
-//router.get("Patient/{id}", fhirController.getResource);
-
-
-
-
-
+router.get("/", patientController.getPatient);
 
 module.exports = router;

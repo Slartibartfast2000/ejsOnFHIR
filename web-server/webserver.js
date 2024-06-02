@@ -75,8 +75,7 @@ app.post('/Patient', (req, res) => {
 
     // Send a response
     res.status(201).send({
-        message: 'Patient data received successfully',
-        data: patientData
+        Patient: patientData
     });
 });
 

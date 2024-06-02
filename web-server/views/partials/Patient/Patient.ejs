@@ -1,12 +1,14 @@
-<form name="Patient" action="Patient" method="post" class="Patient">
+<form name="bundle" action="Patient" method="post" >
    
     <!-- <input type="date" name="Patient.birthDate" value='<%= Patient.birthDate %>' /> -->
-    <input type="hidden" name="Patient.id" value='<%= Patient.id %>' />
+    <input type="text" name="resourceType" value = "Patient" />
+    <br/>
+    <input type="text" name="id" value='<%= Patient.id %>' />
     <br/>
 
-    <input type="text" name="Patient[Patient.given[hi]]" value='<%= Patient.given %>' />
+    <input type="text" name="name[given]" value='<%= Patient.name[0].given[0] %>' />
     <br/>
-    <input type="text" name="Patient[Patient.family]" value='<%= Patient.family %>' />
+    <input type="text" name="name[family]" value='<%= Patient.name[0].family[0] %>' />
     <br/>
     <%- include('../../partials/date'); %>
     <input type="submit" value="Save"/>

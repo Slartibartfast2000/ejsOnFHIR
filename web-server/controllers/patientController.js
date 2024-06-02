@@ -1,30 +1,21 @@
-const Axios = require("axios");
+const axios = require("axios");
 
-const getPatientList = async (req, res) => {
-    console.debug("PatientRoute.js get / with search parameters: ", req.query);
+const getPatient = async (req, res) => {
+    console.debug("patientController.getPatient: ", req.query);
 
-    // Example data, you can replace this with actual data retrieval logic
-    const patients = [
-        { id: 1, name: 'John Doe', age: 30 },
-        { id: 2, name: 'Jane Smith', age: 25 },
-    ];
+    try {
+        const response = await axios.get('http://localhost:3000/fhir/Patient/1'); // Replace with your actual API URL
+        const Patient = response.data;
+        console.debug(Patient);
 
-    // Return success response with patient data
-    res.status(200).json({
-        success: true,
-        message: 'Patient list retrieved successfully',
-        data: patients
-    });
+        res.render('../views/partials/Patient/Patient', { Patient });
+      } catch (error) {
+        res.status(500).send(`Error fetching data: ${error.message}`);
+      }
+  
 };
 
-module.exports = { getPatientList };
-
-
 module.exports = {
-    getPatientList
-
-  
-    //getCaseloadById,
-    //deleteCaseloadPatient,
+    getPatient
   };
   
