@@ -3,6 +3,8 @@ const path = require('path');
 const fs = require('fs');
 var patient = require('./patient');
 const patientRoute = require('./routes/patientRoute');
+const fhirRoute = require('./routes/fhirRoute');
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
@@ -34,6 +36,10 @@ function readJSONFile(filepath) {
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 app.use('/patientform', patientRoute);
+
+app.use('/fhir', fhirRoute);
+
+console.debug('fhir');
 
 // Route to render the HTML form
 app.get('/Patient', async (req, res) => {
