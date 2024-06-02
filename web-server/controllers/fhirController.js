@@ -8,9 +8,11 @@ async function getResource(req, res) {
     const baseUrl = 'http://localhost:8080/fhir'; // Replace with your actual FHIR API base URL
   
     console.debug("getRsource:", resourceType, id);
-    
+    const url = `${baseUrl}/${resourceType}/${id}`;
+    console.debug('getResource: ', url);
+
     try {
-      const response = await axios.get(`${baseUrl}/${resourceType}/${id}`);
+      const response = await axios.get(url);
       res.status(200).json(response.data);
     } catch (error) {
       res.status(500).json({ message: `Error fetching resource: ${error.message}` });
