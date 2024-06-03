@@ -108,7 +108,7 @@ For Windows, browser-sync.ps1 should be used... note this will need local Admini
 !!!note This will be need to be executed from the npm folder unless npm is in the PATH
 
 
-```
+```js
 .\browser-sync.ps1 start --proxy "http://localhost:3000" --files "C:\inchware\repo\uni\ip\ejsOnFHIR"  --no-notify
 
 ```
