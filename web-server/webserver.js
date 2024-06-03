@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 var patient = require('./patient');
+
+const appRoute = require('./routes/appRoute');
 const patientRoute = require('./routes/patientRoute');
 const fhirRoute = require('./routes/fhirRoute');
 
@@ -16,6 +18,12 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+
+
+// Main application entry
+app.use('/app', appRoute);
+
 
 function readJSONFile(filepath) {
     return new Promise((resolve, reject) => {
@@ -33,7 +41,6 @@ function readJSONFile(filepath) {
         });
     });
 }
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 app.use('/patientform', patientRoute);
 

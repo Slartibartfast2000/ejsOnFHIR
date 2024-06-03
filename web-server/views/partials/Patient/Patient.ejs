@@ -1,87 +1,94 @@
-<form id="patientForm" name="bundle" action="Patient" method="post" >
-   
-    <!-- <input type="date" name="Patient.birthDate" value='<%= Patient.birthDate %>' /> -->
-    <input type="text" name="resourceType" value = "Patient" />
-    <br/>
-    <input type="text" id="id" name="id" value='<%= Patient.id %>' />
-    <br/>
-    <input type="text" name="name[given]" value='<%= Patient.name[0].given[0] %>' />
-    <br/>
-    <input type="text" name="name[family]" value='<%= Patient.name[0].family[0] %>' />
-    <br/>
-    <%- include('../../partials/date'); %>
-    <input type="submit" value="Save"/>
-</form>
-<div id="PatientJson">
+<body class="container">
+  <div class="jumbotron">
+    <form id="patientForm" name="bundle" action="Patient" method="post">
 
-</div>
+      <!-- <input type="date" name="Patient.birthDate" value='<%= Patient.birthDate %>' /> -->
+
+      <input type="text" name="resourceType" value="Patient" />
+      <br />
+      <label for="id">Patient ID:</label>
+            <input type="text" id="id" name="id" value="<%= Patient.id ? Patient.id : '' %>" />
+      <br />
+      <input type="text" name="name[given]" value="<%= Patient.name[0].given[0] ? Patient.name[0].given[0] : '' %>" />
+      <br />
+      <input type="text" name="name[family]" value="<%= Patient.name[0].family[0] ? Patient.name[0].family[0] : '' %>" />
+      <br />
+   <!--  <%- include('../../partials/date'); %> -->
+        <input type="submit" value="Save" />
+    </form>
+  </div>
+  <div id="PatientJson">
+  </div>
+
+</body>
+
 <script>
-    document.getElementById('patientForm').addEventListener('submit', async (event) => {
-      event.preventDefault(); // Prevent form submission
-      
-      //const patientId = document.getElementById('id').value;
-      document.getElementById('PatientJson').innerHTML = `hello`
-      const formData = {};
+  document.getElementById('patientForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent form submission
 
-      const formElements = event.target.querySelectorAll('input, select, textarea');
+    //const patientId = document.getElementById('id').value;
+    document.getElementById('PatientJson').innerHTML = `hello`
+    const formData = {};
 
-        // Iterate over form elements
-        formElements.forEach(function(element) {
-            if (element.type !== 'submit') { // Exclude submit button
-                // Extract name and value of the form element
-                const name = element.name;
-                const value = element.value;
+    const formElements = event.target.querySelectorAll('input, select, textarea');
 
-                // If the element name is not empty and value is not undefined, add them to the formData object
-                if (name && value !== undefined) {
-                    // Check if the element name contains square brackets (indicating an array-like structure)
-                    if (name.includes('[')) {
-                        console.debug('1');
+    // Iterate over form elements
+    formElements.forEach(function (element) {
+      if (element.type !== 'submit') { // Exclude submit button
+        // Extract name and value of the form element
+        const name = element.name;
+        const value = element.value;
 
-                        const parts = name.split('[');
-                        console.debug("parts", parts);
-                        
-                        const propName = parts[0];
-                        console.debug("propName:" , propName);
-                        
-                        const index = parts[1].replace(']', '');
-                        
-                        if (!formData[propName]) {
-                            formData[propName] = [];
-                        }
+        // If the element name is not empty and value is not undefined, add them to the formData object
+        if (name && value !== undefined) {
+          // Check if the element name contains square brackets (indicating an array-like structure)
+          if (name.includes('[')) {
+            console.debug('1');
 
-                        formData[propName][index] = value;
-                        console.debug("value", value);
-                        console.debug("formData[propName][index]",formData[propName][index]);                       
-                    } else {
-                        formData[name] = value;
-                    }
-                }
-            }  
-        });
-        console.debug(formData);
+            const parts = name.split('[');
+            console.debug("parts", parts);
 
-        const jsonString = JSON.stringify(formData);
-        console.debug(jsonString);
-                 
-        document.getElementById('PatientJson').innerHTML = jsonString;
-            
-      /*
-      try {
-        const response = await fetch(`/getPatient?PatientId=${patientId}`);
-        const patientData = await response.json();
-        
-        // Update the DOM with patient details
-        
-            document.getElementById('patientDetails').innerHTML = `
-          <h2>Patient Details</h2>
-          <p>Name: ${patientData.name}</p>
-          <p>Gender: ${patientData.gender}</p>
-          <p>Birth Date: ${patientData.birthDate}</p>
-        `;
-      } catch (error) {
-        console.error('Error fetching patient data:', error);
+            const propName = parts[0];
+            console.debug("propName:", propName);
+
+            const index = parts[1].replace(']', '');
+
+            if (!formData[propName]) {
+              formData[propName] = [];
+            }
+
+            formData[propName][index] = value;
+            console.debug("value", value);
+            console.debug("formData[propName][index]", formData[propName][index]);
+          } else {
+            formData[name] = value;
+          }
+        }
       }
-      */
     });
-  </script>
+    console.debug(formData);
+
+    const jsonString = JSON.stringify(formData);
+    console.debug(jsonString);
+
+    document.getElementById('PatientJson').innerHTML = jsonString;
+
+    /*
+    try {
+      const response = await fetch(`/getPatient?PatientId=${patientId}`);
+      const patientData = await response.json();
+      
+      // Update the DOM with patient details
+      
+          document.getElementById('patientDetails').innerHTML = `
+        <h2>Patient Details</h2>
+        <p>Name: ${patientData.name}</p>
+        <p>Gender: ${patientData.gender}</p>
+        <p>Birth Date: ${patientData.birthDate}</p>
+      `;
+    } catch (error) {
+      console.error('Error fetching patient data:', error);
+    }
+    */
+  });
+</script>
