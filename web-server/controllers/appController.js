@@ -20,6 +20,7 @@ async function getApp(req, res) {
     //res.status(500).json({ message: `Error fetching resource: ${error.message}` });
     // }
 }
+
 /*
 const getApp = async (req, res) => {
     console.debug("patientController.getPatient: ", req.query);
