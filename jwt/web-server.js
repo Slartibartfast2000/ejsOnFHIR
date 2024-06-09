@@ -9,7 +9,7 @@ import bodyparser from 'body-parser';
 const { json } = bodyparser;
 import cookieParser from 'cookie-parser'; // Include cookie-parser
 import { join, dirname } from 'path';
-
+import authenticateJWT from './authJWT.js'; // Import your middleware
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -40,30 +40,9 @@ app.get('/index', (req, res) => {
   });
 
 // Middleware to protect routes
-const authenticateJWT = (req, res, next) => {
-    let token = req.header('Authorization');
-    console.debug('authenticateJWT token from header: ', token);
-    
-    // If token is not found in the Authorization header, try to get it from cookies
-    if (!token && req.cookies) {
-        token = req.cookies.token;
-        console.debug('authenticateJWT token from cookies: ', token);
-    }
-  
-    if (!token) {
-        console.debug('Access Denied');
-        return res.status(401).send('Access Denied');
-    }
-    
-    try {
-        const verified = verify(token.replace('Bearer ', ''), secretKey);
-        req.user = verified;
-        next();
-    } catch (err) {
-        res.status(400).send('Invalid Token');
-    }
-};
+/*
 
+*/
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
   
