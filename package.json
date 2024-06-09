@@ -2,6 +2,7 @@
   "name": "ejsonfhir",
   "version": "1.0.0",
   "description": "ejsOnFHIR is a blah blah.",
+  "type": "module",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -18,6 +19,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "fhir.js": "^0.0.22",

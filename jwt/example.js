@@ -1,31 +1,43 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser'); // Include cookie-parser
-const path = require('path');
+import dotenv from 'dotenv';
+import express from 'express';
+import { fileURLToPath } from 'url';
+import bcryptjs from 'bcryptjs';
+const { hash, compare } = bcryptjs;
+import jsonwebtoken from 'jsonwebtoken';
+const { verify, sign } = jsonwebtoken;
+import bodyparser from 'body-parser';
+const { json } = bodyparser;
+import cookieParser from 'cookie-parser'; // Include cookie-parser
+import { join, dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+app.use(json());
 app.use(cookieParser()); // Use cookie-parser middleware
 
 const users = []; // This should be replaced with a proper database in a real application
-const secretKey = 'your-secret-keys'; // Store this in an environment variable in a real application
+
+//const secretKey = 'your-secret-keys'; // Store this in an environment variable in a real application
+const secretKey = process.env.JWT_SECRET;
+
 
 app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, 'register.html'));
+    res.sendFile(join(__dirname, 'register.html'));
   });
  
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'login.html'));
+    res.sendFile(join(__dirname, 'login.html'));
   });
 
 app.get('/index', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(join(__dirname, 'index.html'));
   });
-
-  
 
 // Middleware to protect routes
 const authenticateJWT = (req, res, next) => {
@@ -44,7 +56,7 @@ const authenticateJWT = (req, res, next) => {
     }
     
     try {
-        const verified = jwt.verify(token.replace('Bearer ', ''), secretKey);
+        const verified = verify(token.replace('Bearer ', ''), secretKey);
         req.user = verified;
         next();
     } catch (err) {
@@ -60,7 +72,7 @@ app.post('/register', async (req, res) => {
       return res.status(400).send('User already exists');
     }
   
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await hash(password, 10);
     const user = { username, password: hashedPassword };
     users.push(user);
     console.debug("/register", username, password);
@@ -75,12 +87,12 @@ app.post('/register', async (req, res) => {
       return res.status(400).send('Username or password is incorrect');
     }
   
-    const validPassword = await bcrypt.compare(password, user.password);
+    const validPassword = await compare(password, user.password);
     if (!validPassword) { 
       return res.status(400).send('Username or password is incorrect');
     }
   
-    const token = jwt.sign({ username: user.username }, secretKey, { expiresIn: '1h' });
+    const token = sign({ username: user.username }, secretKey, { expiresIn: '1h' });
   
     // Set HttpOnly cookie with the token
     res.cookie('token', token, { httpOnly: true, secure: true });
@@ -94,7 +106,7 @@ app.post('/register', async (req, res) => {
   
 
   app.get('/protected', authenticateJWT, (req, res) => {
-    console.debug('/protected', res);
+    //console.debug('/protected', res);
 
     res.send('This is a protected route');
   });
