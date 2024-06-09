@@ -2,11 +2,13 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser'); // Include cookie-parser
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(cookieParser()); // Use cookie-parser middleware
 
 const users = []; // This should be replaced with a proper database in a real application
 const secretKey = 'your-secret-key'; // Store this in an environment variable in a real application
@@ -27,18 +29,29 @@ app.get('/index', (req, res) => {
 
 // Middleware to protect routes
 const authenticateJWT = (req, res, next) => {
-  const token = req.header('Authorization').replace('Bearer ', '');
-  if (!token) {
-    return res.status(401).send('Access Denied');
-  }
-  try {
-    const verified = jwt.verify(token, secretKey);
-    req.user = verified;
-    next();
-  } catch (err) {
-    res.status(400).send('Invalid Token');
-  }
+    let token = req.header('Authorization');
+    console.debug('authenticateJWT token from header: ', token);
+    
+    // If token is not found in the Authorization header, try to get it from cookies
+    if (!token && req.cookies) {
+        token = req.cookies.token;
+        console.debug('authenticateJWT token from cookies: ', token);
+    }
+  
+    if (!token) {
+        console.debug('Access Denied');
+        return res.status(401).send('Access Denied');
+    }
+    
+    try {
+        const verified = jwt.verify(token.replace('Bearer ', ''), secretKey);
+        req.user = verified;
+        next();
+    } catch (err) {
+        res.status(400).send('Invalid Token');
+    }
 };
+
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
   
@@ -71,7 +84,8 @@ app.post('/register', async (req, res) => {
   
     // Set HttpOnly cookie with the token
     res.cookie('token', token, { httpOnly: true, secure: true });
-  
+    console.debug('logged in I think:', token);
+
     // Optionally, you can also set a response header with the token (not necessary when using cookies)
     // res.header('Authorization', `Bearer ${token}`);
   
@@ -80,6 +94,8 @@ app.post('/register', async (req, res) => {
   
 
   app.get('/protected', authenticateJWT, (req, res) => {
+    console.debug('/protected', res);
+
     res.send('This is a protected route');
   });
 

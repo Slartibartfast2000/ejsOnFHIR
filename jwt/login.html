@@ -32,7 +32,12 @@
         });
 
         if (response.ok) {
-            console.debug("authenticated");
+          const token = await response.text(); // Assuming the token is sent as plain text in the response body
+          console.debug("authenticated", token);
+          
+          // Set the token as an HttpOnly cookie
+          document.cookie = `token=${token}; HttpOnly; Secure`; // Modify Secure flag based on your deployment environment
+          
           // If login is successful, redirect to index.html
           window.location.href = '/index';
         } else {
