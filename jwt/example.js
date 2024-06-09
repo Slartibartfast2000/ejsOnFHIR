@@ -16,7 +16,7 @@ const secretKey = 'your-secret-key'; // Store this in an environment variable in
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'register.html'));
   });
-
+ 
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'login.html'));
   });
