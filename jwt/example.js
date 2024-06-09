@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cookieParser()); // Use cookie-parser middleware
 
 const users = []; // This should be replaced with a proper database in a real application
-const secretKey = 'your-secret-key'; // Store this in an environment variable in a real application
+const secretKey = 'your-secret-keys'; // Store this in an environment variable in a real application
 
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'register.html'));

@@ -16,12 +16,12 @@
         if (response.ok) {
           // If the response is successful, display the protected content
           response.json().then(data => {
-            
-            document.getElementById('content').innerHTML = `<p>${data.message}</p>`;
+
+            document.getElementById('content').innerHTML = `<p>hello${data.message}</p>`;
           });
         } else {
           // If there's an error, display an error message
-          document.getElementById('content').innerHTML = `<p>Error: ${response.statusText}</p>`;
+          document.getElementById('content').innerHTML = `<p>Error from service: ${response.statusText}</p>`;
         }
       })
       .catch(error => {
