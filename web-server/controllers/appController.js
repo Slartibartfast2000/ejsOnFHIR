@@ -1,6 +1,5 @@
 const axios = require("axios");
 
-
 async function getApp(req, res) {
     console.debug("appController.getApp()");
 

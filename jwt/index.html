@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protected Page</title>
+</head>
+<body>
+  <h1>Welcome to the Protected Page!</h1>
+  <div id="content"></div>
+
+  <script>
+    // Check if the token exists in the cookies
+    const token = getCookie('token');
+
+    if (token) {
+      // Send a request to a protected service using the token
+      fetch('/protected', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // If the response is successful, display the protected content
+          response.json().then(data => {
+            document.getElementById('content').innerHTML = `<p>${data.message}</p>`;
+          });
+        } else {
+          // If there's an error, display an error message
+          document.getElementById('content').innerHTML = `<p>Error: ${response.statusText}</p>`;
+        }
+      })
+      .catch(error => {
+        // Handle any errors
+        document.getElementById('content').innerHTML = `<p>An error occurred: ${error}</p>`;
+      });
+    } else {
+      // If token doesn't exist, redirect to login page
+      window.location.href = '/login';
+    }
+
+    // Function to get the value of a cookie by its name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+  </script>
+</body>
+</html>
