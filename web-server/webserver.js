@@ -6,7 +6,6 @@ import { dirname, join } from 'path';
 
 import dotenv from 'dotenv';
 import express from 'express';
-//import { fileURLToPath } from 'url';
 import bcryptjs from 'bcryptjs';
 const { hash, compare } = bcryptjs;
 import jsonwebtoken from 'jsonwebtoken';
@@ -14,8 +13,7 @@ const { verify, sign } = jsonwebtoken;
 import bodyparser from 'body-parser';
 const { json } = bodyparser;
 import cookieParser from 'cookie-parser'; // Include cookie-parser
-//import { join, dirname } from 'path';
-import authenticateJWT from './authJWT.js'; // Import your middleware
+import authenticateJWT from './utilities/authJWT.js'; // Import your middleware
 
 /* App routes */
 import { appRoute } from './routes/appRoute.js';
@@ -44,7 +42,6 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 // Main application entry
 app.use('/', appRoute);
-
 
 // Start the server
 app.listen(PORT, () => {

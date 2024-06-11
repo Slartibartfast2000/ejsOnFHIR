@@ -3,11 +3,13 @@ import express from 'express';
 const router = express.Router();
 import appController  from '../controllers/appController.js'; // Make sure to include the .js extension
 import  patientRoute  from './patientRoute.js';
+import authenticateJWT from '../utilities/authJWT.js'; // Import your middleware
 
 // Creating a new router instance
  
 // Defining a route that uses the getApp method from appController
-router.get("/", (req, res) => { 
+router.get("/", authenticateJWT, (req, res) => { 
+
     console.debug("waaaa?");
     res.send('Hello from appRoute!"');
 });

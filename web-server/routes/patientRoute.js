@@ -5,5 +5,6 @@ import { getPatient } from '../controllers/patientController.js';
 const router = express.Router();
 
 router.get("/", getPatient);
+router.get("/patientform", );
 
 export default router;
