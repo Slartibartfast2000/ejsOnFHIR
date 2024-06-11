@@ -1,18 +1,6 @@
-//const path = require('path');
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-//const fs = require('fs');
-//import patient from './patient.js';
-
-import appRoute from './routes/appRoute.js';
-
-//const appRoute = require('./routes/appRoute');
-import patientRoute from './routes/appRoute.js';
-
-//const patientRoute = require('./routes/patientRoute');
-
-import fhirRoute from './routes/fhirRoute.js';
 
 //const fhirRoute = require('./routes/fhirRoute');
 
@@ -29,50 +17,45 @@ import cookieParser from 'cookie-parser'; // Include cookie-parser
 //import { join, dirname } from 'path';
 import authenticateJWT from './authJWT.js'; // Import your middleware
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+/* App routes */
+import { appRoute } from './routes/appRoute.js';
 
+import fhirRoute from './routes/fhirRoute.js';
+
+/* Configuration */
 dotenv.config();
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-// Set the directory for views
-//app.set('views', path.join(__dirname, 'views'));
+// Set EJS as the view engine - // Set the directory for views
+app.set('view engine', 'ejs');
 app.set('views', join(__dirname, 'views'));
-// Serve static files from the public directory
+
+// Static files from the ./public directory and 
 app.use(express.static(join(__dirname, 'public')));
+
+// css - version can be controlled via npm and package.json - also doesn't require breakout to internet to download Content Delivery Network stylesheets from private networks)
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 // Main application entry
-app.use('/app', appRoute);
+app.use('/', appRoute);
 
-function readJSONFile(filepath) {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filepath, 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                try {
-                    const jsonData = JSON.parse(data);
-                    resolve(jsonData);
-                } catch (parseErr) {
-                    reject(parseErr);
-                }
-            }
-        });
-    });
-}
 
-app.use('/patientform', patientRoute);
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
 
+/*
 app.use('/fhir', fhirRoute);
-
-console.debug('fhir');
-
+*/
 // Route to render the HTML form
+/*
 app.get('/Patient', async (req, res) => {
    // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
    var obj = JSON.parse(fs.readFileSync('../FHIR/data/Patient.json', 'utf8')); 
@@ -93,11 +76,15 @@ app.get('/Patient', async (req, res) => {
   
     res.render('pages/index',  { Patient } );
 });
+*/
 
+/*
 app.get('/complexForm.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'complexForm.html'));
 });
+*/
 
+/*
 app.post('/Patient', (req, res) => {
     const patientData = req.body;
 
@@ -109,9 +96,23 @@ app.post('/Patient', (req, res) => {
         Patient: patientData
     });
 });
+*/
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+function readJSONFile(filepath) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(filepath, 'utf8', (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                try {
+                    const jsonData = JSON.parse(data);
+                    resolve(jsonData);
+                } catch (parseErr) {
+                    reject(parseErr);
+                }
+            }
+        });
+    });
+}
+
+

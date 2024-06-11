@@ -1,8 +1,9 @@
-//import axios from 'axios';
-
-//const axios = axios;
+//import express from 'express';
+//const render = express;
+console.debug('appController.js');
 
 export const getApp = (req, res) => {
+    
     console.debug("appController.getApp()");
 
     const Patient = { "id": ""};
@@ -13,9 +14,8 @@ export const getApp = (req, res) => {
     } catch (error) {
         res.status(500).send(`Error fetching data: ${error.message}`);
     }
-
-  
 }
+
 export default getApp;
   //try {
     //const response = await axios.get(url);
