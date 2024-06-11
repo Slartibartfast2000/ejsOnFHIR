@@ -1,12 +1,31 @@
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
-var patient = require('./patient');
+//const path = require('path');
+import fs from 'fs';
 
-const appRoute = require('./routes/appRoute');
+//const fs = require('fs');
+//import patient from './patient.js';
+
+import appRoute from './routes/appRoute.js';
+
+//const appRoute = require('./routes/appRoute');
 const patientRoute = require('./routes/patientRoute');
 const fhirRoute = require('./routes/fhirRoute');
 
+import dotenv from 'dotenv';
+import express from 'express';
+//import { fileURLToPath } from 'url';
+import bcryptjs from 'bcryptjs';
+const { hash, compare } = bcryptjs;
+import jsonwebtoken from 'jsonwebtoken';
+const { verify, sign } = jsonwebtoken;
+import bodyparser from 'body-parser';
+const { json } = bodyparser;
+import cookieParser from 'cookie-parser'; // Include cookie-parser
+import { join, dirname } from 'path';
+import authenticateJWT from './authJWT.js'; // Import your middleware
+//const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config();
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,10 +39,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
-
 // Main application entry
 app.use('/app', appRoute);
-
 
 function readJSONFile(filepath) {
     return new Promise((resolve, reject) => {

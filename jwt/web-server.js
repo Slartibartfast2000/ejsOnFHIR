@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser'; // Include cookie-parser
 import { join, dirname } from 'path';
 import authenticateJWT from './authJWT.js'; // Import your middleware
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+//const __dirname = dirname(__filename);
 
 dotenv.config();
 
@@ -25,7 +25,6 @@ const users = []; // This should be replaced with a proper database in a real ap
 
 //const secretKey = 'your-secret-keys'; // Store this in an environment variable in a real application
 const secretKey = process.env.JWT_SECRET;
-
 
 app.get('/register', (req, res) => {
     res.sendFile(join(__dirname, 'register.html'));

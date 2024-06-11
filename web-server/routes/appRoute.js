@@ -6,4 +6,6 @@ const appController = require("../controllers/appController");
 
 router.get("/", appController.getApp);
 
-module.exports = router;
+export default router;
+
+//module.exports = router;
