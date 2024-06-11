@@ -12,7 +12,7 @@ const authenticateJWT = (req, res, next) => {
   
     if (!token) {
         console.debug('Access Denied');
-        return res.redirect('../public/login.html');
+        return res.redirect('../static/login.html');
         //return res.status(401).send('Access Denied');
     }
     

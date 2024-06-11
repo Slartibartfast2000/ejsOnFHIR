@@ -1,6 +1,3 @@
-//import express from 'express';
-//const render = express;
-console.debug('appController.js');
 
 export const getApp = (req, res) => {
     
