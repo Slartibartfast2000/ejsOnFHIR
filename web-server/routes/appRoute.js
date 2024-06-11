@@ -1,11 +1,12 @@
-const express = require("express");
+// Importing the necessary modules
+import express from 'express';
+import { getApp } from '../controllers/appController.js'; // Make sure to include the .js extension
+
+// Creating a new router instance
 const router = express.Router();
 
-//const Axios = require("axios");
-const appController = require("../controllers/appController");
+// Defining a route that uses the getApp method from appController
+router.get("/", getApp);
 
-router.get("/", appController.getApp);
-
+// Exporting the router as the default export
 export default router;
-
-//module.exports = router;

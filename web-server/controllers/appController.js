@@ -1,9 +1,11 @@
-const axios = require("axios");
+//import axios from 'axios';
 
-async function getApp(req, res) {
+//const axios = axios;
+
+export const getApp = (req, res) => {
     console.debug("appController.getApp()");
 
-    Patient = { "id": ""};
+    const Patient = { "id": ""};
 
     try {
 
@@ -12,14 +14,15 @@ async function getApp(req, res) {
         res.status(500).send(`Error fetching data: ${error.message}`);
     }
 
-    //try {
+  
+}
+export default getApp;
+  //try {
     //const response = await axios.get(url);
     //res.status(200).json(response.data);
     //} catch (error) {
     //res.status(500).json({ message: `Error fetching resource: ${error.message}` });
     // }
-}
-
 /*
 const getApp = async (req, res) => {
     console.debug("patientController.getPatient: ", req.query);
@@ -38,6 +41,6 @@ const getApp = async (req, res) => {
   
 };
 */
-module.exports = {
-    getApp
-};
+//module.exports = {
+  //  getApp
+//};

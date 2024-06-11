@@ -1,6 +1,6 @@
-const axios = require("axios");
+import axios from 'axios';
 
-const getPatient = async (req, res) => {
+export const getPatient = async (req, res) => {
     console.debug("patientController.getPatient: ", req.query);
     const patientId = req.query.PatientId;
     console.debug('PatientId', patientId);
@@ -11,13 +11,9 @@ const getPatient = async (req, res) => {
         console.debug(Patient);
 
         res.render('../views/partials/Patient/Patient', { Patient });
-      } catch (error) {
+    } catch (error) {
         res.status(500).send(`Error fetching data: ${error.message}`);
-      }
-  
+    }
 };
 
-module.exports = {
-    getPatient
-  };
-  
+export default getPatient;

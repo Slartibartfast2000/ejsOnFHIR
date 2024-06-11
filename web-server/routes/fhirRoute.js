@@ -1,7 +1,8 @@
-const express = require("express");
-const fhirRouter = express.Router();
-const fhirController = require('../controllers/fhirController');
+import express from 'express';
+import { getResource } from '../controllers/fhirController.js';
 
-fhirRouter.get('/:resourceType/:id', fhirController.getResource);
+const router = express.Router();
 
-module.exports = fhirRouter;
+router.get('/:resourceType/:id', getResource);
+
+export default router;

@@ -1,10 +1,9 @@
-const express = require("express");
+import express from 'express';
+//import axios from 'axios'; // If axios is needed here, otherwise remove this line
+import { getPatient } from '../controllers/patientController.js';
+
 const router = express.Router();
 
-const Axios = require("axios");
-const patientController = require("../controllers/patientController");
+router.get("/", getPatient);
 
-
-router.get("/", patientController.getPatient);
-
-module.exports = router;
+export default router;

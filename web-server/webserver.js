@@ -1,14 +1,20 @@
 //const path = require('path');
 import fs from 'fs';
-
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 //const fs = require('fs');
 //import patient from './patient.js';
 
 import appRoute from './routes/appRoute.js';
 
 //const appRoute = require('./routes/appRoute');
-const patientRoute = require('./routes/patientRoute');
-const fhirRoute = require('./routes/fhirRoute');
+import patientRoute from './routes/appRoute.js';
+
+//const patientRoute = require('./routes/patientRoute');
+
+import fhirRoute from './routes/fhirRoute.js';
+
+//const fhirRoute = require('./routes/fhirRoute');
 
 import dotenv from 'dotenv';
 import express from 'express';
@@ -20,9 +26,10 @@ const { verify, sign } = jsonwebtoken;
 import bodyparser from 'body-parser';
 const { json } = bodyparser;
 import cookieParser from 'cookie-parser'; // Include cookie-parser
-import { join, dirname } from 'path';
+//import { join, dirname } from 'path';
 import authenticateJWT from './authJWT.js'; // Import your middleware
-//const __filename = fileURLToPath(import.meta.url);
+
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 dotenv.config();
@@ -33,10 +40,10 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // Set the directory for views
-app.set('views', path.join(__dirname, 'views'));
-
+//app.set('views', path.join(__dirname, 'views'));
+app.set('views', join(__dirname, 'views'));
 // Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(join(__dirname, 'public')));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 // Main application entry
