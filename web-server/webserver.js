@@ -49,10 +49,41 @@ app.use('/static/', express.static(join(__dirname, 'public')));
 // css - version can be controlled via npm and package.json - also doesn't require breakout to internet to download Content Delivery Network stylesheets from private networks)
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
+const data = {
+    entry: [
+      {
+        fullUrl: "http://localhost:8080/fhir/Patient/1",
+        resource: {
+          resourceType: "Patient",
+          id: "1",
+          name: [{ family: "Doe", given: ["John"] }],
+          gender: "male",
+          birthDate: "1970-01-01"
+        }
+      },
+      {
+        fullUrl: "http://localhost:8080/fhir/Patient/5",
+        resource: {
+          resourceType: "Patient",
+          id: "5",
+          name: [{ family: "Doe", given: ["John"] }],
+          gender: "male",
+          birthDate: "1982-01-01"
+        }
+      }
+    ]
+  };
+  
+app.get('/patientSearch', (req, res) => {
+    console.debug('patientSearch'); 
+
+    res.render('./pages/patientSearch', { entry: data.entry });
+  });
 // Main application entry
 app.use('/', appRoute);
-console.info("Using HTTPS", USE_HTTPS);
 
+
+console.info("Using HTTPS?", USE_HTTPS);
 
 if (USE_HTTPS == 'true') {
 
