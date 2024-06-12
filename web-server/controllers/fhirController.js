@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export async function getResource(req, res) {
+/* CRUDS */
+export async function readResource(req, res) {
     console.debug("fhirController.getResource:");
     
     const { resourceType, id } = req.params;
@@ -18,4 +19,13 @@ export async function getResource(req, res) {
     }
 }
 
-export default getResource;
+export async function searchResource( req,res) {
+
+    const { resourceType } = req.params;
+    const queryString = req.query;
+
+    console.log('Resource Type:', resourceType);
+    console.log('Query String:', queryString);
+}
+
+export default {readResource, searchResource};

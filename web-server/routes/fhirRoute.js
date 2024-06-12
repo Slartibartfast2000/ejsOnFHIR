@@ -1,8 +1,10 @@
 import express from 'express';
-import { getResource } from '../controllers/fhirController.js';
+import { readResource, searchResource } from '../controllers/fhirController.js';
 
 const router = express.Router();
 
-router.get('/:resourceType/:id', getResource);
+router.get('/:resourceType/:id', readResource);
+
+router.get('/:resourceType?', searchResource);
 
 export default router;

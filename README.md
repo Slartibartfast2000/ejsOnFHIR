@@ -112,6 +112,15 @@ For Windows, browser-sync.ps1 should be used... note this will need local Admini
 
 ```
 
+## Get FHIR Server if required
+
+Note this demo has no authentication configured
+
+```js
+docker pull hapiproject/hapi:latest
+docker run -p 8080:8080 hapiproject/hapi:latest
+```
+
 ## Create a self signed cert
 
 ```powershell
