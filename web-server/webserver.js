@@ -15,10 +15,10 @@ import authenticateJWT from './utilities/authJWT.js'; // Import your middleware
 /* App routes */
 import { appRoute } from './routes/appRoute.js';
 
-import fhirRoute from './routes/fhirRoute.js';
+
 
 //const users = []; // This should be replaced with a proper database in a real application
-
+ 
 //const secretKey = 'your-secret-keys'; // Store this in an environment variable in a real application
 //const secretKey = process.env.JWT_SECRET;
 
@@ -53,6 +53,7 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/', appRoute);
 console.info("Using HTTPS", USE_HTTPS);
 
+
 if (USE_HTTPS == 'true') {
 
     // Start the server - run on any available ip
@@ -61,8 +62,6 @@ if (USE_HTTPS == 'true') {
     });
 } else {
 
-
-
     const server = app.listen(PORT, '0.0.0.0', () => {
         const host = server.address().address;
         const port = server.address().port;
@@ -70,9 +69,8 @@ if (USE_HTTPS == 'true') {
     });
 
 }
-/*
-app.use('/fhir', fhirRoute);
-*/
+
+
 // Route to render the HTML form
 /*
 app.get('/Patient', async (req, res) => {

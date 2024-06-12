@@ -7,6 +7,7 @@ import authenticateJWT from '../utilities/authJWT.js'; // Import your middleware
 import users from '../utilities/users.js'; // Import the users array from the separate file
 import bcryptjs from 'bcryptjs';
 const { hash, compare } = bcryptjs;
+import fhirRoute from './fhirRoute.js';
 // Creating a new router instance
 const secretKey = process.env.JWT_SECRET;
 //router.use(express.urlencoded({ extended: true }));
@@ -18,6 +19,8 @@ router.get("/", authenticateJWT, (req, res) => {
     console.debug("waaaa?");
     res.send('Hello from appRoute!"');
 });
+
+router.use('/fhir', fhirRoute);
 
 router.post('/register', async (req, res) => {
     console.debug(req.body);

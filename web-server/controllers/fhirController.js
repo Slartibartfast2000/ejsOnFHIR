@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const fhirBaseUrl = process.env.FHIR_BASE_URL || 'http://localhost:8080/fhir';
 /* CRUDS */
 export async function readResource(req, res) {
     console.debug("fhirController.getResource:");
@@ -26,8 +27,8 @@ export async function searchResource( req,res) {
 
     console.log('Resource Type:', resourceType);
     console.log('Query String:', queryString);
-    
-    const url = `${fhirBaseUrl}/${resourceType}/${id}`;
+    const queryParameters = req.originalUrl.split('?')[1];
+    const url = `${fhirBaseUrl}/${resourceType}?${queryParameters}`;
     
     try {
         const response = await axios.get(url);
