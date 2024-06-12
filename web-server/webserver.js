@@ -12,11 +12,15 @@ import bodyparser from 'body-parser';
 const { json } = bodyparser;
 import cookieParser from 'cookie-parser'; // Include cookie-parser
 import authenticateJWT from './utilities/authJWT.js'; // Import your middleware
-
 /* App routes */
 import { appRoute } from './routes/appRoute.js';
 
 import fhirRoute from './routes/fhirRoute.js';
+
+//const users = []; // This should be replaced with a proper database in a real application
+
+//const secretKey = 'your-secret-keys'; // Store this in an environment variable in a real application
+//const secretKey = process.env.JWT_SECRET;
 
 /* Configuration */
 dotenv.config();
