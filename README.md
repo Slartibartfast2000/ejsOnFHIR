@@ -111,3 +111,12 @@ For Windows, browser-sync.ps1 should be used... note this will need local Admini
 .\browser-sync.ps1 start --proxy "http://localhost:3000" --files "C:\inchware\repo\uni\ip\ejsOnFHIR"  --no-notify
 
 ```
+
+## Create a self signed cert
+
+```powershell
+New-SelfSignedCertificate -DnsName "YourDomainName" -CertStoreLocation "cert:\LocalMachine\My"
+```
+
+On windows, use mmc -> certificates to export cert as .pfx include private key. Save file to the web-server\cert folder. 
+update .env file with cert filename and USE_HTTPS=true.

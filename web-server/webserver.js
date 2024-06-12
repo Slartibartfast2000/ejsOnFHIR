@@ -26,12 +26,13 @@ import fhirRoute from './routes/fhirRoute.js';
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const USE_HTTPS = process.env.USE_HTTPS || false;
+const CERT_FILE = process.env.CERT_FILE || './cert/mySelfSignedCert.pfx'
 
 const options = {
-    pfx: fs.readFileSync('./cert/myCert.pfx'), // Path to your exported .pfx file
+    pfx: fs.readFileSync(CERT_FILE), // Path to your exported .pfx file
     passphrase: 'password' // Password used during export (if any)
 };
-
+ 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
