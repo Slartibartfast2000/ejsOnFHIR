@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-
+import https from 'https';
 import dotenv from 'dotenv';
 import express from 'express';
 import bcryptjs from 'bcryptjs';
@@ -25,6 +25,12 @@ import fhirRoute from './routes/fhirRoute.js';
 /* Configuration */
 dotenv.config();
 const PORT = process.env.PORT || 3000;
+const USE_HTTPS = process.env.USE_HTTPS || false;
+
+const options = {
+    pfx: fs.readFileSync('./cert/myCert.pfx'), // Path to your exported .pfx file
+    passphrase: 'password' // Password used during export (if any)
+};
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -44,12 +50,25 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 // Main application entry
 app.use('/', appRoute);
+console.info("Using HTTPS", USE_HTTPS);
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (USE_HTTPS == 'true') {
 
+    // Start the server - run on any available ip
+    https.createServer(options, app).listen(PORT, () => {
+        console.log(`Server is running on https://localhost:${PORT}`);
+    });
+} else {
+
+
+
+    const server = app.listen(PORT, '0.0.0.0', () => {
+        const host = server.address().address;
+        const port = server.address().port;
+        console.log(`Server is running on http://${host}:${port}`);
+    });
+
+}
 /*
 app.use('/fhir', fhirRoute);
 */
