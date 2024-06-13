@@ -19,9 +19,16 @@
           fetch(`/search/Patient?family=${surname}&given=${forename}`)
             .then(response => response.text())
             .then(html => {
-              console.debug(html);
+             
               document.getElementById('searchResults').innerHTML = html;
+              if (typeof addEventListeners === 'function') {
+          addEventListeners();
+        } else {
+          console.error('addEventListeners function is not defined ');
+        }
             })
             .catch(error => console.error('Error:', error));
         });
+
+    
       </script>

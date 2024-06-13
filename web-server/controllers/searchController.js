@@ -22,7 +22,7 @@ export async function searchResource( req,res) {
         const response = await axios.get(url);
         //res.status(200).json(response.data);
 
-        console.debug("searchResource", response.data.entry);
+        //console.debug("searchResource", response.data.entry);
         
         res.render('partials/Search/searchResults', { entry: response.data.entry });
 
