@@ -39,4 +39,29 @@ export async function searchResource( req,res) {
 
 }
 
-export default {readResource, searchResource};
+export async function updateResource( req,res) {
+    //http://localhost:8080/fhir/Patient?family=Doe&given=John
+    const { resourceType } = req.params;
+    const queryString = req.query;
+
+    console.log('Resource Type:', resourceType);
+    console.log('Query String:', queryString);
+    console.log('body', req.body)    ;
+
+    const queryParameters = req.originalUrl.split('?')[1];
+    const url = `${fhirBaseUrl}/${resourceType}?${queryParameters}`;
+
+    res.status(200).json(response.data);
+
+    /*
+    try {
+        const response = await axios.get(url);
+        res.status(200).json(response.data);
+    } catch (error) {
+        res.status(500).json({ message: `Error fetching resource: ${error.message}` });
+    }
+*/
+
+}
+
+export default {readResource, searchResource, updateResource};

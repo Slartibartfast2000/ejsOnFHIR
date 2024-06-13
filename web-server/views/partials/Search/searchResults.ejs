@@ -22,17 +22,19 @@
 </table>
 
 <script>
-    function addEventListeners() {
-  document.querySelectorAll('#searchResults tbody tr').forEach(row => {
-    row.addEventListener('click', async function() {
-      const patientId = this.dataset.id;
-      const response = await fetch(`/patient/patientRecord?id=${patientId}`);
-      const data = await response.text();
-      
-      document.getElementById('patientDetail').innerHTML = data;
-      console.debug("calling addEventListeners() ");
-     
+  function addEventListeners() {
+    document.querySelectorAll('#searchResults tbody tr').forEach(row => {
+      row.addEventListener('click', async function () {
+        const patientId = this.dataset.id;
+        const response = await fetch(`/patient/patientRecord?id=${patientId}`);
+        const data = await response.text();
+
+        document.getElementById('patientDetail').innerHTML = data;
+        console.debug("calling addEventListeners()");
+        addFormSubmitEventListener();
+      });
     });
-  });
-}
+  }
+
+  addEventListeners(); // Call the function to add event listeners after rendering
 </script>
