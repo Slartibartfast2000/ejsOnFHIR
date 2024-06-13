@@ -1,0 +1,20 @@
+    <div>
+        <form id="searchForm">
+          <label for="surname">Surname:</label>
+          <input type="text" id="surname" name="surname" required>
+      
+          <label for="forename">Forename:</label>
+          <input type="text" id="forename" name="forename" required>
+      
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      
+      <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          const surname = document.getElementById('surname').value;
+          const forename = document.getElementById('forename').value;
+          window.location.href = `/search?family=${surname}&given=${forename}`;
+        });
+      </script>

@@ -14,6 +14,8 @@
     <main>
         <div class="jumbotron">
             <h5>Patient</h5>
+            <%- include('../partials/Search/searchForm', { entry: entry }) %>
+          
       
             <%- include('../partials/Search/table', { entry: entry }) %>
         </div>
