@@ -19,7 +19,8 @@
           fetch(`/search/Patient?family=${surname}&given=${forename}`)
             .then(response => response.text())
             .then(html => {
-              document.getElementById('searchresults').innerHTML = html;
+              console.debug(html);
+              document.getElementById('searchResults').innerHTML = html;
             })
             .catch(error => console.error('Error:', error));
         });
