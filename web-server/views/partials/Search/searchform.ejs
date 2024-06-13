@@ -1,10 +1,10 @@
     <div>
         <form id="searchForm">
           <label for="surname">Surname:</label>
-          <input type="text" id="surname" name="surname" required>
+          <input type="text" id="surname" name="surname" value="d" required>
       
           <label for="forename">Forename:</label>
-          <input type="text" id="forename" name="forename" required>
+          <input type="text" id="forename" name="forename" value="j" required>
       
           <button type="submit">Search</button>
         </form>
@@ -15,6 +15,12 @@
           event.preventDefault();
           const surname = document.getElementById('surname').value;
           const forename = document.getElementById('forename').value;
-          window.location.href = `/search?family=${surname}&given=${forename}`;
+      
+          fetch(`/search/Patient?family=${surname}&given=${forename}`)
+            .then(response => response.text())
+            .then(html => {
+              document.getElementById('searchresults').innerHTML = html;
+            })
+            .catch(error => console.error('Error:', error));
         });
       </script>

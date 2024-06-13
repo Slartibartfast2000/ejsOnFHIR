@@ -1,0 +1,33 @@
+<table id="searchResults">
+  <thead>
+    <tr>
+      <th>IDs</th>
+      <th>Family Name</th>
+      <th>Given Name</th>
+      <th>Gender</th>
+      <th>Birth Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% entry.forEach(patient => { %>
+      <tr data-id="<%= patient.resource.id %>">
+        <td><%= patient.resource.id %></td>
+        <td><%= patient.resource.name[0].family %></td>
+        <td><%= patient.resource.name[0].given[0] %></td>
+        <td><%= patient.resource.gender %></td>
+        <td><%= patient.resource.birthDate %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<script>
+  document.querySelectorAll('#searchResults tbody tr').forEach(row => {
+    row.addEventListener('click', async function() {
+      const patientId = this.dataset.id;
+      const response = await fetch(`/patient/patientRecord?id=${patientId}`);
+      const data = await response.text();
+      document.getElementById('patientDetail').innerHTML = data;
+    });
+  });
+</script>

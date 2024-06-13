@@ -2,12 +2,15 @@
 import express from 'express';
 const router = express.Router();
 import appController  from '../controllers/appController.js'; // Make sure to include the .js extension
-import  patientRoute  from './patientRoute.js';
-import authenticateJWT from '../utilities/authJWT.js'; // Import your middleware
 import users from '../utilities/users.js'; // Import the users array from the separate file
 import bcryptjs from 'bcryptjs';
 const { hash, compare } = bcryptjs;
+import authenticateJWT from '../utilities/authJWT.js'; // Import your middleware
+
 import fhirRoute from './fhirRoute.js';
+import  patientRoute  from './patientRoute.js';
+
+
 // Creating a new router instance
 const secretKey = process.env.JWT_SECRET;
 //router.use(express.urlencoded({ extended: true }));
@@ -21,6 +24,7 @@ router.get("/", authenticateJWT, (req, res) => {
 });
 
 router.use('/fhir', fhirRoute);
+router.use('/patient', patientRoute);
 
 router.post('/register', async (req, res) => {
     console.debug(req.body);

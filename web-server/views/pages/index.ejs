@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <%- include('../partials/head'); %>
 </head>
+
 <body class="container">
 
-<header>
-  <%- include('../partials/header'); %>
-</header>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
 
-<main>
-  <div class="jumbotron">
-    <h5>Patient</h5>
-  <h1>Patient Data</h1>
-  <%- include('../partials/Search/table', { entry: entry }) %>
-  </div>
-</main>
+  <main>
+    <div class="jumbotron">
+      <h5>Patients</h5>
+      <%- include('../partials/Search/searchForm', { entry: entry }) %>
+      <br/>
+      <% if (entry && entry.length> 0) { %>
+        <%- include('../partials/Search/searchResults', { entry: entry }) %>
+          <% } else { %>
+            <p>No results found.</p>
+            <% } %>
+            <div id="patientDetail">p</div>
+    </div>
+    
+  </main>
 
-<footer>
-  <%- include('../partials/footer'); %>
-</footer>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
 
 </body>
+
 </html>

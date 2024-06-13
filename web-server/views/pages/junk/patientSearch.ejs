@@ -6,25 +6,22 @@
 </head>
 
 <body class="container">
-
     <header>
         <%- include('../partials/header'); %>
     </header>
 
     <main>
         <div class="jumbotron">
-            <h5>Patient</h5>
+            <h5>Patients</h5>
             <%- include('../partials/Search/searchForm', { entry: entry }) %>
-          
-      
-            <%- include('../partials/Search/table', { entry: entry }) %>
+            <br/>
+            <%- include('../partials/Search/searchResults', { entry: entry }) %>
         </div>
     </main>
 
     <footer>
         <%- include('../partials/footer'); %>
     </footer>
-
 </body>
 
 </html>

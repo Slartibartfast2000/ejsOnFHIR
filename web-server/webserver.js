@@ -74,10 +74,10 @@ const data = {
     ]
   };
   
-app.get('/patientSearch', (req, res) => {
+app.get('/index', (req, res) => {
     console.debug('patientSearch'); 
 
-    res.render('./pages/patientSearch', { entry: data.entry });
+    res.render('./pages/index', { entry: data.entry });
   });
 // Main application entry
 app.use('/', appRoute);
