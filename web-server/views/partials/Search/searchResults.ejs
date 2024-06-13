@@ -31,7 +31,12 @@
 
         document.getElementById('patientDetail').innerHTML = data;
         console.debug("calling addEventListeners()");
-        addFormSubmitEventListener();
+        if (typeof addFormSubmitEventListener === 'function') {
+          addFormSubmitEventListener();
+        } else {
+          console.debug("addFormSubmitEventListener does not exist");
+          
+        }
       });
     });
   }

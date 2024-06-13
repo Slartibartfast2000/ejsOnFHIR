@@ -26,6 +26,8 @@
   </div>
   
   <script>
+    console.debug("hello");
+    
     function addFormSubmitEventListener() {
       console.debug("adding event listener for form submit");
       document.getElementById('patientDetailsForm').addEventListener('submit', function(event) {
@@ -60,5 +62,7 @@
         });
       });
     }
+  
+    addFormSubmitEventListener(); // Call the function to add the event listener when the form is rendered
   </script>
   
