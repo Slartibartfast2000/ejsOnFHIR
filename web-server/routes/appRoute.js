@@ -9,13 +9,16 @@ import authenticateJWT from '../utilities/authJWT.js'; // Import your middleware
 
 import fhirRoute from './fhirRoute.js';
 import  patientRoute  from './patientRoute.js';
+import  searchRoute  from './searchRoute.js';
 
 
 // Creating a new router instance
 const secretKey = process.env.JWT_SECRET;
 //router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
-
+router.use('/fhir', fhirRoute);
+router.use('/patient', patientRoute);
+router.use('/search', searchRoute);
 // Defining a route that uses the getApp method from appController
 router.get("/", authenticateJWT, (req, res) => { 
 
@@ -23,8 +26,7 @@ router.get("/", authenticateJWT, (req, res) => {
     res.send('Hello from appRoute!"');
 });
 
-router.use('/fhir', fhirRoute);
-router.use('/patient', patientRoute);
+
 
 router.post('/register', async (req, res) => {
     console.debug(req.body);
