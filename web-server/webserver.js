@@ -15,7 +15,9 @@ import authenticateJWT from './utilities/authJWT.js'; // Import your middleware
 /* App routes */
 import { appRoute } from './routes/appRoute.js';
 
+import multer from 'multer';
 
+const multer = require('multer');
 
 //const users = []; // This should be replaced with a proper database in a real application
  
@@ -79,6 +81,33 @@ app.get('/index', (req, res) => {
 
     res.render('./pages/index', { entry: data.entry });
   });
+
+  // Route to render the HTML form
+
+app.post('/Patient', async (req, res) => {
+    // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
+    console.debug(req.body);
+
+    res.status(200);
+
+    //var obj = JSON.parse(fs.readFileSync('../FHIR/data/Patient.json', 'utf8')); 
+    //console.log('JSON Data:', obj);
+ 
+ 
+     // Sample data for the form
+     var Patient = {
+         id: 'id',
+         use: 'official',
+         given: 'name.given',
+         family: 'name.family',
+         gender: 'myGender',
+         birthDate: '1980-02-28',
+         address: 'myAddress'
+     };
+     
+
+     //res.render('pages/index',  { Patient } );
+ });
 // Main application entry
 app.use('/', appRoute);
 
@@ -102,29 +131,8 @@ if (USE_HTTPS == 'true') {
 }
 
 
-// Route to render the HTML form
-/*
-app.get('/Patient', async (req, res) => {
-   // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
-   var obj = JSON.parse(fs.readFileSync('../FHIR/data/Patient.json', 'utf8')); 
-   console.log('JSON Data:', obj);
-   patient.foo();
-   patient.bar();
 
-    // Sample data for the form
-    var Patient = {
-        id: 'id',
-        use: 'official',
-        given: 'name.given',
-        family: 'name.family',
-        gender: 'myGender',
-        birthDate: '1980-02-28',
-        address: 'myAddress'
-    };
-  
-    res.render('pages/index',  { Patient } );
-});
-*/
+
 
 /*
 app.get('/complexForm.html', (req, res) => {

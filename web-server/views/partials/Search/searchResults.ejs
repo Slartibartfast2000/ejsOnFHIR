@@ -21,25 +21,3 @@
   </tbody>
 </table>
 
-<script>
-  function addEventListeners() {
-    document.querySelectorAll('#searchResults tbody tr').forEach(row => {
-      row.addEventListener('click', async function () {
-        const patientId = this.dataset.id;
-        const response = await fetch(`/patient/patientRecord?id=${patientId}`);
-        const data = await response.text();
-
-        document.getElementById('patientDetail').innerHTML = data;
-        console.debug("calling addEventListeners()");
-        if (typeof addFormSubmitEventListener === 'function') {
-          addFormSubmitEventListener();
-        } else {
-          console.debug("addFormSubmitEventListener does not exist");
-          
-        }
-      });
-    });
-  }
-
-  addEventListeners(); // Call the function to add event listeners after rendering
-</script>

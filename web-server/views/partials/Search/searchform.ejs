@@ -10,25 +10,4 @@
         </form>
       </div>
       
-      <script>
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-          const surname = document.getElementById('surname').value;
-          const forename = document.getElementById('forename').value;
       
-          fetch(`/search/Patient?family=${surname}&given=${forename}`)
-            .then(response => response.text())
-            .then(html => {
-             
-              document.getElementById('searchResults').innerHTML = html;
-              if (typeof addEventListeners === 'function') {
-          addEventListeners();
-        } else {
-          console.error('addEventListeners function is not defined ');
-        }
-            })
-            .catch(error => console.error('Error:', error));
-        });
-
-    
-      </script>

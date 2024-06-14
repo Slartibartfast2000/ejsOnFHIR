@@ -41,17 +41,30 @@ export async function searchResource( req,res) {
 
 export async function updateResource( req,res) {
     //http://localhost:8080/fhir/Patient?family=Doe&given=John
+    let formData = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => {
+      formData += chunk;
+    });
+    req.on('end', () => {
+      // Process formData here
+      console.log(formData);
+      res.status(200).json({ message: 'Received FormData' });
+    });
+    return;
+    
     const { resourceType } = req.params;
     const queryString = req.query;
 
     console.log('Resource Type:', resourceType);
     console.log('Query String:', queryString);
-    console.log('body', req.body)    ;
+    console.log('body:', req.body)    ;
 
     const queryParameters = req.originalUrl.split('?')[1];
     const url = `${fhirBaseUrl}/${resourceType}?${queryParameters}`;
 
-    res.status(200).json(response.data);
+    res.status(200).json({ success: true, message: 'Resource updated.' });
+
 
     /*
     try {

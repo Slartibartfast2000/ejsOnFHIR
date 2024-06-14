@@ -4,19 +4,23 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   function initSearchForm() {
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
+    document.getElementById('searchForm').addEventListener('submit', async function(event) {
       event.preventDefault();
       const surname = document.getElementById('surname').value;
       const forename = document.getElementById('forename').value;
   
-      fetch(`/search/Patient?family=${surname}&given=${forename}`)
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById('searchResults').innerHTML = html;
-          initDynamicEventListeners();
-          executeInlineScripts(document.getElementById('searchResults'));
-        })
-        .catch(error => console.error('Error:', error));
+      try {
+        const response = await fetch(`/search/Patient?family=${surname}&given=${forename}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch search results.');
+        }
+        const html = await response.text();
+        document.getElementById('searchResults').innerHTML = html;
+        initDynamicEventListeners();
+        executeInlineScripts(document.getElementById('searchResults'));
+      } catch (error) {
+        console.error('Error:', error);
+      }
     });
   }
   
@@ -24,12 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('#searchResults tbody tr').forEach(row => {
       row.addEventListener('click', async function() {
         const patientId = this.dataset.id;
-        const response = await fetch(`/patient/patientRecord?id=${patientId}`);
-        const data = await response.text();
+        try {
+          const response = await fetch(`/patient/patientRecord?id=${patientId}`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch patient record.');
+          }
+          const data = await response.text();
   
-        document.getElementById('patientDetail').innerHTML = data;
-        executeInlineScripts(document.getElementById('patientDetail'));
-        initFormSubmitEventListener();
+          document.getElementById('patientDetail').innerHTML = data;
+          executeInlineScripts(document.getElementById('patientDetail'));
+          initFormSubmitEventListener();
+        } catch (error) {
+          console.error('Error:', error);
+        }
       });
     });
   }
@@ -37,33 +48,39 @@ document.addEventListener('DOMContentLoaded', function() {
   function initFormSubmitEventListener() {
     const form = document.getElementById('patientDetailsForm');
     if (form) {
-      form.addEventListener('submit', function(event) {
+      form.addEventListener('submit', async function(event) {
         event.preventDefault();
         const formData = new FormData(this);
-        const data = {};
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
+        console.debug(formData);
+
+        const data = Object.fromEntries(formData); // Convert FormData to JSON object
+        console.debug(data);
+
+        try {
+          const response = await fetch(`/fhir/Patient/${data.patientId}`, {
+            method: 'PUT',
+            //headers: {
+             // 'Content-Type': 'application/json'
+            //},
+            body: formData //JSON.stringify(data)
+          });
   
-        fetch(`/fhir/Patient/${data.patientId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
+          if (!response.ok) {
+            throw new Error('Failed to update patient details.');
+          }
+  
+          const result = await response.json();
+          console.debug(result);
+
           if (result.success) {
             alert('Patient details updated successfully.');
           } else {
             alert('Error updating patient details: ' + result.message);
           }
-        })
-        .catch(error => {
+        } catch (error) {
           console.error('Error:', error);
           alert('Error updating patient details.');
-        });
+        }
       });
     }
   }

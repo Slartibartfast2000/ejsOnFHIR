@@ -3,15 +3,15 @@
     <form id="patientDetailsForm">
       <div>
         <label for="patientId">ID:</label>
-        <input type="hidden" id="patientId" name="patientId" value="<%= patient.id %>" readonly>
+        <input type="hidden" id="patientId" name="id" value="<%= patient.id %>" readonly>
       </div>
       <div>
-        <label for="familyName">Family Name:</label>
-        <input type="text" id="familyName" name="familyName" value="<%= patient.name[0].family %>">
+        <label for="name.family">Family Name:</label>
+        <input type="text" id="familyName" name="name[family]" value="<%= patient.name[0].family %>">
       </div>
       <div>
-        <label for="givenName">Given Name:</label>
-        <input type="text" id="givenName" name="givenName" value="<%= patient.name[0].given[0] %>">
+        <label for="name.given">Given Name:</label>
+        <input type="text" id="givenName" name="name[given]" value="<%= patient.name[0].given[0] %>">
       </div>
       <div>
         <label for="gender">Gender:</label>
@@ -21,48 +21,8 @@
         <label for="birthDate">Birth Date:</label>
         <input type="text" id="birthDate" name="birthDate" value="<%= patient.birthDate %>">
       </div>
+      <!-- Add more patient details as needed -->
       <button type="submit">Save</button>
     </form>
   </div>
-  
-  <script>
-    console.debug("hello");
-    
-    function addFormSubmitEventListener() {
-      console.debug("adding event listener for form submit");
-      document.getElementById('patientDetailsForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-        const formData = new FormData(this); // Create a FormData object from the form
-  
-        // Convert FormData to JSON
-        const data = {};
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
-  
-        console.debug('put clicked');
-        fetch(`/fhir/Patient/${data.patientId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-          if (result.success) {
-            alert('Patient details updated successfully.');
-          } else {
-            alert('Error updating patient details: ' + result.message);
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Error updating patient details.');
-        });
-      });
-    }
-  
-    addFormSubmitEventListener(); // Call the function to add the event listener when the form is rendered
-  </script>
   
