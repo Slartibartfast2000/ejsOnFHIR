@@ -1,10 +1,16 @@
 <div>
     <h3>Patient Details</h3>
     <form id="patientDetailsForm">
-      <div>
+        <div>
+            <label for="resourceType">ID:</label>
+            <input type="hidden" id="resourceType" name="resourceType" value="Patient" readonly>
+          </div>
+    
+        <div>
         <label for="patientId">ID:</label>
         <input type="hidden" id="patientId" name="id" value="<%= patient.id %>" readonly>
       </div>
+
       <div>
         <label for="name.family">Family Name:</label>
         <input type="text" id="familyName" name="name[family]" value="<%= patient.name[0].family %>">

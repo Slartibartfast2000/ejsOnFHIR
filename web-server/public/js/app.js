@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.debug(data);
 
         try {
-          const response = await fetch(`/fhir/Patient/${data.patientId}`, {
+          const response = await fetch(`/Patient/${data.id}`, {
             method: 'PUT',
             //headers: {
              // 'Content-Type': 'application/json'

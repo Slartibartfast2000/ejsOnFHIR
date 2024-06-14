@@ -17,7 +17,7 @@ import { appRoute } from './routes/appRoute.js';
 
 import multer from 'multer';
 
-const multer = require('multer');
+//const multer = require('multer');
 
 //const users = []; // This should be replaced with a proper database in a real application
  
@@ -37,6 +37,7 @@ const options = {
  
 const app = express();
 app.use(express.urlencoded({ extended: true }));
+app.use(multer().none());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -84,9 +85,11 @@ app.get('/index', (req, res) => {
 
   // Route to render the HTML form
 
-app.post('/Patient', async (req, res) => {
+app.put('/Patient/:id', async (req, res) => {
+    console.debug("hi: ");
+    const data = JSON.parse(JSON.stringify(req.body));
     // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
-    console.debug(req.body);
+    console.debug('data: ', JSON.stringify(data,null,2));
 
     res.status(200);
 
