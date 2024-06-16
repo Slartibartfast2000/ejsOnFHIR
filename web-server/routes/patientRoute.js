@@ -11,7 +11,7 @@ router.get('/patientRecord', async (req, res) => {
 
     const { id } = req.query;
     console.debug("id:", id);
-
+ 
     try {
       const response = await fetch(`http://localhost:8080/fhir/Patient/${id}`);
         //console.debug(response);
