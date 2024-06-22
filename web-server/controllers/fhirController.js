@@ -14,6 +14,8 @@ export async function readResource(req, res) {
 
     try {
         const response = await axios.get(url);
+        console.debug("Written to FHIR Server");
+        
         res.status(200).json(response.data);
     } catch (error) {
         res.status(500).json({ message: `Error fetching resource: ${error.message}` });
