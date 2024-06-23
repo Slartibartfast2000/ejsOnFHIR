@@ -13,7 +13,7 @@ const { json } = bodyparser;
 import cookieParser from 'cookie-parser'; // Include cookie-parser
 import authenticateJWT from './utilities/authJWT.js'; // Import your middleware
 /* App routes */
-import { appRoute } from './routes/appRoute.js';
+import { appRoute } from './routes/appRoutes.js';
 
 import multer from 'multer';
 
@@ -52,65 +52,7 @@ app.use('/static/', express.static(join(__dirname, 'public')));
 // css - version can be controlled via npm and package.json - also doesn't require breakout to internet to download Content Delivery Network stylesheets from private networks)
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
-const data = {
-    entry: [
-      {
-        fullUrl: "http://localhost:8080/fhir/Patient/1",
-        resource: {
-          resourceType: "Patient",
-          id: "1",
-          name: [{ family: "Doe", given: ["John"] }],
-          gender: "male",
-          birthDate: "1970-01-01"
-        }
-      },
-      {
-        fullUrl: "http://localhost:8080/fhir/Patient/5",
-        resource: {
-          resourceType: "Patient",
-          id: "5",
-          name: [{ family: "Doe", given: ["John"] }],
-          gender: "male",
-          birthDate: "1982-01-01"
-        }
-      }
-    ]
-  };
-  
-app.get('/index', (req, res) => {
-    console.debug('patientSearch'); 
 
-    res.render('./pages/index', { entry: data.entry });
-  });
-
-  // Route to render the HTML form
-
-app.put('/Patient/:id', async (req, res) => {
-    console.debug("hi: ");
-    const data = JSON.parse(JSON.stringify(req.body));
-    // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
-    console.debug('data: ', JSON.stringify(data,null,2));
-
-    res.status(200);
-
-    //var obj = JSON.parse(fs.readFileSync('../FHIR/data/Patient.json', 'utf8')); 
-    //console.log('JSON Data:', obj);
- 
- 
-     // Sample data for the form
-     var Patient = {
-         id: 'id',
-         use: 'official',
-         given: 'name.given',
-         family: 'name.family',
-         gender: 'myGender',
-         birthDate: '1980-02-28',
-         address: 'myAddress'
-     };
-     
-
-     //res.render('pages/index',  { Patient } );
- });
 // Main application entry
 app.use('/', appRoute);
 

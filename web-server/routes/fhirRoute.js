@@ -4,6 +4,7 @@ import { readResource, searchResource, updateResource } from '../controllers/fhi
 
 const router = express.Router();
 
+/* /fhir */
 router.put('/Patient/:id', updateResource);
 
 router.get('/:resourceType/:id', readResource);

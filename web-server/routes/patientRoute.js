@@ -4,8 +4,22 @@ import { getPatient } from '../controllers/patientController.js';
 
 const router = express.Router();
 
+/* Save Patient */
+router.put('/:id', async (req, res) => {
+  console.debug("patientRoute.js: PUT /Patient/:id ");
+  const data = JSON.parse(JSON.stringify(req.body));
+  // const patientData = await readJSONFile(path.join(__dirname, '../FHIR/data/Patient.json'));
+  console.debug('data: ', JSON.stringify(data,null,2));
+  
+  
+
+  res.status(200).json({ message: 'Patient updated successfully', data });
+});
+
 router.get("/", getPatient);
+
 router.get("/patientform", getPatient);
+
 router.get('/patientRecord', async (req, res) => {
     console.debug('/patient/patientRecord');
 

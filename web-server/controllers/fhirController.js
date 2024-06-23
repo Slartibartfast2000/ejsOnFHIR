@@ -6,7 +6,7 @@ export async function readResource(req, res) {
     console.debug("fhirController.getResource:");
     
     const { resourceType, id } = req.params;
-    const fhirBaseUrl = 'http://localhost:8080/fhir'; // Replace with your actual FHIR API base URL
+   // const fhirBaseUrl = 'http://localhost:8080/fhir'; // Replace with your actual FHIR API base URL
 
     console.debug("getResource:", resourceType, id);
     const url = `${fhirBaseUrl}/${resourceType}/${id}`;
@@ -23,6 +23,7 @@ export async function readResource(req, res) {
 }
 
 export async function searchResource( req,res) {
+    console.debug("searchResource()");
     //http://localhost:8080/fhir/Patient?family=Doe&given=John
     const { resourceType } = req.params;
     const queryString = req.query;
@@ -31,6 +32,7 @@ export async function searchResource( req,res) {
     console.log('Query String:', queryString);
     const queryParameters = req.originalUrl.split('?')[1];
     const url = `${fhirBaseUrl}/${resourceType}?${queryParameters}`;
+
     
     try {
         const response = await axios.get(url);
@@ -42,6 +44,8 @@ export async function searchResource( req,res) {
 }
 
 export async function updateResource( req,res) {
+    console.debug("fhirRoute.js - updateResource()");
+
     //http://localhost:8080/fhir/Patient?family=Doe&given=John
     let formData = '';
     req.setEncoding('utf8');
@@ -53,6 +57,7 @@ export async function updateResource( req,res) {
       console.log(formData);
       res.status(200).json({ message: 'Received FormData' });
     });
+    
     return;
     
     const { resourceType } = req.params;

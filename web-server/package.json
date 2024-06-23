@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "./node_modules/.bin/nodemon -L webserver.js",
-    "debug-windows": ".\\node_modules\\.bin\\nodemon -L webserver.js"
+    "debug-windows": ".\\node_modules\\.bin\\nodemon -L app.js"
   },
   "author": "",
   "license": "ISC",
