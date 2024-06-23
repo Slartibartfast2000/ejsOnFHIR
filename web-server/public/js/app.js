@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   initSearchForm();
   initDynamicEventListeners();
-  initDeleteSubmitEventListener()
+  initDeleteSubmitEventListener();
 });
 
 function initSearchForm() {
@@ -18,6 +18,7 @@ function initSearchForm() {
       const html = await response.text();
       document.getElementById('searchResults').innerHTML = html;
       initDynamicEventListeners();
+      initDeleteSubmitEventListener();
       executeInlineScripts(document.getElementById('searchResults'));
     } catch (error) {
       console.error('Error:', error);
@@ -26,6 +27,35 @@ function initSearchForm() {
 }
 
 function initDynamicEventListeners() {
+  const registerLink = document.querySelector('.register-link');
+
+  // Add an event listener for the click event
+  registerLink.addEventListener('click', async function(event) {
+    event.preventDefault(); // Prevent the default action of the link
+
+    // Your custom logic here
+    console.log('Register link clicked');
+    document.getElementById('searchResults').innerHTML = "";
+
+    try {
+      const regresponse = await fetch(`/patient/patientRecord?id=0`);
+      if (!regresponse.ok) {
+        throw new Error('Failed to fetch patient record.');
+      }
+      const data = await regresponse.text();
+      console.debug(data.id);
+      document.getElementById('patientDetail').innerHTML = data;
+      document.getElementById('patientId').value = "0";
+
+      executeInlineScripts(document.getElementById('patientDetail'));
+      initFormSubmitEventListener();
+      initDeleteSubmitEventListener();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+
+  // Add event listeners for existing rows in the table
   document.querySelectorAll('#searchResults tbody tr').forEach(row => {
     row.addEventListener('click', async function () {
       const patientId = this.dataset.id;
@@ -39,12 +69,14 @@ function initDynamicEventListeners() {
         document.getElementById('patientDetail').innerHTML = data;
         executeInlineScripts(document.getElementById('patientDetail'));
         initFormSubmitEventListener();
+        initDeleteSubmitEventListener();
       } catch (error) {
         console.error('Error:', error);
       }
     });
   });
 }
+
 
 function initFormSubmitEventListener() {
   const form = document.getElementById('patientDetailsForm');
@@ -54,16 +86,13 @@ function initFormSubmitEventListener() {
       const formData = new FormData(this);
       console.debug(formData);
 
-      const data = Object.fromEntries(formData); // Convert FormData to JSON object
+      const data = Object.fromEntries(formData.entries()); // Convert FormData to JSON object
       console.debug(data);
-
+      
       try {
         const response = await fetch(`/fhir/Patient/${data.id}`, {
           method: 'PUT',
-          //headers: {
-          // 'Content-Type': 'application/json'
-          //},
-          body: formData //JSON.stringify(data)
+          body: formData // Use FormData directly for multi-part data
         });
 
         if (!response.ok) {
@@ -91,37 +120,31 @@ function executeInlineScripts(container) {
 }
 
 function initDeleteSubmitEventListener() {
+  const deleteButtons = document.querySelectorAll('.delete-btn');
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const deleteButtons = document.querySelectorAll('.delete-btn');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', async (event) => {
+      event.stopPropagation(); // Prevent row click event
+      const patientId = event.target.getAttribute('data-id');
+      const confirmed = confirm('Are you sure you want to delete this patient?');
 
-    deleteButtons.forEach(button => {
-      button.addEventListener('click', async (event) => {
-        const patientId = event.target.getAttribute('data-id');
-        const confirmed = confirm('Are you sure you want to delete this patient?');
+      if (confirmed) {
+        try {
+          const response = await fetch(`/fhir/Patient/${patientId}`, {
+            method: 'DELETE'
+          });
 
-        if (confirmed) {
-          try {
-            const response = await fetch(`/patient/${patientId}`, {
-              method: 'DELETE',
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            });
-
-            if (response.ok) {
-              // Remove the corresponding row from the table
-              const row = event.target.closest('tr');
-              row.parentNode.removeChild(row);
-            } else {
-              console.error('Failed to delete patient');
-            }
-          } catch (error) {
-            console.error('Error:', error);
+          if (response.ok) {
+            // Remove the corresponding row from the table
+            const row = event.target.closest('tr');
+            row.parentNode.removeChild(row);
+          } else {
+            console.error('Failed to delete patient');
           }
+        } catch (error) {
+          console.error('Error:', error);
         }
-      });
+      }
     });
   });
-
 }

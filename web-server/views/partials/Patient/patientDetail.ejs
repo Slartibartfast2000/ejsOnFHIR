@@ -1,34 +1,33 @@
 <div>
-    <h3>Patient Details</h3>
-    <form id="patientDetailsForm">
-        <div>
-            <label for="resourceType">ID:</label>
-            <input type="hidden" id="resourceType" name="resourceType" value="Patient" readonly>
-          </div>
-    
-        <div>
-        <label for="patientId">ID:</label>
-        <input type="hidden" id="patientId" name="id" value="<%= patient.id %>" readonly>
-      </div>
+  <h3>Patient Details</h3>
+  <form id="patientDetailsForm">
+    <div>
+      <label for="resourceType"></label>
+      <input type="hidden" id="resourceType" name="resourceType" value="Patient" readonly>
+    </div>
 
-      <div>
-        <label for="name.family">Family Name:</label>
-        <input type="text" id="familyName" name="name[family]" value="<%= patient.name[0].family %>">
-      </div>
-      <div>
-        <label for="name.given">Given Name:</label>
-        <input type="text" id="givenName" name="name[given]" value="<%= patient.name[0].given[0] %>">
-      </div>
-      <div>
-        <label for="gender">Gender:</label>
-        <input type="text" id="gender" name="gender" value="<%= patient.gender %>">
-      </div>
-      <div>
-        <label for="birthDate">Birth Date:</label>
-        <input type="text" id="birthDate" name="birthDate" value="<%= patient.birthDate %>">
-      </div>
-      <!-- Add more patient details as needed -->
-      <button type="submit">Save</button>calls /fhir/Patient/:id
-    </form>
-  </div>
-  
+    <div>
+      <label for="patientId">ID:</label>
+      <input type="text" id="patientId" name="id" value="<%= patient && patient.id ? patient.id : '' %>" readonly>
+    </div>
+
+    <div>
+      <label for="name.family">Family Name:</label>
+      <input type="text" id="familyName" name="name[family]" value="<%= patient && patient.name && patient.name[0] && patient.name[0].family ? patient.name[0].family : '' %>">
+    </div>
+    <div>
+      <label for="name.given">Given Name:</label>
+      <input type="text" id="givenName" name="name[given]" value="<%= patient && patient.name && patient.name[0] && patient.name[0].given && patient.name[0].given[0] ? patient.name[0].given[0] : '' %>">
+    </div>
+    <div>
+      <label for="gender">Gender:</label>
+      <input type="text" id="gender" name="gender" value="<%= patient && patient.gender ? patient.gender : '' %>">
+    </div>
+    <div>
+      <label for="birthDate">Birth Date:</label>
+      <input type="text" id="birthDate" name="birthDate" value="<%= patient && patient.birthDate ? patient.birthDate : '' %>">
+    </div>
+    <!-- Add more patient details as needed -->
+    <button type="submit">Save</button>
+  </form>
+</div>
