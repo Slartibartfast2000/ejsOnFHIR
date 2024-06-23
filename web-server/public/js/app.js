@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   initSearchForm();
   initDynamicEventListeners();
+  initDeleteSubmitEventListener()
 });
 
 function initSearchForm() {
@@ -87,4 +88,40 @@ function executeInlineScripts(container) {
     newScript.text = script.textContent;
     document.head.appendChild(newScript).parentNode.removeChild(newScript);
   });
+}
+
+function initDeleteSubmitEventListener() {
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', async (event) => {
+        const patientId = event.target.getAttribute('data-id');
+        const confirmed = confirm('Are you sure you want to delete this patient?');
+
+        if (confirmed) {
+          try {
+            const response = await fetch(`/patient/${patientId}`, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+
+            if (response.ok) {
+              // Remove the corresponding row from the table
+              const row = event.target.closest('tr');
+              row.parentNode.removeChild(row);
+            } else {
+              console.error('Failed to delete patient');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        }
+      });
+    });
+  });
+
 }

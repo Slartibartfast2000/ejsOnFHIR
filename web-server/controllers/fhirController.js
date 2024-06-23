@@ -6,11 +6,10 @@ export async function readResource(req, res) {
     console.debug("fhirController.getResource:");
     
     const { resourceType, id } = req.params;
-   // const fhirBaseUrl = 'http://localhost:8080/fhir'; // Replace with your actual FHIR API base URL
 
     console.debug("getResource:", resourceType, id);
     const url = `${fhirBaseUrl}/${resourceType}/${id}`;
-    console.debug('getResource: ', url);
+    console.debug('getResource: GET =', url);
 
     try {
         const response = await axios.get(url);
@@ -44,44 +43,52 @@ export async function searchResource( req,res) {
 }
 
 export async function updateResource( req,res) {
-    console.debug("fhirRoute.js - updateResource()");
-
-    //http://localhost:8080/fhir/Patient?family=Doe&given=John
-    let formData = '';
-    req.setEncoding('utf8');
-    req.on('data', chunk => {
-      formData += chunk;
-    });
-    req.on('end', () => {
-      // Process formData here
-      console.log(formData);
-      res.status(200).json({ message: 'Received FormData' });
-    });
-    
-    return;
-    
-    const { resourceType } = req.params;
-    const queryString = req.query;
-
-    console.log('Resource Type:', resourceType);
-    console.log('Query String:', queryString);
-    console.log('body:', req.body)    ;
-
-    const queryParameters = req.originalUrl.split('?')[1];
-    const url = `${fhirBaseUrl}/${resourceType}?${queryParameters}`;
-
-    res.status(200).json({ success: true, message: 'Resource updated.' });
-
-
-    /*
+  
+    console.debug("fhirRoute.js - updateResource() - req.originalUrl: ", req.originalUrl);
+    const fhirResourceId  = req.params.id;
+    const urlParts = req.originalUrl.split('/');
+    const resourceType = urlParts[2]; // Assuming the resource type is the third part of the URL
+  
+    const data = JSON.parse(JSON.stringify(req.body));
+    console.debug('put data: ', JSON.stringify(data, null, 2));
+   
+    console.debug("updateResource:", resourceType, fhirResourceId);
+    const url = `${fhirBaseUrl}/${resourceType}/${fhirResourceId}`;
+    console.debug('updateResource() Url: ', url);
+ 
     try {
-        const response = await axios.get(url);
+        const response = await axios.put(url, data);
         res.status(200).json(response.data);
-    } catch (error) {
+      } catch (error) {
+        console.error('Error fetching resource:', error);
         res.status(500).json({ message: `Error fetching resource: ${error.message}` });
-    }
-*/
-
+      }
+  
 }
+
+export async function deleteResource( req,res) {
+  
+    console.debug("fhirRoute.js - deleteResource() - req.originalUrl: ", req.originalUrl);
+    const fhirResourceId  = req.params.id;
+    const urlParts = req.originalUrl.split('/');
+    const resourceType = urlParts[2]; // Assuming the resource type is the third part of the URL
+  
+   // const data = JSON.parse(JSON.stringify(req.body));
+    //console.debug('put data: ', JSON.stringify(data, null, 2));
+   
+    console.debug("deleteResource:", resourceType, fhirResourceId);
+    const url = `${fhirBaseUrl}/${resourceType}/${fhirResourceId}`;
+    console.debug('deleteResource() Url: ', url);
+ 
+    try {
+        const response = await axios.delete(url);
+        res.status(200).json(response.data);
+      } catch (error) {
+        console.error('Error deleting resource:', error);
+        res.status(500).json({ message: `Error deleteing resource: ${error.message}` });
+      }
+  
+}
+
 
 export default {readResource, searchResource, updateResource};

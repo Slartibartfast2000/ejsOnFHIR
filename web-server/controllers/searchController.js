@@ -6,7 +6,7 @@ const fhirBaseUrl = process.env.FHIR_BASE_URL || 'http://localhost:8080/fhir';
 /* CRUDS */
 
 export async function searchResource(req, res) {
-
+  console.debug("searchController.js searchResource(): ");
   //http://localhost:8080/fhir/Patient?family=Doe&given=John
   const { resourceType } = req.params;
   const queryString = req.query;
