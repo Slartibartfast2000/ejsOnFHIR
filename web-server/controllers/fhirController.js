@@ -81,7 +81,7 @@ export async function updateResource(req, res) {
     console.debug('put data: ', JSON.stringify(data, null, 2));
 
     console.debug("updateResource:", resourceType, fhirResourceId);
-    const url = `${fhirBaseUrl}/${resourceType}/${fhirResourceId}`;
+    var url = `${fhirBaseUrl}/${resourceType}/${fhirResourceId}`;
     console.debug('updateResource() Url: ', url);
 
     if (fhirResourceId == "0") {
@@ -92,8 +92,8 @@ export async function updateResource(req, res) {
         console.debug("data.id after", data.id);
 
         try { 
-            url = `${fhirBaseUrl}/${resourceType}/`;
-            const response = await axios.post(fhirBaseUrlurl, data);
+            url = `${fhirBaseUrl}/${resourceType}`;
+            const response = await axios.post(url, data);
             res.status(200).json(response.data);
             } catch (error) {
             console.error('Error fetching resource:', error.message);
