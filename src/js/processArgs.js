@@ -4,8 +4,8 @@ function processArgs(args) {
     let argcount = 2; // start at two 
     let myparameters = {
         outputFilename: "./src/views/myHTML.html",
-        outputType: "html",
-        xmlFilePath: "FHIR/Patient.schema.xml",
+        resourceType: "html",
+        xsdFilePath: "FHIR/fhir-single-xsd",
         formUrl: "/",
         script: "/",
     };
@@ -23,11 +23,11 @@ function processArgs(args) {
                 argcount++;
                 break;
             case "-t":
-                myparameters.outputType = process.argv[argcount + 1];
+                myparameters.resourceType = process.argv[argcount + 1];
                 argcount++;
                 break;
             case "-s":
-                myparameters.xmlFilePath = process.argv[argcount + 1];
+                myparameters.xsdFilePath = process.argv[argcount + 1];
                 argcount++;
                 break;
             case "-u":

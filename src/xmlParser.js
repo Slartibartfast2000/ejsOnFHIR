@@ -6,7 +6,7 @@ import { DOMParser } from '@xmldom/xmldom';
 import fs from 'fs';
 
 function parseXML(filePath) {
-
+    
     var xml = fs.readFileSync(filePath, 'utf8');
     const parser = new DOMParser();
 

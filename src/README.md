@@ -12,4 +12,9 @@ Command line parameters:
 
 ```js
 ./partialgenerator -s ./FHIR/fhir-single.xsd -t Patient -o patient.ejs 
+
+
+cd FHIR\src
+node .\partialGenerator.js -s ..\FHIR\fhir-single.xsd
+
 ```
