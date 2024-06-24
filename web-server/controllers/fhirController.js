@@ -5,6 +5,7 @@ const fhirBaseUrl = process.env.FHIR_BASE_URL || 'http://localhost:8080/fhir';
 export async function createResource(req, res) {
 
 
+
     console.debug("fhirRoute.js - createResource() - req.originalUrl: ", req.originalUrl);
     //const fhirResourceId  = req.params.id;
     const urlParts = req.originalUrl.split('/');
@@ -26,9 +27,6 @@ export async function createResource(req, res) {
     }
 
 }
-
-
-
 
 export async function readResource(req, res) {
     console.debug("fhirController.getResource:");
@@ -86,10 +84,10 @@ export async function updateResource(req, res) {
 
     if (fhirResourceId == "0") {
         console.debug("Creat a new resource with POST");
-        console.debug("data.id before", data.id);
+        //  console.debug("data.id before", data.id);
         
         delete data.id;
-        console.debug("data.id after", data.id);
+        // console.debug("data.id after", data.id);
 
         try { 
             url = `${fhirBaseUrl}/${resourceType}`;
