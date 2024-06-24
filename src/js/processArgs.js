@@ -1,8 +1,8 @@
 
 function processArgs(args) {
 
-    argcount = 2; // start at two 
-    myparameters = {
+    let argcount = 2; // start at two 
+    let myparameters = {
         outputFilename: "./src/views/myHTML.html",
         outputType: "html",
         xmlFilePath: "FHIR/Patient.schema.xml",
@@ -50,4 +50,5 @@ function processArgs(args) {
 
 }
 
-module.exports = { processArgs };
+export default processArgs;
+

@@ -1,7 +1,11 @@
-const processArgs = require('./js/processArgs');
+//const processArgs = require('./js/processArgs');
+import processArgs from './js/processArgs.js';
 //compose pallett
-const parseXMLSchema = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
-const fileIO = require('./js/fileio');
+//const parseXMLSchema = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
+import parseXMLSchema from './xmlParser.js';
+
+
+//import  fileIO from './js/fileio.js';
 
 console.debug("");
 console.debug("**************************************************************************************");
@@ -9,7 +13,7 @@ console.debug("****************************** START ****************************
 console.debug("**************************************************************************************");
 console.debug("");
 
-const myparameters = processArgs.processArgs(process.argv);
+const myparameters = processArgs(process.argv);
 
 const crlf = "\r\n";
 const tab = "\t";
