@@ -12,7 +12,7 @@ export const getApp = (req, res) => {
         res.status(500).send(`Error fetching data: ${error.message}`);
     }
 }
-
+ 
 export default getApp;
   //try {
     //const response = await axios.get(url);
