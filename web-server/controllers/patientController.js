@@ -16,4 +16,6 @@ export const getPatient = async (req, res) => {
     }
 };
 
+
+
 export default getPatient;

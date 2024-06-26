@@ -1,4 +1,5 @@
-const fs = require('fs');
+// file.js
+import fs from 'fs';
 
 function writeToFile(filePath, data, callback) {
     fs.writeFile(filePath, data, (err) => {
@@ -10,7 +11,6 @@ function writeToFile(filePath, data, callback) {
     });
 }
 
-
 function readFromFile(filePath, callback) {
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -21,4 +21,4 @@ function readFromFile(filePath, callback) {
     });
 }
 
-module.exports = { writeToFile, readFromFile };
+export { writeToFile, readFromFile };

@@ -16,17 +16,50 @@ import  searchRoute  from './searchRoute.js';
 const secretKey = process.env.JWT_SECRET;
 //router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
+
+router.get('/index', (req, res) => {
+
+  const data = {
+    entry: [
+      {
+        fullUrl: "http://localhost:8080/fhir/Patient/1",
+        resource: {
+          resourceType: "Patient",
+          id: "1",
+          name: [{ family: "Doe", given: ["John"] }],
+          gender: "male",
+          birthDate: "1970-01-01"
+        }
+      },
+      {
+        fullUrl: "http://localhost:8080/fhir/Patient/5",
+        resource: {
+          resourceType: "Patient",
+          id: "5",
+          name: [{ family: "Doe", given: ["John"] }],
+          gender: "male",
+          birthDate: "1982-01-01"
+        }
+      }
+    ]
+  };
+  
+
+  console.debug('app.js: get/index - render patientSearch page'); 
+
+  res.render('./pages/index', { entry: data.entry });
+});
+
 router.use('/fhir', fhirRoute);
 router.use('/patient', patientRoute);
-router.use('/search', searchRoute);
+router.use('/search', searchRoute); // todo: move to patientroute?
+
 // Defining a route that uses the getApp method from appController
 router.get("/", authenticateJWT, (req, res) => { 
 
     console.debug("waaaa?");
     res.send('Hello from appRoute!"');
 });
-
-
 
 router.post('/register', async (req, res) => {
     console.debug(req.body);

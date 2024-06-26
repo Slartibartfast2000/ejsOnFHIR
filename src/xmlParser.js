@@ -1,10 +1,16 @@
-var xpath = require('xpath');
-var dom = require('@xmldom/xmldom').DOMParser;
-var fs = require('fs');
+import xpath from 'xpath';
+//import parseXMLSchema from './xmlParser.js';
+import { DOMParser } from '@xmldom/xmldom';
+
+//var dom = require('@xmldom/xmldom').DOMParser;
+import fs from 'fs';
 
 function parseXML(filePath) {
+    
     var xml = fs.readFileSync(filePath, 'utf8');
-    var doc = new dom().parseFromString(xml, 'text/xml');
+    const parser = new DOMParser();
+
+    var doc = parser.parseFromString(xml, 'text/xml');
     var elements = xpath.select("//*", doc);
 
     var result = {};
@@ -26,6 +32,8 @@ function parseXML(filePath) {
 
     return result;
 }
-module.exports = parseXML;
+export default parseXML;
+
+//module.exports = parseXML;
 
 
