@@ -87,14 +87,15 @@ export async function updateResource(req, res) {
         console.debug("Creat a new resource with POST");
         //  console.debug("data.id before", data.id);
         
-        delete data.id;
-        console.debug("data.id after", data.id);
+        delete data.id; // FHIR Standard - id is not valid for Posts 
+       // console.debug("data.id after", data.id);
 
         try { 
             url = `${fhirBaseUrl}/${resourceType}`;
             console.debug("post url: ", url);
             const response = await axios.post(url, data);
             res.status(200).json(response.data);
+            
             } catch (error) {
             console.error('Error posting resource:', error.message);
             res.status(500).json({ message: `Error posting resource: ${error.message}` });

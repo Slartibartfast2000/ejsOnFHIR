@@ -25,6 +25,7 @@
 <script>
   document.getElementById('patientForm').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent form submission
+    console.debug("Patient.EJS.patientForm.Submit()");
 
     //const patientId = document.getElementById('id').value;
     document.getElementById('PatientJson').innerHTML = `hello`
@@ -66,7 +67,7 @@
         }
       }
     });
-    console.debug(formData);
+    console.debug("formData:" , formData);
 
     const jsonString = JSON.stringify(formData);
     console.debug(jsonString);

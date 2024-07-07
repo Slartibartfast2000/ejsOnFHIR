@@ -117,8 +117,8 @@ function initFormSubmitEventListener() {
         }
 
         const result = await response.json();
-        console.debug(result);
-     
+        console.debug("Result: ", result);
+        document.getElementById('patientDetail').innerHTML = "";
       } catch (error) {
         console.error('Error:', error);
         alert('Error updating patient details.');
