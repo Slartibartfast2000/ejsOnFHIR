@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initSearchForm();
   initDynamicEventListeners();
   initDeleteSubmitEventListener();
+  initFormSubmitEventListener();
 
   // trigger search on first load
   const searchButton = document.getElementById('searchPatientButton');
@@ -35,9 +36,7 @@ function initSearchForm() {
       const html = await response.text();
       document.getElementById('searchResults').innerHTML = html;
       addSearchResultEventListeners();
-      //    initDynamicEventListeners();
-      //   initDeleteSubmitEventListener();
-      //  executeInlineScripts(document.getElementById('searchResults'));
+    
     } catch (error) {
       console.error('Error:', error);
     }
@@ -56,13 +55,14 @@ function addSearchResultEventListeners() {
       
         const data = await response.text();
         document.getElementById('patientDetail').innerHTML = data;
-
+        initFormSubmitEventListener();
       } catch (error) {
         console.error('Error:', error);
       }
     });
   });
 }
+
 function initDynamicEventListeners() {
   const registerLink = document.querySelector('.register-link');
   console.debug('addEventListener ');
