@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initDeleteSubmitEventListener();
 
   // trigger search on first load
-  const searchButton = document.getElementById('searchPatient');
+  const searchButton = document.getElementById('searchPatientButton');
   console.debug('clicking...', searchButton);
   searchButton.click();
 
