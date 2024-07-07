@@ -16,7 +16,7 @@ export async function checkFhirEndpoint()
     console.debug("fhir.js: checkFhirBase() ", fhirBaseUrl );
     console.info("Check if fhir endpoint is available ...");
     
-    try {
+    try { 
        const url = fhirBaseUrl + '/Patient?_summary=count';
        console.debug("fhir.js: ", url);
 
@@ -32,7 +32,9 @@ export async function checkFhirEndpoint()
             
        }
     } catch (error) {
-        console.error(error);
+        //console.error(error);
+        throw error;
+
     //        res.status(500).json({ message: `Error fetching resource: ${error.message}` });
     }
 

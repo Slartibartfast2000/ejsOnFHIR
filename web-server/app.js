@@ -69,9 +69,8 @@ console.log('FHIR_BASE_URL:', FHIR_BASE_URL);
 try {
     await checkFhirEndpoint();
 } catch 
-{
-    console.error("Could not contact FHIR server at: ", FHIR_BASE_URL );
-
+{ 
+    console.error("Something wrong with Fhir Server: " );
 }
 
 
