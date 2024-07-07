@@ -57,11 +57,12 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 // Main application entry
 app.use('/', appRoute);
 
-
 console.log('Environment Variables:');
-for (const [key, value] of Object.entries(process.env)) {
-  console.log(`${key}: ${value}`);
-}
+console.log('PORT:', PORT );
+console.log('USE_HTTPS:' , USE_HTTPS );
+console.log('FHIR_BASE_URL:', FHIR_BASE_URL);
+
+
 // On app start up, check FHIR endpoint is available and insert dummy data if missing
 try {
     await checkFhirEndpoint();
