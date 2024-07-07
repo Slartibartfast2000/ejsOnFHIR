@@ -1,0 +1,67 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:1",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "1",
+          "name": [
+            {
+              "use": "official",
+              "family": "Smith",
+              "given": ["John"]
+            }
+          ],
+          "gender": "male",
+          "birthDate": "1980-01-01"
+        },
+        "request": {
+          "method": "POST",
+          "url": "Patient"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:2",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "2",
+          "name": [
+            {
+              "use": "official",
+              "family": "Doe",
+              "given": ["Jane"]
+            }
+          ],
+          "gender": "female",
+          "birthDate": "1990-02-02"
+        },
+        "request": {
+          "method": "POST",
+          "url": "Patient"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:3",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "3",
+          "name": [
+            {
+              "use": "official",
+              "family": "Brown",
+              "given": ["Charlie"]
+            }
+          ],
+          "gender": "other",
+          "birthDate": "2000-03-03"
+        },
+        "request": {
+          "method": "POST",
+          "url": "Patient"
+        }
+      }
+    ]
+  }
+  
