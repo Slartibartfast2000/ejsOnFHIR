@@ -29,7 +29,6 @@ export async function checkFhirEndpoint()
             const bundleData = fs.readFileSync(filePath, 'utf8');
             const response = await axios.post(fhirBaseUrl, bundleData, { headers });
             console.debug(response);
-            
        }
     } catch (error) {
         //console.error(error);
@@ -39,7 +38,7 @@ export async function checkFhirEndpoint()
     }
 
 
-
+ 
     return true;
 
 }
