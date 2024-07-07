@@ -65,8 +65,8 @@ function initDynamicEventListeners() {
       document.getElementById('patientId').value = "0";
 
       executeInlineScripts(document.getElementById('patientDetail'));
-      initFormSubmitEventListener();
-      initDeleteSubmitEventListener();
+     // initFormSubmitEventListener();
+     // initDeleteSubmitEventListener();
     } catch (error) {
       console.error('Error:', error);
     }
