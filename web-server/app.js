@@ -29,8 +29,8 @@ import multer from 'multer';
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const USE_HTTPS = process.env.USE_HTTPS || false;
-const CERT_FILE = process.env.CERT_FILE || './cert/mySelfSignedCert.pfx'
-
+const CERT_FILE = process.env.CERT_FILE || './cert/mySelfSignedCert.pfx';
+const FHIR_BASE_URL = process.env.FHIR_BASE_URL || 'http://localhost:8080/fhir';
 const options = {
     pfx: fs.readFileSync(CERT_FILE), // Path to your exported .pfx file
     passphrase: 'password' // Password used during export (if any)
@@ -58,10 +58,18 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/', appRoute);
 
 
-
+console.log('Environment Variables:');
+for (const [key, value] of Object.entries(process.env)) {
+  console.log(`${key}: ${value}`);
+}
 // On app start up, check FHIR endpoint is available and insert dummy data if missing
-await checkFhirEndpoint();
+try {
+    await checkFhirEndpoint();
+} catch 
+{
+    console.error("Could not contact FHIR server at: ", FHIR_BASE_URL );
 
+}
 
 
 

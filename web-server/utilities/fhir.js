@@ -7,15 +7,16 @@ import fhirRoute from '../routes/fhirRoute.js';
 
 
 const fhirBaseUrl = process.env.FHIR_BASE_URL || 'http://localhost:8080/fhir';
-
+const headers = {
+    'Content-Type': 'application/fhir+json'
+  };
+  
 export async function checkFhirEndpoint()
 {
-
     console.debug("fhir.js: checkFhirBase() ", fhirBaseUrl );
     console.info("Check if fhir endpoint is available ...");
     
     try {
-
        const url = fhirBaseUrl + '/Patient?_summary=count';
        console.debug("fhir.js: ", url);
 
@@ -24,9 +25,9 @@ export async function checkFhirEndpoint()
        console.debug("Patient Records: ", totalPatientRecords);
        if (totalPatientRecords == 0) {
             console.info("fhir.js: Inserting test data ...");
-            const filePath = './bundle.json';
+            const filePath = './utilities/testPatients.json';
             const bundleData = fs.readFileSync(filePath, 'utf8');
-            const response = await axios.post(fhirServerUrl, bundleData, { headers });
+            const response = await axios.post(fhirBaseUrl, bundleData, { headers });
             console.debug(response);
             
        }
