@@ -34,6 +34,7 @@ router.get('/patientRecord', async (req, res) => {
       const patient = await response.json();
       
       res.render('partials/Patient/patientDetail', { patient });
+      
     } catch (error) {
       console.error('Error fetching patient record:', error);
       res.status(500).send('Error fetching patient record');

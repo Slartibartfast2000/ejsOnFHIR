@@ -6,6 +6,7 @@ import { DOMParser } from '@xmldom/xmldom';
 //const parseXMLSchema = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
 import myparseXMLSchema from './xmlParser.js';
 import xpath from 'xpath';
+
 // file.js
 import fs from 'fs';
 
@@ -16,6 +17,7 @@ function createXPathEvaluator() {
     });
     return select;
 }
+
 //import  fileIO from './js/fileio.js';
 function runXPathQuery(doc, query) {
     console.debug("runXPathQuery: ", query);
@@ -23,6 +25,7 @@ function runXPathQuery(doc, query) {
     const nodes = select(query, doc);
     return nodes;
 }
+
 function parseXMLSchema(filePath) {
     const xml = fs.readFileSync(filePath, 'utf8');
     const doc = new DOMParser().parseFromString(xml, 'application/xml');
@@ -43,7 +46,7 @@ console.debug("reading schema: ", myparameters.xsdFilePath);
 const parsedData = parseXMLSchema(myparameters.xsdFilePath);
 console.debug("reading schema: done.");
 ///xs:schema/xs:complexType/@name
-const resourceType = "Encounter";
+const resourceType = myparameters.resourceType; // "Patient";
 
 const xpathQuery = `//xs:complexType[@name="Patient"]/xs:complexContent/xs:extension/xs:sequence/*`;
 // const xpathQuery = '//xs:complexType[@name="Patient"]/xs:complexContent/xs:extension/xs:sequence/*';

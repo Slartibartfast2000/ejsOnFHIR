@@ -48,7 +48,7 @@ app.set('views', join(__dirname, 'views'));
 
 // Static files from the ./public directory and 
 app.use('/static/', express.static(join(__dirname, 'public')));
-
+ 
 // css - version can be controlled via npm and package.json - also doesn't require breakout to internet to download Content Delivery Network stylesheets from private networks)
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
