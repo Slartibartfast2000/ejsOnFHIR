@@ -28,51 +28,23 @@ function initSearchForm() {
       //const response = await fetch(`/search/Patient?family=${surname}&given=${forename}`);
       const response = await fetch(`/search/Patient?${searchString}`);
       //const response = await fetch(`/search/Patient?_sort=_lastUpdated`);
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch search results.');
       }
       const html = await response.text();
       document.getElementById('searchResults').innerHTML = html;
-      initDynamicEventListeners();
-      initDeleteSubmitEventListener();
-      executeInlineScripts(document.getElementById('searchResults'));
+      addSearchResultEventListeners();
+      //    initDynamicEventListeners();
+      //   initDeleteSubmitEventListener();
+      //  executeInlineScripts(document.getElementById('searchResults'));
     } catch (error) {
       console.error('Error:', error);
     }
   });
 }
-
-function initDynamicEventListeners() {
-  const registerLink = document.querySelector('.register-link');
-
-  // Add an event listener for the click event
-  registerLink.addEventListener('click', async function(event) {
-    event.preventDefault(); // Prevent the default action of the link
-
-    // Your custom logic here
-    console.log('Register link clicked');
-    document.getElementById('searchResults').innerHTML = "";
-
-    try {
-      const regresponse = await fetch(`/patient/patientRecord?id=0`);
-      if (!regresponse.ok) {
-        throw new Error('Failed to fetch patient record.');
-      }
-      const data = await regresponse.text();
-      console.debug(data.id);
-      document.getElementById('patientDetail').innerHTML = data;
-      document.getElementById('patientId').value = "0";
-
-      executeInlineScripts(document.getElementById('patientDetail'));
-     // initFormSubmitEventListener();
-     // initDeleteSubmitEventListener();
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  });
-
-  // Add event listeners for existing rows in the table
+function addSearchResultEventListeners() {
+  // Add event listeners for each row in the table
   document.querySelectorAll('#searchResults tbody tr').forEach(row => {
     row.addEventListener('click', async function () {
       const patientId = this.dataset.id;
@@ -81,17 +53,48 @@ function initDynamicEventListeners() {
         if (!response.ok) {
           throw new Error('Failed to fetch patient record.');
         }
+      
         const data = await response.text();
-
         document.getElementById('patientDetail').innerHTML = data;
-        executeInlineScripts(document.getElementById('patientDetail'));
-        initFormSubmitEventListener();
-        initDeleteSubmitEventListener();
+
       } catch (error) {
         console.error('Error:', error);
       }
     });
   });
+}
+function initDynamicEventListeners() {
+  const registerLink = document.querySelector('.register-link');
+  console.debug('addEventListener ');
+  var ms = Date.now();
+
+  // Add an event listener for the click event
+  registerLink.addEventListener('click', async function (event) {
+    event.preventDefault(); // Prevent the default action of the link
+
+    // Your custom logic here
+    console.log('Register link clicked 1', ms);
+    document.getElementById('searchResults').innerHTML = "";
+
+    try {
+      const regresponse = await fetch(`/patient/patientRecord?id=0`);
+      if (!regresponse.ok) {
+        throw new Error('Failed to fetch patient record.');
+      }
+      const data = await regresponse.text();
+      //  console.debug(data.id);
+      document.getElementById('patientDetail').innerHTML = data;
+      document.getElementById('patientId').value = "0";
+
+      // executeInlineScripts(document.getElementById('patientDetail'));
+      // initFormSubmitEventListener();
+      // initDeleteSubmitEventListener();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+
+
 }
 
 
@@ -105,7 +108,7 @@ function initFormSubmitEventListener() {
 
       const data = Object.fromEntries(formData.entries()); // Convert FormData to JSON object
       console.debug(data);
-      
+
       try {
         const response = await fetch(`/fhir/Patient/${data.id}`, {
           method: 'PUT',
