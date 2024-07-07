@@ -27,6 +27,7 @@ import multer from 'multer';
 
 /* Configuration */
 dotenv.config();
+const HOST_IP = process.env.HOST_IP || '0.0.0.0'; // default = listen on all interfaces
 const PORT = process.env.PORT || 3000;
 const USE_HTTPS = process.env.USE_HTTPS || false;
 const CERT_FILE = process.env.CERT_FILE || './cert/mySelfSignedCert.pfx';
@@ -35,7 +36,7 @@ const options = {
     pfx: fs.readFileSync(CERT_FILE), // Path to your exported .pfx file
     passphrase: 'password' // Password used during export (if any)
 };
- 
+  
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(multer().none());
@@ -59,6 +60,7 @@ app.use('/', appRoute);
 
 console.log('Environment Variables:');
 console.log('PORT:', PORT );
+console.log('HOST_IP:', HOST_IP );
 console.log('USE_HTTPS:' , USE_HTTPS );
 console.log('FHIR_BASE_URL:', FHIR_BASE_URL);
 
@@ -84,7 +86,7 @@ if (USE_HTTPS == 'true') {
     });
 } else {
 
-    const server = app.listen(PORT, '0.0.0.0', () => {
+    const server = app.listen(PORT, HOST_IP, () => {
         const host = server.address().address;
         const port = server.address().port;
         console.log(`Server is running on http://${host}:${port}`);
