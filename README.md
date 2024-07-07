@@ -12,14 +12,25 @@ FHIR Schema File
 node src/go.js -s FHIR/Patient.schema.xml -o myFile.ejs -t partial
 ```
 
-## FHIR Server for testing
+## FHIR Server for dev/test
 
-Docker Desktop installed and running
+Docker Desktop installed and running, note: the pull only needs to happen on first run.
 
+1. Get the hapi FHIR server (note you only need to do this once):
 ```bash
-docker pull hapiproject/hapi:latest
+  docker pull hapiproject/hapi:latest
+```
+
+2. Run the server
+```bash
 docker run -p 8080:8080 hapiproject/hapi:latest
 ``` 
+
+To check the fhir server is listening, browse to port 8080 (default port):
+```bash
+http://localhost:8080/
+```
+
 
 ## Node
 

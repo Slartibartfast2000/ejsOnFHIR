@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const fhirBaseUrl = process.env.FHIR_BASE_URL || 'http://localhost:8080/fhir';
+
 /* CRUDS */
 export async function createResource(req, res) {
 
