@@ -14,6 +14,7 @@ import cookieParser from 'cookie-parser'; // Include cookie-parser
 import authenticateJWT from './utilities/authJWT.js'; // Import your middleware
 /* App routes */
 import { appRoute } from './routes/appRoutes.js';
+import { checkFhirEndpoint } from './utilities/fhir.js';
 
 import multer from 'multer';
 
@@ -55,6 +56,13 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 // Main application entry
 app.use('/', appRoute);
+
+
+
+// On app start up, check FHIR endpoint is available and insert dummy data if missing
+await checkFhirEndpoint();
+
+
 
 
 console.info("Using HTTPS?", USE_HTTPS);
