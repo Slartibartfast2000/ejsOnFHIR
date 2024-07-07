@@ -2,16 +2,33 @@ document.addEventListener('DOMContentLoaded', function () {
   initSearchForm();
   initDynamicEventListeners();
   initDeleteSubmitEventListener();
+
+  // trigger search on first load
+  const searchButton = document.getElementById('searchPatient');
+  console.debug('clicking...', searchButton);
+  searchButton.click();
+
 });
 
 function initSearchForm() {
   document.getElementById('searchForm').addEventListener('submit', async function (event) {
     event.preventDefault();
+    console.debug("searchButton click()");
     const surname = document.getElementById('surname').value;
     const forename = document.getElementById('forename').value;
 
+    let searchString = "_sort=_lastUpdated";
+    if (surname) searchString += `&family=${surname}`;
+    if (forename) searchString += `&given=${forename}`;
+    console.debug(searchString);
+
+    //searchString += `_sort=_lastUpdated`;
+
     try {
-      const response = await fetch(`/search/Patient?family=${surname}&given=${forename}`);
+      //const response = await fetch(`/search/Patient?family=${surname}&given=${forename}`);
+      const response = await fetch(`/search/Patient?${searchString}`);
+      //const response = await fetch(`/search/Patient?_sort=_lastUpdated`);
+      
       if (!response.ok) {
         throw new Error('Failed to fetch search results.');
       }
