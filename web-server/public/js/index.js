@@ -42,7 +42,7 @@ function initSearchForm() {
       console.error('Error:', error);
     }
   });
-}
+} 
 function addSearchResultEventListeners() {
   // Add event listeners for each row in the table
   document.querySelectorAll('#searchResults tbody tr').forEach(row => {
