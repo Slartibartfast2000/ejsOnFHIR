@@ -5,11 +5,19 @@ document.addEventListener('DOMContentLoaded', function () {
   initFormSubmitEventListener();
 
   // trigger search on first load
-  const searchButton = document.getElementById('searchPatientButton');
-  console.debug('clicking...', searchButton);
-  searchButton.click();
+  clickSearchButton();
+
+  //const searchButton = document.getElementById('searchPatientButton');
+  //console.debug('clicking...', searchButton);
+  //searchButton.click();
 
 });
+
+function clickSearchButton() {
+  console.debug("clickSearchButton()");
+  const searchButton = document.getElementById('searchPatientButton');
+  searchButton.click();
+}
 
 function initSearchForm() {
   document.getElementById('searchForm').addEventListener('submit', async function (event) {
@@ -43,6 +51,7 @@ function initSearchForm() {
   });
 } 
 function addSearchResultEventListeners() {
+  console.debug("addSearchResultEventListerners()");
   // Add event listeners for each row in the table
   document.querySelectorAll('#searchResults tbody tr').forEach(row => {
     row.addEventListener('click', async function () {
@@ -55,12 +64,15 @@ function addSearchResultEventListeners() {
       
         const data = await response.text();
         document.getElementById('patientDetail').innerHTML = data;
+     
         initFormSubmitEventListener();
       } catch (error) {
         console.error('Error:', error);
       }
     });
   });
+
+  initDeleteSubmitEventListener();
 }
 
 function initDynamicEventListeners() {
@@ -87,16 +99,14 @@ function initDynamicEventListeners() {
       document.getElementById('patientId').value = "0";
 
       // executeInlineScripts(document.getElementById('patientDetail'));
-      // initFormSubmitEventListener();
-      // initDeleteSubmitEventListener();
+  
+      initFormSubmitEventListener();
+
     } catch (error) {
       console.error('Error:', error);
     }
   });
-
-
 }
-
 
 function initFormSubmitEventListener() {
   const form = document.getElementById('patientDetailsForm');
@@ -122,6 +132,7 @@ function initFormSubmitEventListener() {
         const result = await response.json();
         console.debug("Result: ", result);
         document.getElementById('patientDetail').innerHTML = "";
+        clickSearchButton();
       } catch (error) {
         console.error('Error:', error);
         alert('Error updating patient details.');
@@ -140,6 +151,7 @@ function executeInlineScripts(container) {
 }
 
 function initDeleteSubmitEventListener() {
+  console.debug("initDeleteSubmitEventListener()");
   const deleteButtons = document.querySelectorAll('.delete-btn');
 
   deleteButtons.forEach(button => {
