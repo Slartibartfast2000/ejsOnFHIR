@@ -6,11 +6,6 @@
 - **Nodejs** installed and working
 
 
-
-
-
-
-
 ### 1. FHIR Server Container is running
 
 1.1 Open a command prompt or terminal
@@ -43,15 +38,8 @@ Either download zip or clone from the github repository:
 
 https://github.com/Slartibartfast2000/ejsOnFHIR.git
 
-
-
-
 ### 4. web-server running
-
-
-
 
 Start
 
-
-node 
+node
