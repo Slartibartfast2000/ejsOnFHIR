@@ -1,8 +1,10 @@
 <!-- views/partials/entryPartial.ejs -->
 <p>All Resources for this Patient</p>
 <div class="entry">
-  <table>
-
+  <table id="searchResourceResults">
+<td>id</td>
+<td>type</td>
+<td>date</td>
   <% entries.forEach(entry => { %>
       <%- include('./entryPartial', { entry: entry }) %>
   <% }) %>

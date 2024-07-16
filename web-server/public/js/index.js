@@ -72,6 +72,7 @@ function addSearchResultEventListeners() {
       } catch (error) {
         console.error('Error:', error);
       }; 
+
       // Fetch related resources
       try {
         const response = await fetch(`/patient/everything/?id=${patientId}`);
@@ -83,11 +84,41 @@ function addSearchResultEventListeners() {
         console.debug(data);
 
         document.getElementById('resourceHistory').innerHTML = data;
-     
+        // Add event listeners to each row
+        
         initFormSubmitEventListener();
       } catch (error) {
         console.error('Error:', error);
       };
+
+      document.querySelectorAll('#searchResourceResults tbody tr').forEach(row => {
+        row.addEventListener('click', async function () {
+        console.debug('row');
+        const cells = this.querySelectorAll('td');
+        const resourceType = cells[1].innerText;
+        const id = cells[0].innerText;
+
+        try {
+          const response = await fetch(`/fhir/RenderResource/${resourceType}/${id}`);
+          console.debug(response);
+
+          if (!response.ok) {
+            throw new Error('Failed to render resourceDetail.');
+          }
+        
+          const data =  await response.text();
+          console.debug(data);
+
+          document.getElementById('resourceDetail').innerHTML = data;
+       
+          initFormSubmitEventListener();
+        } catch (error) {
+          console.error('Error:', error);
+        }; 
+        });
+
+      });
+
 
     });
   
