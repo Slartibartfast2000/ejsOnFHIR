@@ -1,5 +1,7 @@
 // Importing the necessary modules
 import express from 'express';
+import { buildMenuFromFiles } from '../utilities/io.js';
+
 const router = express.Router();
 import appController  from '../controllers/appController.js'; // Make sure to include the .js extension
 import users from '../utilities/users.js'; // Import the users array from the separate file
@@ -43,11 +45,43 @@ router.get('/index', (req, res) => {
       }
     ]
   };
-  
+// index.mjs
 
+const directoryPath = './views/dynamicPartials'; // Replace with your directory path
+
+let submenu = [];
+
+(async () => {
+  try {
+      submenu = await buildMenuFromFiles(directoryPath);
+      console.log(submenu);
+  } catch (err) {
+      console.error('Error:', err);
+  }
+})();
+
+let navbarItems = [
+  { name: 'Home', link: '/' },
+  { name: 'About', link: '/about' },
+  { submenu: submenu},
+  { name: 'Contact', link: '/contact' }
+];
+console.debug(navbarItems);
+
+/*
+const navbarItems = [
+    { name: 'Home', link: '/' },
+    { name: 'About', link: '/about' },
+    {
+        name: 'Resources',
+        submenu: submenu,
+    },
+    { name: 'Contact', link: '/contact' }
+];
+*/
   console.debug('app.js: get/index - render patientSearch page'); 
 
-  res.render('./pages/index', { entry: data.entry });
+  res.render('./pages/index', { entry: data.entry, navbarItems });
 });
 
 router.use('/fhir', fhirRoute);
