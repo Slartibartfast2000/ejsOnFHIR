@@ -5,8 +5,6 @@ const fhirBaseUrl = process.env.FHIR_BASE_URL || 'http://localhost:8080/fhir';
 /* CRUDS */
 export async function createResource(req, res) {
 
-
-
     console.debug("fhirRoute.js - createResource() - req.originalUrl: ", req.originalUrl);
     //const fhirResourceId  = req.params.id;
     const urlParts = req.originalUrl.split('/');
@@ -40,7 +38,7 @@ export async function readResource(req, res) {
 
     try {
         const response = await axios.get(url);
-        console.debug("Written to FHIR Server");
+        console.debug("Got from FHIR Server");
 
         res.status(200).json(response.data);
     } catch (error) {
@@ -136,6 +134,33 @@ export async function deleteResource(req, res) {
 
 }
 
+export async function renderResource(req, res) {
+
+    console.debug("fhirRoute.js - renderResource() - req.originalUrl: ", req.originalUrl);
+    const fhirResourceId = req.params.id;
+    const urlParts = req.originalUrl.split('/');
+    const resourceType = urlParts[3]; // Assuming the resource type is the third part of the URL
+    
+    // const data = JSON.parse(JSON.stringify(req.body));
+    //console.debug('put data: ', JSON.stringify(data, null, 2));
+
+   // console.debug("deleteResource:", resourceType, fhirResourceId);
+    const url = `${fhirBaseUrl}/${resourceType}/${fhirResourceId}`;
+    console.debug('getResource() Url: ', url);
+
+    try {
+        const response = await axios.get(url);
+        // const response = await axios.delete(url);
+        // res.status(200).json(response.data);
+        res.render(`../views/dynamicPartials/${resourceType}`);
+      //  res.status(200).json(response.data);
+
+    } catch (error) {
+        console.error('Error deleting resource:', error.message);
+        res.status(500).json({ message: `Error deleteing resource: ${error.message}` });
+    }
+
+}
 
 
-export default { readResource, searchResource, updateResource, deleteResource, createResource };
+export default { readResource, searchResource, updateResource, deleteResource, createResource, renderResource };
