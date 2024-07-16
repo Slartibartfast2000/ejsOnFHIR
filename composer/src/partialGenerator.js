@@ -4,7 +4,7 @@ import { DOMParser } from '@xmldom/xmldom';
 
 //compose pallett
 //const parseXMLSchema = require('./xmlParser'); // Assuming xmlParser.js is in the same directory
-import myparseXMLSchema from './xmlParser.js';
+//import myparseXMLSchema from './xmlParser.js';
 import xpath from 'xpath';
 
 // file.js

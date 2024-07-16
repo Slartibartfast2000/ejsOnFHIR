@@ -57,6 +57,10 @@ npm install ejs
 npm install jsonpath-plus
 ```
 
+```bash
+node ./partialGenerator -s ../FHIR/fhir-single.xsd -t Encounter -o patient.ejs 
+```
+
 ## Installation
 
 npm installed - latest version -
