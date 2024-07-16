@@ -1,6 +1,7 @@
 # Dependency directories
 node_modules/
-
+node_modules.arch/
+generator/node_modules
 # Logs
 logs
 *.log

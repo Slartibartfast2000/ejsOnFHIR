@@ -1,0 +1,68 @@
+{
+    "active": true,
+    "address": [
+      {
+        "line": [
+          "5",
+          "Alwen Drive",
+          "Thornhill",
+          "CARDIFF"
+        ],
+        "postalCode": "CF14 9HD"
+      }
+    ],
+    "birthDate": "1980-05-23",
+    "gender": "female",
+    "id": "44d9c093-258f-4eaf-9378-98b8d64e169f",
+    "identifier": [
+      {
+        "extension": [
+          {
+            "url": "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-NHSNumberVerificationStatus",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "01",
+                  "display": "Number present & traced",
+                  "system": "https://fhir.hl7.org.uk/CodeSystem/UKCore-NHSNumberVerificationStatusWales"
+                }
+              ]
+            }
+          }
+        ],
+        "system": "https://fhir.nhs.uk/Id/nhs-number",
+        "value": "9478851217"
+      }
+    ],
+    "meta": {
+      "lastUpdated": "2024-05-13T20:42:16.258645+00:00",
+      "profile": [
+        "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Patient|2.2.0",
+        "https://fhir.nhs.wales/StructureDefinition/DataStandardsWales-Patient|1.0.0",
+        "https://fhir.nhs.wales/StructureDefinition/DataStandardsWales-Patient"
+      ],
+      "tag": [
+        {
+          "code": "gold",
+          "system": "https://fhir.nhs.wales/CodeSystem/cdr-patientRecordType"
+        },
+        {
+          "code": "2009-03-23",
+          "system": "https://fhir.nhs.wales/CodeSystem/cdr-sourceTimestamp"
+        }
+      ],
+      "versionId": "MTcxNTYzMjkzNjI1ODY0NTAwMA"
+    },
+    "name": [
+      {
+        "family": "PEACHES",
+        "given": [
+          "BELINDA"
+        ],
+        "prefix": [
+          "MISS"
+        ]
+      }
+    ],
+    "resourceType": "Patient"
+  }
