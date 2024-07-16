@@ -1,4 +1,4 @@
-# ejsOnFHIR Prototype
+# EJSOnFHIR Prototype
 
 This repository contains 2 projects that combines Embedded JavaScript (EJS), and FHIR data model to create HTML Forms:
 
@@ -6,9 +6,9 @@ This repository contains 2 projects that combines Embedded JavaScript (EJS), and
 
 **web-server** - is a simple test harness to demonstrate the use of the generated partial
 
-## partialGenerator
+## EJS Partial Generator
 
-The partialGenerator is a simple node script that takes the FHIR xml schema and outputs HTML Forms that can be used in web applications.
+The **partialGenerator** is a simple node script that takes the FHIR xml schema and outputs HTML Forms that can be used in web applications.
 
 Example execution from a terminal:
 
@@ -25,11 +25,13 @@ The web-server is a simple nodejs express application. To start the web-server s
 cd web-server
 npm run debug
 ```
+
 !!! Note
     The web-server application will expect a FHIR server to be configured and available. Please see the README.md in the web-server folder.
 
 FHIRR4
 FHIR Schema File
+
 
 ## create EJS based on xml schema
 
