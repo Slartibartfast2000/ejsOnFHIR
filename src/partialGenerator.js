@@ -48,7 +48,7 @@ console.debug("reading schema: done.");
 ///xs:schema/xs:complexType/@name
 const resourceType = myparameters.resourceType; // "Patient";
 
-const xpathQuery = `//xs:complexType[@name="Patient"]/xs:complexContent/xs:extension/xs:sequence/*`;
+const xpathQuery = `//xs:complexType[@name="${resourceType}"]/xs:complexContent/xs:extension/xs:sequence/*`;
 // const xpathQuery = '//xs:complexType[@name="Patient"]/xs:complexContent/xs:extension/xs:sequence/*';
 
 const elements = runXPathQuery(parsedData, xpathQuery);
