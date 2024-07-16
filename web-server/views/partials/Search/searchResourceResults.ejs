@@ -1,32 +1,11 @@
-<table id="searchResults">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Resource Name</th>
-      <th>Given Name</th>
-      <th>Gender</th>
-      <th>Birth Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if (entry && entry.length > 0) { %>
-    <% entry.forEach(patient => { %>
-      <tr data-id="<%= patient.resource.id %>">
-        <td><%= patient.resource.id %></td>
-        <td><%= patient.resource.name[0].family %></td>
-        <td><%= patient.resource.name[0].given[0] %></td>
-        <td><%= patient.resource.gender %></td>
-        <td><%= patient.resource.birthDate %></td>
-        <td>
-          <button class="delete-btn" data-id="<%= patient.resource.id %>">Delete</button>
-        </td>
-      </tr>
-    <% }) %>
-    <% } else { %>
-      <tr>
-        <td colspan="6">No data available</td>
-      </tr>
-    <% } %>
-  </tbody>
-</table>
+<!-- views/partials/entryPartial.ejs -->
+<p>All Resources for this Patient</p>
+<div class="entry">
+  <table>
 
+  <% entries.forEach(entry => { %>
+      <%- include('./entryPartial', { entry: entry }) %>
+  <% }) %>
+</table>
+  
+</div>

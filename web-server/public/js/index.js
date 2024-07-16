@@ -71,16 +71,18 @@ function addSearchResultEventListeners() {
         initFormSubmitEventListener();
       } catch (error) {
         console.error('Error:', error);
-      };
+      }; 
       // Fetch related resources
       try {
         const response = await fetch(`/patient/everything/?id=${patientId}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch patient record.');
+          throw new Error('Failed to fetch everything records.');
         }
       
         const data = await response.text();
-        document.getElementById('patientDetail').innerHTML = data;
+        console.debug(data);
+
+        document.getElementById('resourceHistory').innerHTML = data;
      
         initFormSubmitEventListener();
       } catch (error) {
