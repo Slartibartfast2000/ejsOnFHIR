@@ -32,7 +32,6 @@ npm run debug
 FHIRR4
 FHIR Schema File
 
-
 ## create EJS based on xml schema
 
 ```bash
