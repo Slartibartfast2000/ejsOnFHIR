@@ -2,6 +2,12 @@
 
 ejsOnFHIR is a blah blah.
 
+This repository contains 2 projects
+
+**partialGenerator** - a nodejs command line application that creates EJS partials based on FHIR R4 standard
+**web-server** - is a simple test harness to demonstrate the use of the generated partial
+
+
 FHIRR4
 FHIR Schema File
 
