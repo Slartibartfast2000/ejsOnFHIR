@@ -46,7 +46,7 @@ console.debug("reading schema: ", myparameters.xsdFilePath);
 const parsedData = parseXMLSchema(myparameters.xsdFilePath);
 console.debug("reading schema: done.");
 ///xs:schema/xs:complexType/@name
-const resourceType = myparameters.resourceType; // "Patient";
+const resourceType = myparameters.resourceType; 
 
 const xpathQuery = `//xs:complexType[@name="${resourceType}"]/xs:complexContent/xs:extension/xs:sequence/*`;
 // const xpathQuery = '//xs:complexType[@name="Patient"]/xs:complexContent/xs:extension/xs:sequence/*';
@@ -68,8 +68,10 @@ elements.forEach((element) => {
         console.debug(`     ${attr.nodeName}: ${attr.nodeValue}`);
     }
     const name = element.getAttribute('name');
+    partialEJS += `<div class="form-group">` + crlf;
+    partialEJS += `<label for='${resourceType}.${name}'>${name}</label>` + crlf;
+    partialEJS += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.'></div><br>` + crlf;
 
-    partialEJS += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.'><br>` + crlf;
 });
 
 partialEJS += 
@@ -77,6 +79,14 @@ partialEJS +=
     <div>`;
 console.debug(partialEJS);
 
+
+await fs.promises.writeFile(myparameters.outputFilename, partialEJS, (err) => {
+    if (err) {
+        console.error('Error writing file:', err);
+        throw err; // Throw the error to handle it appropriately
+    }
+    console.log('File has been written successfully.');
+});
 process.exit(0);
 
 let myPartialEJS = "";
