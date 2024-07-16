@@ -23,6 +23,7 @@ node src/go.js -s FHIR/Patient.schema.xml -o myFile.ejs -t partial
 Docker Desktop installed and running, note: the pull only needs to happen on first run.
 
 1. Get the hapi FHIR server (note you only need to do this once):
+
 ```bash
   docker pull hapiproject/hapi:latest
 ```
