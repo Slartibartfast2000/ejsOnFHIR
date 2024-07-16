@@ -48,6 +48,8 @@ function initSearchForm() {
     } catch (error) {
       console.error('Error:', error);
     }
+
+
   });
 } 
 function addSearchResultEventListeners() {
@@ -56,6 +58,7 @@ function addSearchResultEventListeners() {
   document.querySelectorAll('#searchResults tbody tr').forEach(row => {
     row.addEventListener('click', async function () {
       const patientId = this.dataset.id;
+      // Fetch patientDetail
       try {
         const response = await fetch(`/patient/patientRecord?id=${patientId}`);
         if (!response.ok) {
@@ -68,8 +71,24 @@ function addSearchResultEventListeners() {
         initFormSubmitEventListener();
       } catch (error) {
         console.error('Error:', error);
-      }
+      };
+      // Fetch related resources
+      try {
+        const response = await fetch(`/patient/everything/?id=${patientId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch patient record.');
+        }
+      
+        const data = await response.text();
+        document.getElementById('patientDetail').innerHTML = data;
+     
+        initFormSubmitEventListener();
+      } catch (error) {
+        console.error('Error:', error);
+      };
+
     });
+  
   });
 
   initDeleteSubmitEventListener();
