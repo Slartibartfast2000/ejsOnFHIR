@@ -32,16 +32,6 @@ router.get('/index', (req, res) => {
           gender: "male",
           birthDate: "1970-01-01"
         }
-      },
-      {
-        fullUrl: "http://localhost:8080/fhir/Patient/5",
-        resource: {
-          resourceType: "Patient",
-          id: "5",
-          name: [{ family: "Doe", given: ["John"] }],
-          gender: "male",
-          birthDate: "1982-01-01"
-        }
       }
     ]
   };

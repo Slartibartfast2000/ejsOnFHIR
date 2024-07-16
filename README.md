@@ -26,9 +26,23 @@ Docker Desktop installed and running, note: the pull only needs to happen on fir
 docker run -p 8080:8080 hapiproject/hapi:latest
 ``` 
 
+3. Check fhir endpoint
+
 To check the fhir server is listening, browse to port 8080 (default port):
 ```bash
 http://localhost:8080/
+```
+
+## Docker toubleshooting commands
+
+List running containers
+```bash
+docker ps
+```
+Stop a container
+
+```bash
+docker stop <container id>
 ```
 
 

@@ -9,6 +9,7 @@
     </tr>
   </thead>
   <tbody>
+    <% if (entry && entry.length > 0) { %>
     <% entry.forEach(patient => { %>
       <tr data-id="<%= patient.resource.id %>">
         <td><%= patient.resource.id %></td>
@@ -21,6 +22,11 @@
         </td>
       </tr>
     <% }) %>
+    <% } else { %>
+      <tr>
+        <td colspan="6">No data available</td>
+      </tr>
+    <% } %>
   </tbody>
 </table>
 
