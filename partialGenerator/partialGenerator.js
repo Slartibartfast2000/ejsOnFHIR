@@ -69,7 +69,7 @@ elements.forEach((element) => {
     }
     const name = element.getAttribute('name');
 
-    partialEJS += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.'><br>"` + crlf;
+    partialEJS += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.'><br>` + crlf;
 });
 
 partialEJS += 
