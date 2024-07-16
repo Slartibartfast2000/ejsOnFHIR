@@ -9,23 +9,35 @@
 
   <header>
     <%- include('../partials/navbar', { navbarItems }) %>
-  
+
   </header>
 
   <main>
     <div class="jumbotron">
       <h5>Patients</h5>
-      
+
       <%- include('../partials/Search/searchForm', { entry: entry }) %>
-      <br/>
-      <% if (entry && entry.length> 0) { %>
-        <%- include('../partials/Search/searchResults', { entry: entry }) %>
-          <% } else { %>
-            <p>No results found.</p>
-            <% } %>
-            <div id="patientDetail">p</div>
+        <br />
+        <% if (entry && entry.length> 0) { %>
+          <%- include('../partials/Search/searchResults', { entry: entry }) %>
+            <% } else { %>
+              <p>No results found.</p>
+              <% } %>
+                
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div id="patientDetail" class="patientDetail">patientDetail</div>
+                    </div>
+                    <div class="col-md-6">
+                      <div id="resourceDetail" class="resourceDetail">resourceDetail</div>
+                      <div id="resourceHistory" class="resourceHistory">ResourceHistory</div>
+                    </div>
+                  </div>
+                </div>
+                
     </div>
-    
+
   </main>
 
   <footer>
@@ -34,8 +46,8 @@
 
   <script src="../../static/js/index.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
