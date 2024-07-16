@@ -19,61 +19,49 @@ const secretKey = process.env.JWT_SECRET;
 //router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
-router.get('/index', (req, res) => {
-
+router.get('/index', async (req, res) => { // Make the handler asynchronous
+  const directoryPath = './views/dynamicPartials';
   const data = {
-    entry: [
-      {
-        fullUrl: "http://localhost:8080/fhir/Patient/1",
-        resource: {
-          resourceType: "Patient",
-          id: "1",
-          name: [{ family: "Doe", given: ["John"] }],
-          gender: "male",
-          birthDate: "1970-01-01"
-        }
-      }
-    ]
+      entry: [
+          {
+              fullUrl: "http://localhost:8080/fhir/Patient/1",
+              resource: {
+                  resourceType: "Patient",
+                  id: "1",
+                  name: [{ family: "Doe", given: ["John"] }],
+                  gender: "male",
+                  birthDate: "1970-01-01"
+              }
+          }
+      ]
   };
-// index.mjs
 
-const directoryPath = './views/dynamicPartials'; // Replace with your directory path
-
-let submenu = [];
-
-(async () => {
   try {
-      submenu = await buildMenuFromFiles(directoryPath);
-      console.log(submenu);
+      // Build the resources menu asynchronously
+      const resourcesMenu = await buildMenuFromFiles(directoryPath);
+
+      // Create the navbar items array
+      const navbarItems = [
+          { name: 'Home', link: '/' },
+          { name: 'Register', link: '#' },
+          resourcesMenu,
+          { name: 'Contact', link: '/contact' },
+          { name: 'About', link: '/about' }
+          
+        ];
+
+      console.log(resourcesMenu); // Log the resources menu
+      console.debug(navbarItems); // Log the navbar items
+
+      console.debug('app.js: get/index - render patientSearch page');
+
+      // Render the index page with the entry data and navbar items
+      res.render('./pages/index', { entry: data.entry, navbarItems });
   } catch (err) {
       console.error('Error:', err);
+      res.status(500).send('Internal Server Error');
   }
-})();
-
-let navbarItems = [
-  { name: 'Home', link: '/' },
-  { name: 'About', link: '/about' },
-  { submenu: submenu},
-  { name: 'Contact', link: '/contact' }
-];
-console.debug(navbarItems);
-
-/*
-const navbarItems = [
-    { name: 'Home', link: '/' },
-    { name: 'About', link: '/about' },
-    {
-        name: 'Resources',
-        submenu: submenu,
-    },
-    { name: 'Contact', link: '/contact' }
-];
-*/
-  console.debug('app.js: get/index - render patientSearch page'); 
-
-  res.render('./pages/index', { entry: data.entry, navbarItems });
 });
-
 router.use('/fhir', fhirRoute);
 router.use('/patient', patientRoute);
 router.use('/search', searchRoute); // todo: move to patientroute?
