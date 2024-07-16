@@ -1,18 +1,37 @@
 # ejsOnFHIR Prototype
 
-ejsOnFHIR is a blah blah.
-
-This repository contains 2 projects
+This repository contains 2 projects that combines Embedded JavaScript (EJS), and FHIR data model to create HTML Forms:
 
 **partialGenerator** - a nodejs command line application that creates EJS partials based on FHIR R4 standard
+
 **web-server** - is a simple test harness to demonstrate the use of the generated partial
 
+## partialGenerator
+
+The partialGenerator is a simple node script that takes the FHIR xml schema and outputs HTML Forms that can be used in web applications.
+
+Example execution from a terminal:
+
+```bash
+cd partialGenerator
+node ./partialGenerator -s ./FHIR/fhir-single.xsd -t Encounter -o Encounter.ejs
+```
+
+## web-server
+
+The web-server is a simple nodejs express application. To start the web-server simply:
+
+```bash
+cd web-server
+npm run debug
+```
+!!! Note
+    The web-server application will expect a FHIR server to be configured and available. Please see the README.md in the web-server folder.
 
 FHIRR4
 FHIR Schema File
 
 ## create EJS based on xml schema
-
 
 ```bash
 node src/go.js -s FHIR/Patient.schema.xml -o myFile.ejs -t partial
