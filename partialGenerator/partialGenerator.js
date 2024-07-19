@@ -62,16 +62,19 @@ let partialEJS =
 // Output the selected elements
 elements.forEach((element) => {
     console.log(element.toString());
+    console.debug("Element tagname:", element.tagName);
+
     const attributes = element.attributes;
     for (let i = 0; i < attributes.length; i++) {
         const attr = attributes[i];
         console.debug(`     ${attr.nodeName}: ${attr.nodeValue}`);
-    }
+    
     const name = element.getAttribute('name');
     partialEJS += `<div class="form-group">` + crlf;
     partialEJS += `<label for='${resourceType}.${name}'>${name}</label>` + crlf;
     partialEJS += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.'></div><br>` + crlf;
-
+    }
+    
 });
 
 partialEJS += 
