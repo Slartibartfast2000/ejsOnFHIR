@@ -33,17 +33,20 @@ function choiceDetail(type, element) {
     // Use runXPathQuery to get child elements
     const childElements = runXPathQuery(element, query);
     var newElement = "";
+    var tooltip = "";
     childElements.forEach((element) => {
         console.debug(`Element tagname: [${element.tagName}]`);
         const attributes = element.attributes;
         for (let i = 0; i < attributes.length; i++) {
             const attr = attributes[i];
             console.debug(`     ${attr.nodeName}: ${attr.nodeValue}`);
+            tooltip += `${attribute.nodeName}: ${attr.nodeValue}`;
         }
         const name = element.getAttribute('name');
         newElement += `<div class='form-group'>` + crlf;
         newElement += `<label for='${type}.${name}'>${name}*</label>` + crlf;
         newElement += `<input type='text' id='${type}.${name}' name='${name}' placeholder='.'></div>` + crlf;
+        newElement += `<title='${tooltip}'`;
     });
     
     return newElement;
