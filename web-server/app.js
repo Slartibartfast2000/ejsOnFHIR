@@ -4,14 +4,14 @@ import { dirname, join } from 'path';
 import https from 'https';
 import dotenv from 'dotenv';
 import express from 'express';
-import bcryptjs from 'bcryptjs';
-const { hash, compare } = bcryptjs;
+//import bcryptjs from 'bcryptjs';
+//const { hash, compare } = bcryptjs;
 import jsonwebtoken from 'jsonwebtoken';
-const { verify, sign } = jsonwebtoken;
+//const { verify, sign } = jsonwebtoken;
 import bodyparser from 'body-parser';
 const { json } = bodyparser;
-import cookieParser from 'cookie-parser'; // Include cookie-parser
-import authenticateJWT from './utilities/authJWT.js'; // Import your middleware
+//import cookieParser from 'cookie-parser'; // Include cookie-parser
+//import authenticateJWT from './utilities/authJWT.js'; // Import your middleware
 /* App routes */
 import { appRoute } from './routes/appRoutes.js';
 import { checkFhirEndpoint } from './utilities/fhir.js';

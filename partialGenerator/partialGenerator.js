@@ -20,7 +20,7 @@ function elementDetail(type, element) {
 
     let newElement = `<div class="form-group">` + crlf;
     newElement += `<label for='${type}.${name}'>${name}</label>` + crlf;
-    newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.'></div><br>` + crlf;
+    newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.'></div>` + crlf;
 
     return newElement;
 
@@ -43,7 +43,7 @@ function choiceDetail(type, element) {
         const name = element.getAttribute('name');
         newElement += `<div class='form-group'>` + crlf;
         newElement += `<label for='${type}.${name}'>${name}*</label>` + crlf;
-        newElement += `<input type='text' id='${type}.${name}' name='${name}' placeholder='.'></div><br>` + crlf;
+        newElement += `<input type='text' id='${type}.${name}' name='${name}' placeholder='.'></div>` + crlf;
     });
     
     return newElement;

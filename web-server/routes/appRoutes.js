@@ -3,7 +3,7 @@ import express from 'express';
 import { buildMenuFromFiles } from '../utilities/io.js';
 
 const router = express.Router();
-import appController  from '../controllers/appController.js'; // Make sure to include the .js extension
+//import appController  from '../controllers/appController.js'; // Make sure to include the .js extension
 import users from '../utilities/users.js'; // Import the users array from the separate file
 import bcryptjs from 'bcryptjs';
 const { hash, compare } = bcryptjs;
@@ -62,6 +62,7 @@ router.get('/index', async (req, res) => { // Make the handler asynchronous
       res.status(500).send('Internal Server Error');
   }
 });
+
 router.use('/fhir', fhirRoute);
 router.use('/patient', patientRoute);
 router.use('/search', searchRoute); // todo: move to patientroute?

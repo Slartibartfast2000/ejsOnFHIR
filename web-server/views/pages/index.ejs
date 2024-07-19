@@ -9,34 +9,36 @@
 
   <header>
     <%- include('../partials/navbar', { navbarItems }) %>
-
   </header>
 
   <main>
     <div class="jumbotron">
-      <h5>Patients</h5>
+    
+      <div class="container">
 
-      <%- include('../partials/Search/searchForm', { entry: entry }) %>
-        <br />
-        <% if (entry && entry.length> 0) { %>
-          <%- include('../partials/Search/searchResults', { entry: entry }) %>
-            <% } else { %>
-              <p>No results found.</p>
-              <% } %>
-                
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div id="patientDetail" class="patientDetail">patientDetail</div>
-                    </div>
-                    <div class="col-md-6">
-                      <div id="resourceDetail" class="resourceDetail">resourceDetail</div>
-                      <div id="resourceHistory" class="resourceHistory">ResourceHistory</div>
-                    </div>
-                  </div>
-                </div>
-                
-    </div>
+        <div class="row">
+
+          <div class="col-md-6">
+            <%- include('../partials/Search/searchForm', { entry: entry }) %>
+              <br />
+              <% if (entry && entry.length> 0) { %>
+                <%- include('../partials/Search/searchResults', { entry: entry }) %>
+                  <% } else { %>
+                    <p>No results found.</p>
+                    <% } %>
+
+
+                      <div id="patientDetail" class="patientDetail"></div>
+                      <div id="resourceHistory" class="resourceHistory"></div>
+          </div>
+          <div class="col-md-6">
+            <div id="resourceDetail" class="resourceDetail"></div>
+            
+          </div>
+
+        </div>
+
+      </div>
 
   </main>
 

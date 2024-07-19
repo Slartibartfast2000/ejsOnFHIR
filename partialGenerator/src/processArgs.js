@@ -3,8 +3,8 @@ function processArgs(args) {
 
     let argcount = 2; // start at two 
     let myparameters = {
-        outputFilename: "c:/inchware/vscode/uni/ejsOnFHIR/web-server/views/dynamicPartials/Patient.ejs",
-        resourceType: "Patient",
+        outputFilename: "c:/inchware/vscode/uni/ejsOnFHIR/web-server/views/dynamicPartials/Encounter.ejs",
+        resourceType: "Encounter",
         xsdFilePath: "c:/inchware/vscode/uni/ejsOnFHIR/partialGenerator/FHIR/fhir-single.xsd",
         xsdFilePathold: "partialGenerator/",
         formUrl: "/",
