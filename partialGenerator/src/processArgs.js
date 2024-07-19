@@ -3,9 +3,10 @@ function processArgs(args) {
 
     let argcount = 2; // start at two 
     let myparameters = {
-        outputFilename: "./src/views/myHTML.html",
-        resourceType: "html",
-        xsdFilePath: "FHIR/fhir-single-xsd",
+        outputFilename: "c:/inchware/vscode/uni/ejsOnFHIR/web-server/views/dynamicPartials/Patient.ejs",
+        resourceType: "Patient",
+        xsdFilePath: "c:/inchware/vscode/uni/ejsOnFHIR/partialGenerator/FHIR/fhir-single.xsd",
+        xsdFilePathold: "partialGenerator/",
         formUrl: "/",
         script: "/",
     };
