@@ -100,7 +100,11 @@ export async function updateResource(req, res) {
     } else {
         try {
             console.debug('PUT Url: ', url);
-            const response = await axios.put(url, data);
+            const response = await axios.put(url, data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add any other necessary headers here
+                }});
             
             res.status(200).json(response.data);
         } catch (error) {

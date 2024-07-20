@@ -118,7 +118,7 @@ function addSearchResultEventListeners() {
         }
 
         const data = await response.text();
-      
+
         document.getElementById('resourceHistory').innerHTML = data;
         // Add event listeners to each row
 
@@ -130,21 +130,21 @@ function addSearchResultEventListeners() {
       // Add a row click event. The partial will have the url in each row.
       document.querySelectorAll('#searchResourceResults tbody tr').forEach(row => {
         row.addEventListener('click', async function () {
-        //  console.debug('row');
+          //  console.debug('row');
           const cells = this.querySelectorAll('td');
           const resourceType = cells[1].innerText;
           const id = cells[0].innerText;
 
           try {
             const response = await fetch(`/fhir/RenderResource/${resourceType}/${id}`);
-          //  console.debug(response);
+            //  console.debug(response);
 
             if (!response.ok) {
               throw new Error('Failed to render resourceDetail.');
             }
 
             const data = await response.text();
-           // console.debug(data);
+            // console.debug(data);
 
             document.getElementById('resourceDetail').innerHTML = data;
 
@@ -208,7 +208,7 @@ function initResourceFormEventListener(resourceType) {
       //console.debug(formData);
       const data = Object.fromEntries(formData.entries()); // Convert FormData to JSON object
       console.debug(data);
-      
+
       try {
         const response = await fetch(`/fhir/Patient/${data.id}`, {
           method: 'PUT',
@@ -231,12 +231,52 @@ function initResourceFormEventListener(resourceType) {
   }
 
 }
-
 function initFormSubmitEventListener() {
   const form = document.getElementById('patientDetailsForm');
   if (form) {
+    // Remove existing event listeners to prevent duplicates
+    form.removeEventListener('submit', handleSubmit);
+
+    form.addEventListener('submit', handleSubmit);
+  }
+}
+async function handleSubmit(event) {
+  event.preventDefault();
+  
+  const formData = new FormData(this);
+  console.debug(formData);
+
+  const data = Object.fromEntries(formData.entries()); // Convert FormData to JSON object
+  console.debug(data);
+
+  try {
+    const response = await fetch(`/fhir/Patient/${data.id}`, {
+      method: 'PUT',
+      body: formData // Use FormData directly for multi-part data
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update patient details.');
+    }
+
+    const result = await response.json();
+    console.debug("Result: ", result);
+    document.getElementById('patientDetail').innerHTML = "";
+    clickSearchButton();
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error updating patient details.');
+  }
+}
+/*
+function initFormSubmitEventListener() {
+  const form = document.getElementById('patientDetailsForm');
+  if (form) {
+
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
+      console.debug("CLICKED ONCE?");
+
       const formData = new FormData(this);
       console.debug(formData);
 
@@ -264,7 +304,7 @@ function initFormSubmitEventListener() {
     });
   }
 }
-
+*/
 function executeInlineScripts(container) {
   const scripts = container.querySelectorAll('script');
   scripts.forEach(script => {
