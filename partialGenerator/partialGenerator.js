@@ -32,12 +32,25 @@ function elementDetail(type, element) {
 
     switch (type) {
         case 'Reference':
-            console.debug("Reference *************");
             html = `<div class="form-group">` + crlf;
             html += `<label for='${type}.${name}'>${name}</label>` + crlf;
             html += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
-            value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}
+                        value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}</input>
             </div>` + crlf;
+            console.debug(html);
+            break;
+
+        case 'HumanName':
+            html = `<div class="form-group">` + crlf;
+            html += `   <label for='${type}.${name}'>${name}.given</label>` + crlf;
+            html += `   <input type='text' id='${resourceType}.${name}' name='${name}.given' title='${tooltip}'
+                          value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}</input>
+            
+
+                         <label for='${type}.${name}'>${name}.family</label>
+                         <input type='text' id='${resourceType}.${name}' name='${name}.family' title='${tooltip}'
+                           value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}</input>
+                    </div>` + crlf;
             console.debug(html);
             break;
 
@@ -72,8 +85,8 @@ function choiceDetail(type, element) {
         const name = element.getAttribute('name');
         newElement += `<div class='form-group'>` + crlf;
         newElement += `<label for='${type}.${name}'>${name}*</label>` + crlf;
-        newElement += `<input type='text' id='${type}.${name}' name='${name}' placeholder='.'></div>` + crlf;
-        newElement += `<title='${tooltip}'`;
+        newElement += `<input type='text' id='${type}.${name}' name='${name}'></div>` + crlf;
+        newElement += `<title='${tooltip}'></title>`;
     });
 
     return newElement;

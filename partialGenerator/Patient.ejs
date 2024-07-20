@@ -1,0 +1,91 @@
+<div>
+        <form id="Patient">
+        <h3>Patient Resource:</h3>
+        <label for='Encounter.id'>id</label>
+        <input type="text" disabled id="Patient.id" name="id"
+        value="<%= data && data.id ? data.id : '' %>"
+        ></input>
+    <div class="form-group">
+<label for='Identifier.identifier'>identifier</label>
+<input type='text' id='Patient.identifier' name='identifier' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '
+                value="<%= data && data.identifier ? data.identifier : '' %>">Identifier
+                </div>
+<div class="form-group">
+<label for='boolean.active'>active</label>
+<input type='text' id='Patient.active' name='active' title='name: active  minOccurs: 0  maxOccurs: 1  type: boolean  '
+                value="<%= data && data.active ? data.active : '' %>">boolean
+                </div>
+<div class="form-group">
+<label for='HumanName.name'>name</label>
+<input type='text' id='Patient.name' name='name' title='name: name  minOccurs: 0  maxOccurs: unbounded  type: HumanName  '
+                value="<%= data && data.name ? data.name : '' %>">HumanName
+                </div>
+<div class="form-group">
+<label for='ContactPoint.telecom'>telecom</label>
+<input type='text' id='Patient.telecom' name='telecom' title='name: telecom  minOccurs: 0  maxOccurs: unbounded  type: ContactPoint  '
+                value="<%= data && data.telecom ? data.telecom : '' %>">ContactPoint
+                </div>
+<div class="form-group">
+<label for='AdministrativeGender.gender'>gender</label>
+<input type='text' id='Patient.gender' name='gender' title='name: gender  minOccurs: 0  maxOccurs: 1  type: AdministrativeGender  '
+                value="<%= data && data.gender ? data.gender : '' %>">AdministrativeGender
+                </div>
+<div class="form-group">
+<label for='date.birthDate'>birthDate</label>
+<input type='text' id='Patient.birthDate' name='birthDate' title='name: birthDate  minOccurs: 0  maxOccurs: 1  type: date  '
+                value="<%= data && data.birthDate ? data.birthDate : '' %>">date
+                </div>
+<div class='form-group'>
+<label for='Patient.deceasedBoolean'>deceasedBoolean*</label>
+<input type='text' id='Patient.deceasedBoolean' name='deceasedBoolean' placeholder='.'></div>
+<title='name: deceasedBooleantype: boolean'></title><div class='form-group'>
+<label for='Patient.deceasedDateTime'>deceasedDateTime*</label>
+<input type='text' id='Patient.deceasedDateTime' name='deceasedDateTime' placeholder='.'></div>
+<title='name: deceasedBooleantype: booleanname: deceasedDateTimetype: dateTime'></title><div class="form-group">
+<label for='Address.address'>address</label>
+<input type='text' id='Patient.address' name='address' title='name: address  minOccurs: 0  maxOccurs: unbounded  type: Address  '
+                value="<%= data && data.address ? data.address : '' %>">Address
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.maritalStatus'>maritalStatus</label>
+<input type='text' id='Patient.maritalStatus' name='maritalStatus' title='name: maritalStatus  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+                value="<%= data && data.maritalStatus ? data.maritalStatus : '' %>">CodeableConcept
+                </div>
+<div class='form-group'>
+<label for='Patient.multipleBirthBoolean'>multipleBirthBoolean*</label>
+<input type='text' id='Patient.multipleBirthBoolean' name='multipleBirthBoolean' placeholder='.'></div>
+<title='name: multipleBirthBooleantype: boolean'></title><div class='form-group'>
+<label for='Patient.multipleBirthInteger'>multipleBirthInteger*</label>
+<input type='text' id='Patient.multipleBirthInteger' name='multipleBirthInteger' placeholder='.'></div>
+<title='name: multipleBirthBooleantype: booleanname: multipleBirthIntegertype: integer'></title><div class="form-group">
+<label for='Attachment.photo'>photo</label>
+<input type='text' id='Patient.photo' name='photo' title='name: photo  minOccurs: 0  maxOccurs: unbounded  type: Attachment  '
+                value="<%= data && data.photo ? data.photo : '' %>">Attachment
+                </div>
+<div class="form-group">
+<label for='Patient.Contact.contact'>contact</label>
+<input type='text' id='Patient.contact' name='contact' title='name: contact  type: Patient.Contact  minOccurs: 0  maxOccurs: unbounded  '
+                value="<%= data && data.contact ? data.contact : '' %>">Patient.Contact
+                </div>
+<div class="form-group">
+<label for='Patient.Communication.communication'>communication</label>
+<input type='text' id='Patient.communication' name='communication' title='name: communication  type: Patient.Communication  minOccurs: 0  maxOccurs: unbounded  '
+                value="<%= data && data.communication ? data.communication : '' %>">Patient.Communication
+                </div>
+<div class="form-group">
+<label for='Reference.generalPractitioner'>generalPractitioner</label>
+<input type='text' id='Patient.generalPractitioner' name='generalPractitioner' title='name: generalPractitioner  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+            value="<%= data && data.generalPractitioner ? data.generalPractitioner.reference : '' %>">Reference
+            </div>
+<div class="form-group">
+<label for='Reference.managingOrganization'>managingOrganization</label>
+<input type='text' id='Patient.managingOrganization' name='managingOrganization' title='name: managingOrganization  minOccurs: 0  maxOccurs: 1  type: Reference  '
+            value="<%= data && data.managingOrganization ? data.managingOrganization.reference : '' %>">Reference
+            </div>
+<div class="form-group">
+<label for='Patient.Link.link'>link</label>
+<input type='text' id='Patient.link' name='link' title='name: link  type: Patient.Link  minOccurs: 0  maxOccurs: unbounded  '
+                value="<%= data && data.link ? data.link : '' %>">Patient.Link
+                </div>
+</form>
+    <div>

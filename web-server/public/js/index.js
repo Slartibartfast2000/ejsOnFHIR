@@ -19,25 +19,26 @@ async function initNavBarEventListeners()  {
   // Add event listener to each item
   dropdownItems.forEach(item => {
       item.addEventListener('click', async (e) => {
-          e.preventDefault(); // Prevent the default link behavior
-      
+          e.preventDefault(); 
+
           //alert(`You clicked on: ${e.target.textContent}`);
           const resourceType = e.target.textContent;
           const id = 0;
           
           try {
             const response = await fetch(`/fhir/RenderResource/${resourceType}/${id}`);
-            console.debug("response = " , response);
+           
   
             if (!response.ok) {
               throw new Error('Failed to render resourceDetail.');
             }
           
-            const data = await response.text();
-            console.debug(data);
-  
+          var data = await response.text();
+            //console.debug(data);
+            data += ` <button type="submit" id="saveResourcButton" name="saveResourceButton">Save Resource</button>`;
             document.getElementById('resourceDetail').innerHTML = data;
-         
+            
+
             initFormSubmitEventListener();
           } catch (error) {
             console.error('Error:', error);
