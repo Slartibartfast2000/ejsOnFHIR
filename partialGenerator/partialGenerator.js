@@ -25,8 +25,11 @@ function elementDetail(type, element) {
             console.debug(`     ${attr.nodeName}: ${attr.nodeValue}`);
             tooltip += `${attr.nodeName}: ${attr.nodeValue}  `;
             if (attr.nodeName === 'type') type = attr.nodeValue;
-
+        
         }
+    if (type = 'Reference'){
+        
+    }
     let newElement = `<div class="form-group">` + crlf;
     newElement += `<label for='${type}.${name}'>${name}</label>` + crlf;
     newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
