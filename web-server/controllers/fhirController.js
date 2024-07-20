@@ -151,15 +151,17 @@ export async function renderResource(req, res) {
     try {
         const response = await axios.get(url);
         console.debug(response);
+        const data = response.data;
 
         // const response = await axios.delete(url);
         // res.status(200).json(response.data);
-        res.render(`../views/dynamicPartials/${resourceType}`);
+        res.render(`../views/dynamicPartials/${resourceType}`, { data });
+
      
 
     } catch (error) {
-        console.error('Error deleting resource:', error.message);
-        res.status(500).json({ message: `Error deleteing resource: ${error.message}` });
+        console.error('Error reading resource:', error.message);
+        res.status(500).json({ message: `Error reading resource: ${error.message}` });
     }
 
 }

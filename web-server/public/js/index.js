@@ -52,6 +52,7 @@ function initSearchForm() {
 
   });
 } 
+
 function addSearchResultEventListeners() {
   console.debug("addSearchResultEventListerners()");
   // Add event listeners for each row in the table
@@ -91,6 +92,7 @@ function addSearchResultEventListeners() {
         console.error('Error:', error);
       };
 
+      // Add a row click event. The partial will have the url in each row.
       document.querySelectorAll('#searchResourceResults tbody tr').forEach(row => {
         row.addEventListener('click', async function () {
         console.debug('row');

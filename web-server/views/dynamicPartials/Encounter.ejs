@@ -3,7 +3,7 @@
         <h3>Encounter Resource:</h3>
     <div class="form-group">
 <label for='Encounter.identifier'>identifier</label>
-<input type='text' id='Encounter.identifier' name='identifier' placeholder='.' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '></div>
+<input type='text' id='Encounter.identifier' name='identifier' placeholder='.' value="<%= data && data.id ? data.id : '' %>" title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '></div>
 <div class="form-group">
 <label for='Encounter.status'>status</label>
 <input type='text' id='Encounter.status' name='status' placeholder='.' title='name: status  minOccurs: 1  maxOccurs: 1  type: EncounterStatus  '></div>
