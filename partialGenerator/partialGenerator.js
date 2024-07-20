@@ -43,13 +43,13 @@ function elementDetail(type, element) {
         case 'HumanName':
             html = `<div class="form-group">` + crlf;
             html += `   <label for='${type}.${name}'>${name}.given</label>` + crlf;
-            html += `   <input type='text' id='${resourceType}.${name}' name='${name}.given' title='${tooltip}'
-                          value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}</input>
+            html += `   <input type='text' id='${resourceType}.${name}' name='${name}[given]' title='${tooltip}'
+                          value="<%= data && data.${name} ? data.${name}[0].given : '' %>">${type}</input>
             
 
                          <label for='${type}.${name}'>${name}.family</label>
-                         <input type='text' id='${resourceType}.${name}' name='${name}.family' title='${tooltip}'
-                           value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}</input>
+                         <input type='text' id='${resourceType}.${name}' name='${name}[family]' title='${tooltip}'
+                           value="<%= data && data.${name} ? data.${name}[0].family : '' %>">${type}</input>
                     </div>` + crlf;
             console.debug(html);
             break;
@@ -139,10 +139,12 @@ let partialEJS =
     `<div>
         <form id="${resourceType}">
         <h3>${resourceType} Resource:</h3>
-        <label for='Encounter.id'>id</label>
-        <input type="text" disabled id="${resourceType}.id" name="id"
-        value="<%= data && data.id ? data.id : '' %>"
-        ></input>
+        <label for='${resourceType}.id'>id</label>
+        <input type="text" readonly id="${resourceType}.id" name="id"
+                value="<%= data && data.id ? data.id : '0' %>"></input>
+        <label for='${resourceType}.resourceType'>id</label>
+        <input type="text" readonly id="${resourceType}.resourceType" name="resourceType" 
+                value="<%= data && data.resourceType ? data.resourceType : '${resourceType}' %>"></input>
     `;
 
 //partialEJS += "<form>" + crlf;

@@ -2,9 +2,10 @@
         <form id="Encounter">
         <h3>Encounter Resource:</h3>
         <label for='Encounter.id'>id</label>
-        <input type="text" disabled id="Encounter.id" name="id"
-        value="<%= data && data.id ? data.id : '' %>"
-        ></input>
+        <input type="text" readonly id="Encounter.id" name="id"
+                value="<%= data && data.id ? data.id : '0' %>"></input>
+        <input type="text" readonly id="Encounter.resourceType" name="resourceType" 
+                value="<%= data && data.resourceType ? data.resourceType : 'Encounter' %>"></input>
     <div class="form-group">
 <label for='Identifier.identifier'>identifier</label>
 <input type='text' id='Encounter.identifier' name='identifier' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '

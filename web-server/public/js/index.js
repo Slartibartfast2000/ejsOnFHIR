@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-  initPatientSearchForm();
-  initDynamicEventListeners();
+  addPatientSearchButtonClickEvent();
+  showPatientRegistrationForm();
   initDeleteSubmitEventListener();
-  initFormSubmitEventListener();
+  patientFormSubmitEventListener();
   initNavBarEventListeners();
   // trigger search on first load
-  clickSearchButton();
+  clickPatientSearchButton();
 
   //const searchButton = document.getElementById('searchPatientButton');
   //console.debug('clicking...', searchButton);
@@ -34,28 +34,26 @@ async function initNavBarEventListeners() {
         }
 
         var data = await response.text();
-        //console.debug(data);
-        //data += ` <button type="submit" id="saveResourcButton" name="saveResourceButton">Save Resource</button>`;
+
         document.getElementById('resourceDetail').innerHTML = data;
 
-
-        initFormSubmitEventListener();
-        initResourceFormEventListener(resourceType);
+        patientFormSubmitEventListener();
+        submitResourceForm(resourceType);
       } catch (error) {
         console.error('Error:', error);
 
       }
     });
   });
-
 }
-function clickSearchButton() {
+
+function clickPatientSearchButton() {
   console.debug("clickSearchButton()");
   const searchButton = document.getElementById('searchPatientButton');
   searchButton.click();
 }
 
-function initPatientSearchForm() {
+function addPatientSearchButtonClickEvent() {
   document.getElementById('searchForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     console.debug("searchButton click()");
@@ -105,7 +103,7 @@ function addSearchResultEventListeners() {
         const data = await response.text();
         document.getElementById('patientDetail').innerHTML = data;
 
-        initFormSubmitEventListener();
+        patientFormSubmitEventListener();
       } catch (error) {
         console.error('Error:', error);
       };
@@ -122,7 +120,7 @@ function addSearchResultEventListeners() {
         document.getElementById('resourceHistory').innerHTML = data;
         // Add event listeners to each row
 
-        initFormSubmitEventListener();
+        patientFormSubmitEventListener();
       } catch (error) {
         console.error('Error:', error);
       };
@@ -147,8 +145,8 @@ function addSearchResultEventListeners() {
             // console.debug(data);
 
             document.getElementById('resourceDetail').innerHTML = data;
-
-            initFormSubmitEventListener();
+            submitResourceForm(resourceType);
+            patientFormSubmitEventListener();
           } catch (error) {
             console.error('Error:', error);
           };
@@ -164,9 +162,9 @@ function addSearchResultEventListeners() {
   initDeleteSubmitEventListener();
 }
 
-function initDynamicEventListeners() {
+function showPatientRegistrationForm() {
   const registerLink = document.querySelector('.register-link');
-  console.debug('addEventListener ');
+  console.debug('initDynamicEventListeners() .register-link click - we dont need this ');
   var ms = Date.now();
 
   // Add an event listener for the click event
@@ -189,7 +187,7 @@ function initDynamicEventListeners() {
 
       // executeInlineScripts(document.getElementById('patientDetail'));
 
-      initFormSubmitEventListener();
+      patientFormSubmitEventListener();
 
     } catch (error) {
       console.error('Error:', error);
@@ -197,10 +195,11 @@ function initDynamicEventListeners() {
   });
 }
 
-function initResourceFormEventListener(resourceType) {
+function submitResourceForm(resourceType) {
+  console.debug(`initResourceFormEventListener(${resourceType})`);
 
   const form = document.getElementById(resourceType);
-   
+
   if (form) {
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
@@ -210,7 +209,7 @@ function initResourceFormEventListener(resourceType) {
       console.debug(data);
 
       try {
-        const response = await fetch(`/fhir/Patient/${data.id}`, {
+        const response = await fetch(`/fhir/${resourceType}/${data.id}`, {
           method: 'PUT',
           body: formData // Use FormData directly for multi-part data
         });
@@ -221,28 +220,27 @@ function initResourceFormEventListener(resourceType) {
 
         const result = await response.json();
         console.debug("Result: ", result);
-        //document.getElementById('patientDetail').innerHTML = "";
-        //clickSearchButton();
+
       } catch (error) {
         console.error('Error:', error);
         alert('Error updating patient details.');
       }
     });
   }
-
 }
-function initFormSubmitEventListener() {
+
+function patientFormSubmitEventListener() {
   const form = document.getElementById('patientDetailsForm');
   if (form) {
     // Remove existing event listeners to prevent duplicates
-    form.removeEventListener('submit', handleSubmit);
+    form.removeEventListener('submit', handlePatientSubmit);
 
-    form.addEventListener('submit', handleSubmit);
+    form.addEventListener('submit', handlePatientSubmit);
   }
 }
-async function handleSubmit(event) {
+async function handlePatientSubmit(event) {
   event.preventDefault();
-  
+
   const formData = new FormData(this);
   console.debug(formData);
 
@@ -262,7 +260,7 @@ async function handleSubmit(event) {
     const result = await response.json();
     console.debug("Result: ", result);
     document.getElementById('patientDetail').innerHTML = "";
-    clickSearchButton();
+    clickPatientSearchButton();
   } catch (error) {
     console.error('Error:', error);
     alert('Error updating patient details.');

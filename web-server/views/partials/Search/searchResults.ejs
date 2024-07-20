@@ -12,11 +12,11 @@
     <% if (entry && entry.length > 0) { %>
     <% entry.forEach(patient => { %>
       <tr data-id="<%= patient.resource.id %>">
-        <td><%= patient.resource.id %></td>
-        <td><%= patient.resource.name[0].family %></td>
-        <td><%= patient.resource.name[0].given[0] %></td>
-        <td><%= patient.resource.gender %></td>
-        <td><%= patient.resource.birthDate %></td>
+        <td><%= patient.resource.id || '' %></td>
+        <td><%= patient.resource.name && patient.resource.name[0] && patient.resource.name[0].family || '' %></td>
+        <td><%= patient.resource.name && patient.resource.name[0] && patient.resource.name[0].given && patient.resource.name[0].given[0] || '' %></td>
+        <td><%= patient.resource.gender || '' %></td>
+        <td><%= patient.resource.birthDate || '' %></td>
         <td>
           <button class="delete-btn" data-id="<%= patient.resource.id %>">Delete</button>
         </td>

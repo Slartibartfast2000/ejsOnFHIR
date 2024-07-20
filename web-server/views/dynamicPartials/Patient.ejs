@@ -2,9 +2,10 @@
         <form id="Patient">
         <h3>Patient Resource:</h3>
         <label for='Encounter.id'>id</label>
-        <input type="text" disabled id="Patient.id" name="id"
-        value="<%= data && data.id ? data.id : '' %>"
-        ></input>
+        <input type="text" readonly id="Patient.id" name="id"
+                value="<%= data && data.id ? data.id : '0' %>"></input>
+        <input type="text" readonly id="Patient.resourceType" name="resourceType" 
+                value="<%= data && data.resourceType ? data.resourceType : 'Patient' %>"></input>
     <div class="form-group">
 <label for='Identifier.identifier'>identifier</label>
 <input type='text' id='Patient.identifier' name='identifier' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '
@@ -17,13 +18,13 @@
                 </div>
 <div class="form-group">
    <label for='HumanName.name'>name.given</label>
-   <input type='text' id='Patient.name' name='name.given' title='name: name  minOccurs: 0  maxOccurs: unbounded  type: HumanName  '
-                          value="<%= data && data.name ? data.name.reference : '' %>">HumanName</input>
+   <input type='text' id='Patient.name' name='name[given]' title='name: name  minOccurs: 0  maxOccurs: unbounded  type: HumanName  '
+                          value="<%= data && data.name ? data.name[0].given : '' %>">HumanName</input>
             
 
                          <label for='HumanName.name'>name.family</label>
-                         <input type='text' id='Patient.name' name='name.family' title='name: name  minOccurs: 0  maxOccurs: unbounded  type: HumanName  '
-                           value="<%= data && data.name ? data.name.reference : '' %>">HumanName</input>
+                         <input type='text' id='Patient.name' name='name[family]' title='name: name  minOccurs: 0  maxOccurs: unbounded  type: HumanName  '
+                           value="<%= data && data.name ? data.name[0].family : '' %>">HumanName</input>
                     </div>
 <div class="form-group">
 <label for='ContactPoint.telecom'>telecom</label>
