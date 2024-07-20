@@ -34,7 +34,7 @@ function elementDetail(type, element) {
         case 'Reference':
             html = `<div class="form-group">` + crlf;
             html += `<label for='${type}.${name}'>${name}</label>` + crlf;
-            html += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
+            html += `<input type='text' id='${resourceType}.${name}' name='${name}[reference]' title='${tooltip}'
                         value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}</input>
             </div>` + crlf;
             console.debug(html);

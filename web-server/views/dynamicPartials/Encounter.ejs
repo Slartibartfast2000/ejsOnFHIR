@@ -4,6 +4,7 @@
         <label for='Encounter.id'>id</label>
         <input type="text" readonly id="Encounter.id" name="id"
                 value="<%= data && data.id ? data.id : '0' %>"></input>
+        <label for='Encounter.resourceType'>id</label>
         <input type="text" readonly id="Encounter.resourceType" name="resourceType" 
                 value="<%= data && data.resourceType ? data.resourceType : 'Encounter' %>"></input>
     <div class="form-group">
@@ -48,17 +49,17 @@
                 </div>
 <div class="form-group">
 <label for='Reference.subject'>subject</label>
-<input type='text' id='Encounter.subject' name='subject' title='name: subject  minOccurs: 0  maxOccurs: 1  type: Reference  '
+<input type='text' id='Encounter.subject' name='subject[reference]' title='name: subject  minOccurs: 0  maxOccurs: 1  type: Reference  '
                         value="<%= data && data.subject ? data.subject.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
 <label for='Reference.episodeOfCare'>episodeOfCare</label>
-<input type='text' id='Encounter.episodeOfCare' name='episodeOfCare' title='name: episodeOfCare  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+<input type='text' id='Encounter.episodeOfCare' name='episodeOfCare[reference]' title='name: episodeOfCare  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
                         value="<%= data && data.episodeOfCare ? data.episodeOfCare.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
 <label for='Reference.basedOn'>basedOn</label>
-<input type='text' id='Encounter.basedOn' name='basedOn' title='name: basedOn  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+<input type='text' id='Encounter.basedOn' name='basedOn[reference]' title='name: basedOn  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
                         value="<%= data && data.basedOn ? data.basedOn.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
@@ -68,7 +69,7 @@
                 </div>
 <div class="form-group">
 <label for='Reference.appointment'>appointment</label>
-<input type='text' id='Encounter.appointment' name='appointment' title='name: appointment  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+<input type='text' id='Encounter.appointment' name='appointment[reference]' title='name: appointment  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
                         value="<%= data && data.appointment ? data.appointment.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
@@ -88,7 +89,7 @@
                 </div>
 <div class="form-group">
 <label for='Reference.reasonReference'>reasonReference</label>
-<input type='text' id='Encounter.reasonReference' name='reasonReference' title='name: reasonReference  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+<input type='text' id='Encounter.reasonReference' name='reasonReference[reference]' title='name: reasonReference  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
                         value="<%= data && data.reasonReference ? data.reasonReference.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
@@ -98,7 +99,7 @@
                 </div>
 <div class="form-group">
 <label for='Reference.account'>account</label>
-<input type='text' id='Encounter.account' name='account' title='name: account  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+<input type='text' id='Encounter.account' name='account[reference]' title='name: account  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
                         value="<%= data && data.account ? data.account.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
@@ -113,12 +114,12 @@
                 </div>
 <div class="form-group">
 <label for='Reference.serviceProvider'>serviceProvider</label>
-<input type='text' id='Encounter.serviceProvider' name='serviceProvider' title='name: serviceProvider  minOccurs: 0  maxOccurs: 1  type: Reference  '
+<input type='text' id='Encounter.serviceProvider' name='serviceProvider[reference]' title='name: serviceProvider  minOccurs: 0  maxOccurs: 1  type: Reference  '
                         value="<%= data && data.serviceProvider ? data.serviceProvider.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
 <label for='Reference.partOf'>partOf</label>
-<input type='text' id='Encounter.partOf' name='partOf' title='name: partOf  minOccurs: 0  maxOccurs: 1  type: Reference  '
+<input type='text' id='Encounter.partOf' name='partOf[reference]' title='name: partOf  minOccurs: 0  maxOccurs: 1  type: Reference  '
                         value="<%= data && data.partOf ? data.partOf.reference : '' %>">Reference</input>
             </div>
    <button type="submit" id="saveResourceButton" name="saveResourceButton">Save Resource</button>

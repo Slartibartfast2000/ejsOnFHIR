@@ -1,10 +1,12 @@
 <div>
         <form id="Appointment">
         <h3>Appointment Resource:</h3>
-        <label for='Encounter.id'>id</label>
-        <input type="text" disabled id="Appointment.id" name="id"
-        value="<%= data && data.id ? data.id : '' %>"
-        ></input>
+        <label for='Appointment.id'>id</label>
+        <input type="text" readonly id="Appointment.id" name="id"
+                value="<%= data && data.id ? data.id : '0' %>"></input>
+        <label for='Appointment.resourceType'>id</label>
+        <input type="text" readonly id="Appointment.resourceType" name="resourceType" 
+                value="<%= data && data.resourceType ? data.resourceType : 'Appointment' %>"></input>
     <div class="form-group">
 <label for='Identifier.identifier'>identifier</label>
 <input type='text' id='Appointment.identifier' name='identifier' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '
@@ -15,7 +17,7 @@
 <input type='text' id='Appointment.status' name='status' title='name: status  minOccurs: 1  maxOccurs: 1  type: AppointmentStatus  '
                 value="<%= data && data.status ? data.status : '' %>">AppointmentStatus
                 </div>
-<div class="form-group">;[]
+<div class="form-group">
 <label for='CodeableConcept.cancelationReason'>cancelationReason</label>
 <input type='text' id='Appointment.cancelationReason' name='cancelationReason' title='name: cancelationReason  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
                 value="<%= data && data.cancelationReason ? data.cancelationReason : '' %>">CodeableConcept
@@ -47,8 +49,8 @@
                 </div>
 <div class="form-group">
 <label for='Reference.reasonReference'>reasonReference</label>
-<input type='text' id='Appointment.reasonReference' name='reasonReference' title='name: reasonReference  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-            value="<%= data && data.reasonReference ? data.reasonReference.reference : '' %>">Reference
+<input type='text' id='Appointment.reasonReference' name='reasonReference[reference]' title='name: reasonReference  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.reasonReference ? data.reasonReference.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
 <label for='unsignedInt.priority'>priority</label>
@@ -62,8 +64,8 @@
                 </div>
 <div class="form-group">
 <label for='Reference.supportingInformation'>supportingInformation</label>
-<input type='text' id='Appointment.supportingInformation' name='supportingInformation' title='name: supportingInformation  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-            value="<%= data && data.supportingInformation ? data.supportingInformation.reference : '' %>">Reference
+<input type='text' id='Appointment.supportingInformation' name='supportingInformation[reference]' title='name: supportingInformation  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.supportingInformation ? data.supportingInformation.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
 <label for='instant.start'>start</label>
@@ -82,8 +84,8 @@
                 </div>
 <div class="form-group">
 <label for='Reference.slot'>slot</label>
-<input type='text' id='Appointment.slot' name='slot' title='name: slot  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-            value="<%= data && data.slot ? data.slot.reference : '' %>">Reference
+<input type='text' id='Appointment.slot' name='slot[reference]' title='name: slot  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.slot ? data.slot.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
 <label for='dateTime.created'>created</label>
@@ -102,8 +104,8 @@
                 </div>
 <div class="form-group">
 <label for='Reference.basedOn'>basedOn</label>
-<input type='text' id='Appointment.basedOn' name='basedOn' title='name: basedOn  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-            value="<%= data && data.basedOn ? data.basedOn.reference : '' %>">Reference
+<input type='text' id='Appointment.basedOn' name='basedOn[reference]' title='name: basedOn  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.basedOn ? data.basedOn.reference : '' %>">Reference</input>
             </div>
 <div class="form-group">
 <label for='Appointment.Participant.participant'>participant</label>
@@ -115,5 +117,7 @@
 <input type='text' id='Appointment.requestedPeriod' name='requestedPeriod' title='name: requestedPeriod  minOccurs: 0  maxOccurs: unbounded  type: Period  '
                 value="<%= data && data.requestedPeriod ? data.requestedPeriod : '' %>">Period
                 </div>
-</form>
+   <button type="submit" id="saveResourceButton" name="saveResourceButton">Save Resource</button>
+        </form>
+
     <div>
