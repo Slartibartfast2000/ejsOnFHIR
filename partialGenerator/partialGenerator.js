@@ -170,7 +170,9 @@ elements.forEach((element) => {
 });
 
 partialEJS +=
-    `</form>
+    `   <button type="submit" id="saveResourceButton" name="saveResourceButton">Save Resource</button>
+        </form>
+
     <div>`;
 
 await writeFile(myparameters.outputFilename, partialEJS);

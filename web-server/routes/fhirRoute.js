@@ -5,7 +5,9 @@ import { readResource, searchResource, updateResource, deleteResource, renderRes
 const router = express.Router();
 
 /* /fhir */
-router.put('/Patient/:id', updateResource);
+router.put('/:resourceType/:id', updateResource);
+
+//router.put('/Patient/:id', updateResource);
 
 router.delete('/Patient/:id', deleteResource);
 
