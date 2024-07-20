@@ -6,119 +6,119 @@
         value="<%= data && data.id ? data.id : '' %>"
         ></input>
     <div class="form-group">
-<label for='Encounter.identifier'>identifier</label>
-<input type='text' id='Encounter.identifier' name='identifier' placeholder='.' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '
-    value="<%= data && data.identifier ? data.identifier : '' %>">
+<label for='Identifier.identifier'>identifier</label>
+<input type='text' id='Encounter.identifier' name='identifier' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '
+    value="<%= data && data.identifier ? data.identifier : '' %>">Identifier
     </div>
 <div class="form-group">
-<label for='Encounter.status'>status</label>
-<input type='text' id='Encounter.status' name='status' placeholder='.' title='name: status  minOccurs: 1  maxOccurs: 1  type: EncounterStatus  '
-    value="<%= data && data.status ? data.status : '' %>">
+<label for='EncounterStatus.status'>status</label>
+<input type='text' id='Encounter.status' name='status' title='name: status  minOccurs: 1  maxOccurs: 1  type: EncounterStatus  '
+    value="<%= data && data.status ? data.status : '' %>">EncounterStatus
     </div>
 <div class="form-group">
-<label for='Encounter.statusHistory'>statusHistory</label>
-<input type='text' id='Encounter.statusHistory' name='statusHistory' placeholder='.' title='name: statusHistory  type: Encounter.StatusHistory  minOccurs: 0  maxOccurs: unbounded  '
-    value="<%= data && data.statusHistory ? data.statusHistory : '' %>">
+<label for='Encounter.StatusHistory.statusHistory'>statusHistory</label>
+<input type='text' id='Encounter.statusHistory' name='statusHistory' title='name: statusHistory  type: Encounter.StatusHistory  minOccurs: 0  maxOccurs: unbounded  '
+    value="<%= data && data.statusHistory ? data.statusHistory : '' %>">Encounter.StatusHistory
     </div>
 <div class="form-group">
-<label for='Encounter.class'>class</label>
-<input type='text' id='Encounter.class' name='class' placeholder='.' title='name: class  minOccurs: 1  maxOccurs: 1  type: Coding  '
-    value="<%= data && data.class ? data.class : '' %>">
+<label for='Coding.class'>class</label>
+<input type='text' id='Encounter.class' name='class' title='name: class  minOccurs: 1  maxOccurs: 1  type: Coding  '
+    value="<%= data && data.class ? data.class : '' %>">Coding
     </div>
 <div class="form-group">
-<label for='Encounter.classHistory'>classHistory</label>
-<input type='text' id='Encounter.classHistory' name='classHistory' placeholder='.' title='name: classHistory  type: Encounter.ClassHistory  minOccurs: 0  maxOccurs: unbounded  '
-    value="<%= data && data.classHistory ? data.classHistory : '' %>">
+<label for='Encounter.ClassHistory.classHistory'>classHistory</label>
+<input type='text' id='Encounter.classHistory' name='classHistory' title='name: classHistory  type: Encounter.ClassHistory  minOccurs: 0  maxOccurs: unbounded  '
+    value="<%= data && data.classHistory ? data.classHistory : '' %>">Encounter.ClassHistory
     </div>
 <div class="form-group">
-<label for='Encounter.type'>type</label>
-<input type='text' id='Encounter.type' name='type' placeholder='.' title='name: type  minOccurs: 0  maxOccurs: unbounded  type: CodeableConcept  '
-    value="<%= data && data.type ? data.type : '' %>">
+<label for='CodeableConcept.type'>type</label>
+<input type='text' id='Encounter.type' name='type' title='name: type  minOccurs: 0  maxOccurs: unbounded  type: CodeableConcept  '
+    value="<%= data && data.type ? data.type : '' %>">CodeableConcept
     </div>
 <div class="form-group">
-<label for='Encounter.serviceType'>serviceType</label>
-<input type='text' id='Encounter.serviceType' name='serviceType' placeholder='.' title='name: serviceType  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
-    value="<%= data && data.serviceType ? data.serviceType : '' %>">
+<label for='CodeableConcept.serviceType'>serviceType</label>
+<input type='text' id='Encounter.serviceType' name='serviceType' title='name: serviceType  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+    value="<%= data && data.serviceType ? data.serviceType : '' %>">CodeableConcept
     </div>
 <div class="form-group">
-<label for='Encounter.priority'>priority</label>
-<input type='text' id='Encounter.priority' name='priority' placeholder='.' title='name: priority  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
-    value="<%= data && data.priority ? data.priority : '' %>">
+<label for='CodeableConcept.priority'>priority</label>
+<input type='text' id='Encounter.priority' name='priority' title='name: priority  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+    value="<%= data && data.priority ? data.priority : '' %>">CodeableConcept
     </div>
 <div class="form-group">
-<label for='Encounter.subject'>subject</label>
-<input type='text' id='Encounter.subject' name='subject' placeholder='.' title='name: subject  minOccurs: 0  maxOccurs: 1  type: Reference  '
-    value="<%= data && data.subject ? data.subject : '' %>">
+<label for='Reference.subject'>subject</label>
+<input type='text' id='Encounter.subject' name='subject' title='name: subject  minOccurs: 0  maxOccurs: 1  type: Reference  '
+    value="<%= data && data.subject ? data.subject : '' %>">Reference
     </div>
 <div class="form-group">
-<label for='Encounter.episodeOfCare'>episodeOfCare</label>
-<input type='text' id='Encounter.episodeOfCare' name='episodeOfCare' placeholder='.' title='name: episodeOfCare  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-    value="<%= data && data.episodeOfCare ? data.episodeOfCare : '' %>">
+<label for='Reference.episodeOfCare'>episodeOfCare</label>
+<input type='text' id='Encounter.episodeOfCare' name='episodeOfCare' title='name: episodeOfCare  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+    value="<%= data && data.episodeOfCare ? data.episodeOfCare : '' %>">Reference
     </div>
 <div class="form-group">
-<label for='Encounter.basedOn'>basedOn</label>
-<input type='text' id='Encounter.basedOn' name='basedOn' placeholder='.' title='name: basedOn  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-    value="<%= data && data.basedOn ? data.basedOn : '' %>">
+<label for='Reference.basedOn'>basedOn</label>
+<input type='text' id='Encounter.basedOn' name='basedOn' title='name: basedOn  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+    value="<%= data && data.basedOn ? data.basedOn : '' %>">Reference
     </div>
 <div class="form-group">
-<label for='Encounter.participant'>participant</label>
-<input type='text' id='Encounter.participant' name='participant' placeholder='.' title='name: participant  type: Encounter.Participant  minOccurs: 0  maxOccurs: unbounded  '
-    value="<%= data && data.participant ? data.participant : '' %>">
+<label for='Encounter.Participant.participant'>participant</label>
+<input type='text' id='Encounter.participant' name='participant' title='name: participant  type: Encounter.Participant  minOccurs: 0  maxOccurs: unbounded  '
+    value="<%= data && data.participant ? data.participant : '' %>">Encounter.Participant
     </div>
 <div class="form-group">
-<label for='Encounter.appointment'>appointment</label>
-<input type='text' id='Encounter.appointment' name='appointment' placeholder='.' title='name: appointment  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-    value="<%= data && data.appointment ? data.appointment : '' %>">
+<label for='Reference.appointment'>appointment</label>
+<input type='text' id='Encounter.appointment' name='appointment' title='name: appointment  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+    value="<%= data && data.appointment ? data.appointment : '' %>">Reference
     </div>
 <div class="form-group">
-<label for='Encounter.period'>period</label>
-<input type='text' id='Encounter.period' name='period' placeholder='.' title='name: period  minOccurs: 0  maxOccurs: 1  type: Period  '
-    value="<%= data && data.period ? data.period : '' %>">
+<label for='Period.period'>period</label>
+<input type='text' id='Encounter.period' name='period' title='name: period  minOccurs: 0  maxOccurs: 1  type: Period  '
+    value="<%= data && data.period ? data.period : '' %>">Period
     </div>
 <div class="form-group">
-<label for='Encounter.length'>length</label>
-<input type='text' id='Encounter.length' name='length' placeholder='.' title='name: length  minOccurs: 0  maxOccurs: 1  type: Duration  '
-    value="<%= data && data.length ? data.length : '' %>">
+<label for='Duration.length'>length</label>
+<input type='text' id='Encounter.length' name='length' title='name: length  minOccurs: 0  maxOccurs: 1  type: Duration  '
+    value="<%= data && data.length ? data.length : '' %>">Duration
     </div>
 <div class="form-group">
-<label for='Encounter.reasonCode'>reasonCode</label>
-<input type='text' id='Encounter.reasonCode' name='reasonCode' placeholder='.' title='name: reasonCode  minOccurs: 0  maxOccurs: unbounded  type: CodeableConcept  '
-    value="<%= data && data.reasonCode ? data.reasonCode : '' %>">
+<label for='CodeableConcept.reasonCode'>reasonCode</label>
+<input type='text' id='Encounter.reasonCode' name='reasonCode' title='name: reasonCode  minOccurs: 0  maxOccurs: unbounded  type: CodeableConcept  '
+    value="<%= data && data.reasonCode ? data.reasonCode : '' %>">CodeableConcept
     </div>
 <div class="form-group">
-<label for='Encounter.reasonReference'>reasonReference</label>
-<input type='text' id='Encounter.reasonReference' name='reasonReference' placeholder='.' title='name: reasonReference  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-    value="<%= data && data.reasonReference ? data.reasonReference : '' %>">
+<label for='Reference.reasonReference'>reasonReference</label>
+<input type='text' id='Encounter.reasonReference' name='reasonReference' title='name: reasonReference  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+    value="<%= data && data.reasonReference ? data.reasonReference : '' %>">Reference
     </div>
 <div class="form-group">
-<label for='Encounter.diagnosis'>diagnosis</label>
-<input type='text' id='Encounter.diagnosis' name='diagnosis' placeholder='.' title='name: diagnosis  type: Encounter.Diagnosis  minOccurs: 0  maxOccurs: unbounded  '
-    value="<%= data && data.diagnosis ? data.diagnosis : '' %>">
+<label for='Encounter.Diagnosis.diagnosis'>diagnosis</label>
+<input type='text' id='Encounter.diagnosis' name='diagnosis' title='name: diagnosis  type: Encounter.Diagnosis  minOccurs: 0  maxOccurs: unbounded  '
+    value="<%= data && data.diagnosis ? data.diagnosis : '' %>">Encounter.Diagnosis
     </div>
 <div class="form-group">
-<label for='Encounter.account'>account</label>
-<input type='text' id='Encounter.account' name='account' placeholder='.' title='name: account  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
-    value="<%= data && data.account ? data.account : '' %>">
+<label for='Reference.account'>account</label>
+<input type='text' id='Encounter.account' name='account' title='name: account  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+    value="<%= data && data.account ? data.account : '' %>">Reference
     </div>
 <div class="form-group">
-<label for='Encounter.hospitalization'>hospitalization</label>
-<input type='text' id='Encounter.hospitalization' name='hospitalization' placeholder='.' title='name: hospitalization  type: Encounter.Hospitalization  minOccurs: 0  maxOccurs: 1  '
-    value="<%= data && data.hospitalization ? data.hospitalization : '' %>">
+<label for='Encounter.Hospitalization.hospitalization'>hospitalization</label>
+<input type='text' id='Encounter.hospitalization' name='hospitalization' title='name: hospitalization  type: Encounter.Hospitalization  minOccurs: 0  maxOccurs: 1  '
+    value="<%= data && data.hospitalization ? data.hospitalization : '' %>">Encounter.Hospitalization
     </div>
 <div class="form-group">
-<label for='Encounter.location'>location</label>
-<input type='text' id='Encounter.location' name='location' placeholder='.' title='name: location  type: Encounter.Location  minOccurs: 0  maxOccurs: unbounded  '
-    value="<%= data && data.location ? data.location : '' %>">
+<label for='Encounter.Location.location'>location</label>
+<input type='text' id='Encounter.location' name='location' title='name: location  type: Encounter.Location  minOccurs: 0  maxOccurs: unbounded  '
+    value="<%= data && data.location ? data.location : '' %>">Encounter.Location
     </div>
 <div class="form-group">
-<label for='Encounter.serviceProvider'>serviceProvider</label>
-<input type='text' id='Encounter.serviceProvider' name='serviceProvider' placeholder='.' title='name: serviceProvider  minOccurs: 0  maxOccurs: 1  type: Reference  '
-    value="<%= data && data.serviceProvider ? data.serviceProvider : '' %>">
+<label for='Reference.serviceProvider'>serviceProvider</label>
+<input type='text' id='Encounter.serviceProvider' name='serviceProvider' title='name: serviceProvider  minOccurs: 0  maxOccurs: 1  type: Reference  '
+    value="<%= data && data.serviceProvider ? data.serviceProvider : '' %>">Reference
     </div>
 <div class="form-group">
-<label for='Encounter.partOf'>partOf</label>
-<input type='text' id='Encounter.partOf' name='partOf' placeholder='.' title='name: partOf  minOccurs: 0  maxOccurs: 1  type: Reference  '
-    value="<%= data && data.partOf ? data.partOf : '' %>">
+<label for='Reference.partOf'>partOf</label>
+<input type='text' id='Encounter.partOf' name='partOf' title='name: partOf  minOccurs: 0  maxOccurs: 1  type: Reference  '
+    value="<%= data && data.partOf ? data.partOf : '' %>">Reference
     </div>
 </form>
     <div>

@@ -18,17 +18,19 @@ async function writeFile(filename, content) {
 function elementDetail(type, element) {
     const name = element.getAttribute('name');
     var tooltip = '';
-
+    var type = 'a';
     const attributes = element.attributes;
         for (let i = 0; i < attributes.length; i++) {
             const attr = attributes[i];
             console.debug(`     ${attr.nodeName}: ${attr.nodeValue}`);
             tooltip += `${attr.nodeName}: ${attr.nodeValue}  `;
+            if (attr.nodeName === 'type') type = attr.nodeValue;
+
         }
     let newElement = `<div class="form-group">` + crlf;
     newElement += `<label for='${type}.${name}'>${name}</label>` + crlf;
-    newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.' title='${tooltip}'
-    value="<%= data && data.${name} ? data.${name} : '' %>">
+    newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
+    value="<%= data && data.${name} ? data.${name} : '' %>">${type}
     </div>` + crlf;
     //newElement += `<title='${tooltip}'`;
     return newElement;
