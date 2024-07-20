@@ -67,7 +67,7 @@ function choiceDetail(type, element) {
         for (let i = 0; i < attributes.length; i++) {
             const attr = attributes[i];
             console.debug(`     ${attr.nodeName}: ${attr.nodeValue}`);
-            tooltip += `${attribute.nodeName}: ${attr.nodeValue}`;
+            tooltip += `${attr.nodeName}: ${attr.nodeValue}`;
         }
         const name = element.getAttribute('name');
         newElement += `<div class='form-group'>` + crlf;
