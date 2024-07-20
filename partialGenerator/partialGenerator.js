@@ -27,7 +27,9 @@ function elementDetail(type, element) {
         }
     let newElement = `<div class="form-group">` + crlf;
     newElement += `<label for='${type}.${name}'>${name}</label>` + crlf;
-    newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.' title='${tooltip}'></div>` + crlf;
+    newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' placeholder='.' title='${tooltip}'
+    value="<%= data && data.${name} ? data.${name} : '' %>">
+    </div>` + crlf;
     //newElement += `<title='${tooltip}'`;
     return newElement;
 
