@@ -19,27 +19,35 @@ function elementDetail(type, element) {
     const name = element.getAttribute('name');
     var tooltip = '';
     var type = 'a';
-    var value = '';
-    const attributes = element.attributes;
-        for (let i = 0; i < attributes.length; i++) {
-            const attr = attributes[i];
-            console.debug(`     ${attr.nodeName}: ${attr.nodeValue}`);
-            tooltip += `${attr.nodeName}: ${attr.nodeValue}  `;
-            if (attr.nodeName === 'type') type = attr.nodeValue;
-        
-        }
-        
-  //  if (type = 'Reference'){
-   //     value = `value="<%= data && data.${name}[0].reference ? data.${name} : '' %>">${type}`;
- //   }
+    var html = '';
 
-    let newElement = `<div class="form-group">` + crlf;
-    newElement += `<label for='${type}.${name}'>${name}</label>` + crlf;
-    newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
-    value="<%= data && data.${name} ? data.${name} : '' %>">${type}
-    </div>` + crlf;
+    const attributes = element.attributes;
+    for (let i = 0; i < attributes.length; i++) {
+        const attr = attributes[i];
+        console.debug(`     ${attr.nodeName}: ${attr.nodeValue}`);
+        tooltip += `${attr.nodeName}: ${attr.nodeValue}  `;
+        if (attr.nodeName === 'type') type = attr.nodeValue;
+
+    }
+
+    if (type == 'Reference') {
+
+        html = `<div class="form-group">` + crlf;
+        html += `<label for='${type}.${name}'>${name}</label>` + crlf;
+        html += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
+        value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}
+        </div>` + crlf;
+        console.debug(html);
+    }
+    else {
+        html = `<div class="form-group">` + crlf;
+        html += `<label for='${type}.${name}'>${name}</label>` + crlf;
+        html += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
+                value="<%= data && data.${name} ? data.${name} : '' %>">${type}
+                </div>` + crlf;
+    }
     //newElement += `<title='${tooltip}'`;
-    return newElement;
+    return html;
 
 }
 
@@ -65,7 +73,7 @@ function choiceDetail(type, element) {
         newElement += `<input type='text' id='${type}.${name}' name='${name}' placeholder='.'></div>` + crlf;
         newElement += `<title='${tooltip}'`;
     });
-    
+
     return newElement;
 }
 
