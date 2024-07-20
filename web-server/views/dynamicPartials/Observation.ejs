@@ -1,0 +1,164 @@
+<div>
+        <form id="Observation">
+        <h3>Observation Resource:</h3>
+        <label for='Encounter.id'>id</label>
+        <input type="text" disabled id="Observation.id" name="id"
+        value="<%= data && data.id ? data.id : '' %>"
+        ></input>
+    <div class="form-group">
+<label for='Identifier.identifier'>identifier</label>
+<input type='text' id='Observation.identifier' name='identifier' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '
+                value="<%= data && data.identifier ? data.identifier : '' %>">Identifier
+                </div>
+<div class="form-group">
+<label for='Reference.basedOn'>basedOn</label>
+<input type='text' id='Observation.basedOn' name='basedOn' title='name: basedOn  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.basedOn ? data.basedOn.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Reference.partOf'>partOf</label>
+<input type='text' id='Observation.partOf' name='partOf' title='name: partOf  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.partOf ? data.partOf.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='ObservationStatus.status'>status</label>
+<input type='text' id='Observation.status' name='status' title='name: status  minOccurs: 1  maxOccurs: 1  type: ObservationStatus  '
+                value="<%= data && data.status ? data.status : '' %>">ObservationStatus
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.category'>category</label>
+<input type='text' id='Observation.category' name='category' title='name: category  minOccurs: 0  maxOccurs: unbounded  type: CodeableConcept  '
+                value="<%= data && data.category ? data.category : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.code'>code</label>
+<input type='text' id='Observation.code' name='code' title='name: code  minOccurs: 1  maxOccurs: 1  type: CodeableConcept  '
+                value="<%= data && data.code ? data.code : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='Reference.subject'>subject</label>
+<input type='text' id='Observation.subject' name='subject' title='name: subject  minOccurs: 0  maxOccurs: 1  type: Reference  '
+                        value="<%= data && data.subject ? data.subject.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Reference.focus'>focus</label>
+<input type='text' id='Observation.focus' name='focus' title='name: focus  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.focus ? data.focus.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Reference.encounter'>encounter</label>
+<input type='text' id='Observation.encounter' name='encounter' title='name: encounter  minOccurs: 0  maxOccurs: 1  type: Reference  '
+                        value="<%= data && data.encounter ? data.encounter.reference : '' %>">Reference</input>
+            </div>
+<div class='form-group'>
+<label for='Observation.effectiveDateTime'>effectiveDateTime*</label>
+<input type='text' id='Observation.effectiveDateTime' name='effectiveDateTime'></div>
+<title='name: effectiveDateTimetype: dateTime'></title><div class='form-group'>
+<label for='Observation.effectivePeriod'>effectivePeriod*</label>
+<input type='text' id='Observation.effectivePeriod' name='effectivePeriod'></div>
+<title='name: effectiveDateTimetype: dateTimename: effectivePeriodtype: Period'></title><div class='form-group'>
+<label for='Observation.effectiveTiming'>effectiveTiming*</label>
+<input type='text' id='Observation.effectiveTiming' name='effectiveTiming'></div>
+<title='name: effectiveDateTimetype: dateTimename: effectivePeriodtype: Periodname: effectiveTimingtype: Timing'></title><div class='form-group'>
+<label for='Observation.effectiveInstant'>effectiveInstant*</label>
+<input type='text' id='Observation.effectiveInstant' name='effectiveInstant'></div>
+<title='name: effectiveDateTimetype: dateTimename: effectivePeriodtype: Periodname: effectiveTimingtype: Timingname: effectiveInstanttype: instant'></title><div class="form-group">
+<label for='instant.issued'>issued</label>
+<input type='text' id='Observation.issued' name='issued' title='name: issued  minOccurs: 0  maxOccurs: 1  type: instant  '
+                value="<%= data && data.issued ? data.issued : '' %>">instant
+                </div>
+<div class="form-group">
+<label for='Reference.performer'>performer</label>
+<input type='text' id='Observation.performer' name='performer' title='name: performer  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.performer ? data.performer.reference : '' %>">Reference</input>
+            </div>
+<div class='form-group'>
+<label for='Observation.valueQuantity'>valueQuantity*</label>
+<input type='text' id='Observation.valueQuantity' name='valueQuantity'></div>
+<title='name: valueQuantitytype: Quantity'></title><div class='form-group'>
+<label for='Observation.valueCodeableConcept'>valueCodeableConcept*</label>
+<input type='text' id='Observation.valueCodeableConcept' name='valueCodeableConcept'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConcept'></title><div class='form-group'>
+<label for='Observation.valueString'>valueString*</label>
+<input type='text' id='Observation.valueString' name='valueString'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: string'></title><div class='form-group'>
+<label for='Observation.valueBoolean'>valueBoolean*</label>
+<input type='text' id='Observation.valueBoolean' name='valueBoolean'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: stringname: valueBooleantype: boolean'></title><div class='form-group'>
+<label for='Observation.valueInteger'>valueInteger*</label>
+<input type='text' id='Observation.valueInteger' name='valueInteger'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: stringname: valueBooleantype: booleanname: valueIntegertype: integer'></title><div class='form-group'>
+<label for='Observation.valueRange'>valueRange*</label>
+<input type='text' id='Observation.valueRange' name='valueRange'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: stringname: valueBooleantype: booleanname: valueIntegertype: integername: valueRangetype: Range'></title><div class='form-group'>
+<label for='Observation.valueRatio'>valueRatio*</label>
+<input type='text' id='Observation.valueRatio' name='valueRatio'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: stringname: valueBooleantype: booleanname: valueIntegertype: integername: valueRangetype: Rangename: valueRatiotype: Ratio'></title><div class='form-group'>
+<label for='Observation.valueSampledData'>valueSampledData*</label>
+<input type='text' id='Observation.valueSampledData' name='valueSampledData'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: stringname: valueBooleantype: booleanname: valueIntegertype: integername: valueRangetype: Rangename: valueRatiotype: Rationame: valueSampledDatatype: SampledData'></title><div class='form-group'>
+<label for='Observation.valueTime'>valueTime*</label>
+<input type='text' id='Observation.valueTime' name='valueTime'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: stringname: valueBooleantype: booleanname: valueIntegertype: integername: valueRangetype: Rangename: valueRatiotype: Rationame: valueSampledDatatype: SampledDataname: valueTimetype: time'></title><div class='form-group'>
+<label for='Observation.valueDateTime'>valueDateTime*</label>
+<input type='text' id='Observation.valueDateTime' name='valueDateTime'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: stringname: valueBooleantype: booleanname: valueIntegertype: integername: valueRangetype: Rangename: valueRatiotype: Rationame: valueSampledDatatype: SampledDataname: valueTimetype: timename: valueDateTimetype: dateTime'></title><div class='form-group'>
+<label for='Observation.valuePeriod'>valuePeriod*</label>
+<input type='text' id='Observation.valuePeriod' name='valuePeriod'></div>
+<title='name: valueQuantitytype: Quantityname: valueCodeableConcepttype: CodeableConceptname: valueStringtype: stringname: valueBooleantype: booleanname: valueIntegertype: integername: valueRangetype: Rangename: valueRatiotype: Rationame: valueSampledDatatype: SampledDataname: valueTimetype: timename: valueDateTimetype: dateTimename: valuePeriodtype: Period'></title><div class="form-group">
+<label for='CodeableConcept.dataAbsentReason'>dataAbsentReason</label>
+<input type='text' id='Observation.dataAbsentReason' name='dataAbsentReason' title='name: dataAbsentReason  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+                value="<%= data && data.dataAbsentReason ? data.dataAbsentReason : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.interpretation'>interpretation</label>
+<input type='text' id='Observation.interpretation' name='interpretation' title='name: interpretation  minOccurs: 0  maxOccurs: unbounded  type: CodeableConcept  '
+                value="<%= data && data.interpretation ? data.interpretation : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='Annotation.note'>note</label>
+<input type='text' id='Observation.note' name='note' title='name: note  minOccurs: 0  maxOccurs: unbounded  type: Annotation  '
+                value="<%= data && data.note ? data.note : '' %>">Annotation
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.bodySite'>bodySite</label>
+<input type='text' id='Observation.bodySite' name='bodySite' title='name: bodySite  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+                value="<%= data && data.bodySite ? data.bodySite : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.method'>method</label>
+<input type='text' id='Observation.method' name='method' title='name: method  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+                value="<%= data && data.method ? data.method : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='Reference.specimen'>specimen</label>
+<input type='text' id='Observation.specimen' name='specimen' title='name: specimen  minOccurs: 0  maxOccurs: 1  type: Reference  '
+                        value="<%= data && data.specimen ? data.specimen.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Reference.device'>device</label>
+<input type='text' id='Observation.device' name='device' title='name: device  minOccurs: 0  maxOccurs: 1  type: Reference  '
+                        value="<%= data && data.device ? data.device.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Observation.ReferenceRange.referenceRange'>referenceRange</label>
+<input type='text' id='Observation.referenceRange' name='referenceRange' title='name: referenceRange  type: Observation.ReferenceRange  minOccurs: 0  maxOccurs: unbounded  '
+                value="<%= data && data.referenceRange ? data.referenceRange : '' %>">Observation.ReferenceRange
+                </div>
+<div class="form-group">
+<label for='Reference.hasMember'>hasMember</label>
+<input type='text' id='Observation.hasMember' name='hasMember' title='name: hasMember  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.hasMember ? data.hasMember.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Reference.derivedFrom'>derivedFrom</label>
+<input type='text' id='Observation.derivedFrom' name='derivedFrom' title='name: derivedFrom  minOccurs: 0  maxOccurs: unbounded  type: Reference  '
+                        value="<%= data && data.derivedFrom ? data.derivedFrom.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Observation.Component.component'>component</label>
+<input type='text' id='Observation.component' name='component' title='name: component  type: Observation.Component  minOccurs: 0  maxOccurs: unbounded  '
+                value="<%= data && data.component ? data.component : '' %>">Observation.Component
+                </div>
+</form>
+    <div>
