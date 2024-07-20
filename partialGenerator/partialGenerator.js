@@ -30,23 +30,25 @@ function elementDetail(type, element) {
 
     }
 
-    if (type == 'Reference') {
+    switch (type) {
+        case 'Reference':
+            console.debug("Reference *************");
+            html = `<div class="form-group">` + crlf;
+            html += `<label for='${type}.${name}'>${name}</label>` + crlf;
+            html += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
+            value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}
+            </div>` + crlf;
+            console.debug(html);
+            break;
 
-        html = `<div class="form-group">` + crlf;
-        html += `<label for='${type}.${name}'>${name}</label>` + crlf;
-        html += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
-        value="<%= data && data.${name} ? data.${name}.reference : '' %>">${type}
-        </div>` + crlf;
-        console.debug(html);
-    }
-    else {
-        html = `<div class="form-group">` + crlf;
-        html += `<label for='${type}.${name}'>${name}</label>` + crlf;
-        html += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
+        default:
+            html = `<div class="form-group">` + crlf;
+            html += `<label for='${type}.${name}'>${name}</label>` + crlf;
+            html += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
                 value="<%= data && data.${name} ? data.${name} : '' %>">${type}
                 </div>` + crlf;
     }
-    //newElement += `<title='${tooltip}'`;
+
     return html;
 
 }
