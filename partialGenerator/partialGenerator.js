@@ -19,6 +19,7 @@ function elementDetail(type, element) {
     const name = element.getAttribute('name');
     var tooltip = '';
     var type = 'a';
+    var value = '';
     const attributes = element.attributes;
         for (let i = 0; i < attributes.length; i++) {
             const attr = attributes[i];
@@ -27,9 +28,11 @@ function elementDetail(type, element) {
             if (attr.nodeName === 'type') type = attr.nodeValue;
         
         }
-    if (type = 'Reference'){
         
-    }
+  //  if (type = 'Reference'){
+   //     value = `value="<%= data && data.${name}[0].reference ? data.${name} : '' %>">${type}`;
+ //   }
+
     let newElement = `<div class="form-group">` + crlf;
     newElement += `<label for='${type}.${name}'>${name}</label>` + crlf;
     newElement += `<input type='text' id='${resourceType}.${name}' name='${name}' title='${tooltip}'
