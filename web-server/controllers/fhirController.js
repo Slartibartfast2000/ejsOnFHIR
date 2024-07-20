@@ -82,32 +82,32 @@ export async function updateResource(req, res) {
     console.debug('updateResource() Url: ', url);
 
     if (fhirResourceId == "0") {
-        console.debug("Creat a new resource with POST");
-        //  console.debug("data.id before", data.id);
-        
-        delete data.id; // FHIR Standard - id is not valid for Posts 
-       // console.debug("data.id after", data.id);
+        console.info("Creat a new resource with POST");
 
-        try { 
+        delete data.id; // FHIR Standard - remove the 0 as id is not valid for Posts 
+
+        try {
             url = `${fhirBaseUrl}/${resourceType}`;
             console.debug("post url: ", url);
             const response = await axios.post(url, data);
             res.status(200).json(response.data);
-            
-            } catch (error) {
-            console.error('Error posting resource:', error.message);
+
+        } catch (error) {
+            console.error('Error POSTing resource:', error.message);
             res.status(500).json({ message: `Error posting resource: ${error.message}` });
         }
-    } else { 
-        try { 
+
+    } else {
+        try {
+            console.debug('PUT Url: ', url);
             const response = await axios.put(url, data);
+            
             res.status(200).json(response.data);
         } catch (error) {
             console.error('Error fetching resource:', error);
             res.status(500).json({ message: `Error fetching resource: ${error.message}` });
         }
     }
-
 }
 
 export async function deleteResource(req, res) {
@@ -140,32 +140,32 @@ export async function renderResource(req, res) {
     const fhirResourceId = req.params.id;
     const urlParts = req.originalUrl.split('/');
     const resourceType = urlParts[3]; // Assuming the resource type is the third part of the URL
-    
+
     // const data = JSON.parse(JSON.stringify(req.body));
     //console.debug('put data: ', JSON.stringify(data, null, 2));
 
-   // console.debug("deleteResource:", resourceType, fhirResourceId);
+    // console.debug("deleteResource:", resourceType, fhirResourceId);
     const url = `${fhirBaseUrl}/${resourceType}/${fhirResourceId}`;
     console.debug('getResource() Url: ', url);
 
     try {
         var data = [];
-        if (fhirResourceId != 0 ) 
-            {
-                console.debug("new resource");
-                const response = await axios.get(url);
-                console.debug(response);
-                data = response.data;
-            } else
-         { console.debug("Render empty form");
-            data = [];   }
+        if (fhirResourceId != 0) {
+            console.debug("new resource");
+            const response = await axios.get(url);
+            console.debug(response);
+            data = response.data;
+        } else {
+            console.debug("Render empty form");
+            data = [];
+        }
 
-        
+
         // const response = await axios.delete(url);
         // res.status(200).json(response.data);
         res.render(`../views/dynamicPartials/${resourceType}`, { data });
-            console.debug("done render");
-     
+        console.debug("done render");
+
 
     } catch (error) {
         console.error('Error reading resource:', error.message);

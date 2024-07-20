@@ -118,8 +118,7 @@ function addSearchResultEventListeners() {
         }
 
         const data = await response.text();
-        console.debug(data);
-
+      
         document.getElementById('resourceHistory').innerHTML = data;
         // Add event listeners to each row
 
@@ -131,21 +130,21 @@ function addSearchResultEventListeners() {
       // Add a row click event. The partial will have the url in each row.
       document.querySelectorAll('#searchResourceResults tbody tr').forEach(row => {
         row.addEventListener('click', async function () {
-          console.debug('row');
+        //  console.debug('row');
           const cells = this.querySelectorAll('td');
           const resourceType = cells[1].innerText;
           const id = cells[0].innerText;
 
           try {
             const response = await fetch(`/fhir/RenderResource/${resourceType}/${id}`);
-            console.debug(response);
+          //  console.debug(response);
 
             if (!response.ok) {
               throw new Error('Failed to render resourceDetail.');
             }
 
             const data = await response.text();
-            console.debug(data);
+           // console.debug(data);
 
             document.getElementById('resourceDetail').innerHTML = data;
 
