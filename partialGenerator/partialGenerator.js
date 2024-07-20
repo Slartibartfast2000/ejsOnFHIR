@@ -108,6 +108,10 @@ let partialEJS =
     `<div>
         <form id="${resourceType}">
         <h3>${resourceType} Resource:</h3>
+        <label for='Encounter.id'>id</label>
+        <input type="text" disabled id="${resourceType}.id" name="id"
+        value="<%= data && data.id ? data.id : '' %>"
+        ></input>
     `;
 
 //partialEJS += "<form>" + crlf;

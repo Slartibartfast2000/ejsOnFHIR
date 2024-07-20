@@ -1,6 +1,10 @@
 <div>
         <form id="Encounter">
         <h3>Encounter Resource:</h3>
+        <label for='Encounter.id'>id</label>
+        <input type="text" disabled id="Encounter.id" name="id"
+        value="<%= data && data.id ? data.id : '' %>"
+        ></input>
     <div class="form-group">
 <label for='Encounter.identifier'>identifier</label>
 <input type='text' id='Encounter.identifier' name='identifier' placeholder='.' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '
