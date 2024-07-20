@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  initSearchForm();
+  initPatientSearchForm();
   initDynamicEventListeners();
   initDeleteSubmitEventListener();
   initFormSubmitEventListener();
@@ -55,7 +55,7 @@ function clickSearchButton() {
   searchButton.click();
 }
 
-function initSearchForm() {
+function initPatientSearchForm() {
   document.getElementById('searchForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     console.debug("searchButton click()");
@@ -200,7 +200,7 @@ function initDynamicEventListeners() {
 function initResourceFormEventListener(resourceType) {
 
   const form = document.getElementById(resourceType);
-  //  console.debug(form);
+   
   if (form) {
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
