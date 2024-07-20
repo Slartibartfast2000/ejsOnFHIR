@@ -149,14 +149,22 @@ export async function renderResource(req, res) {
     console.debug('getResource() Url: ', url);
 
     try {
-        const response = await axios.get(url);
-        console.debug(response);
-        const data = response.data;
+        var data = [];
+        if (fhirResourceId != 0 ) 
+            {
+                console.debug("new resource");
+                const response = await axios.get(url);
+                console.debug(response);
+                data = response.data;
+            } else
+         { console.debug("Render empty form");
+            data = [];   }
 
+        
         // const response = await axios.delete(url);
         // res.status(200).json(response.data);
         res.render(`../views/dynamicPartials/${resourceType}`, { data });
-
+            console.debug("done render");
      
 
     } catch (error) {

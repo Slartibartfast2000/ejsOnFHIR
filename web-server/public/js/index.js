@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initDynamicEventListeners();
   initDeleteSubmitEventListener();
   initFormSubmitEventListener();
-
+  initNavBarEventListeners();
   // trigger search on first load
   clickSearchButton();
 
@@ -13,6 +13,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+async function initNavBarEventListeners()  {
+  const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+  // Add event listener to each item
+  dropdownItems.forEach(item => {
+      item.addEventListener('click', async (e) => {
+          e.preventDefault(); // Prevent the default link behavior
+      
+          //alert(`You clicked on: ${e.target.textContent}`);
+          const resourceType = e.target.textContent;
+          const id = 0;
+          
+          try {
+            const response = await fetch(`/fhir/RenderResource/${resourceType}/${id}`);
+            console.debug("response = " , response);
+  
+            if (!response.ok) {
+              throw new Error('Failed to render resourceDetail.');
+            }
+          
+            const data = await response.text();
+            console.debug(data);
+  
+            document.getElementById('resourceDetail').innerHTML = data;
+         
+            initFormSubmitEventListener();
+          } catch (error) {
+            console.error('Error:', error);
+  
+      }});
+  });
+
+}
 function clickSearchButton() {
   console.debug("clickSearchButton()");
   const searchButton = document.getElementById('searchPatientButton');
@@ -49,9 +82,9 @@ function initSearchForm() {
       console.error('Error:', error);
     }
 
-
   });
 } 
+
 
 function addSearchResultEventListeners() {
   console.debug("addSearchResultEventListerners()");
