@@ -21,8 +21,8 @@ router.use(express.json());
 
 router.get('/index', async (req, res) => { // Make the handler asynchronous
   const directoryPath = './views/dynamicPartials';
-  const data = {entry: []};
-  /*
+  //const data = {entry: []};
+  
   const data = {
       entry: [
           {
@@ -37,7 +37,7 @@ router.get('/index', async (req, res) => { // Make the handler asynchronous
           }
       ]
   }; 
-*/
+
   try {
       // Build the resources menu asynchronously
       const resourcesMenu = await buildMenuFromFiles(directoryPath);
