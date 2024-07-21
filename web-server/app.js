@@ -44,11 +44,12 @@ app.use(multer().none());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Set EJS as the view engine - // Set the directory for views
+// Set EJS as the view engine - 
+// Set the directory for views
 app.set('view engine', 'ejs');
 app.set('views', join(__dirname, 'views'));
 
-// Static files from the ./public directory and 
+// Static files from the ./public directory
 app.use('/static/', express.static(join(__dirname, 'public')));
  
 // css - version can be controlled via npm and package.json - also doesn't require breakout to internet to download Content Delivery Network stylesheets from private networks)
@@ -63,7 +64,6 @@ console.log('PORT:', PORT );
 console.log('HOST_IP:', HOST_IP );
 console.log('USE_HTTPS:' , USE_HTTPS );
 console.log('FHIR_BASE_URL:', FHIR_BASE_URL);
-
 
 // On app start up, check FHIR endpoint is available and insert dummy data if missing
 try {
