@@ -21,6 +21,8 @@ router.use(express.json());
 
 router.get('/index', async (req, res) => { // Make the handler asynchronous
   const directoryPath = './views/dynamicPartials';
+  const data = {entry: []};
+  /*
   const data = {
       entry: [
           {
@@ -34,13 +36,12 @@ router.get('/index', async (req, res) => { // Make the handler asynchronous
               }
           }
       ]
-  };
-
+  }; 
+*/
   try {
       // Build the resources menu asynchronously
       const resourcesMenu = await buildMenuFromFiles(directoryPath);
-
-      // Create the navbar items array
+     
       const navbarItems = [
           { name: 'Home', link: '/' },
           { name: 'Register', link: '#' },
@@ -50,12 +51,11 @@ router.get('/index', async (req, res) => { // Make the handler asynchronous
           
         ];
 
-      console.log(resourcesMenu); // Log the resources menu
-      console.debug(navbarItems); // Log the navbar items
+//      console.log(resourcesMenu); // Log the resources menu
+  //    console.debug(navbarItems); // Log the navbar items
 
       console.debug('app.js: get/index - render patientSearch page');
 
-      // Render the index page with the entry data and navbar items
       res.render('./pages/index', { entry: data.entry, navbarItems });
   } catch (err) {
       console.error('Error:', err);
