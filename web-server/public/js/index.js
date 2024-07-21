@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   addPatientSearchButtonClickEvent();
   showPatientRegistrationForm();
-  initDeleteSubmitEventListener();
+  deletePatientButtonEventListener();
   patientFormSubmitEventListener();
   initNavBarEventListeners();
   // trigger search on first load
@@ -159,7 +159,7 @@ function addSearchResultEventListeners() {
 
   });
 
-  initDeleteSubmitEventListener();
+  deletePatientButtonEventListener();
 }
 
 function showPatientRegistrationForm() {
@@ -312,8 +312,39 @@ function executeInlineScripts(container) {
   });
 }
 
-function initDeleteSubmitEventListener() {
-  console.debug("initDeleteSubmitEventListener()");
+function deletePatientButtonEventListener() {
+  console.debug("deletePatientButtonEventListener()");
+  const deleteButtons = document.querySelectorAll('.delete-btn');
+
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', async (event) => {
+      event.stopPropagation(); // Prevent row click event
+      const patientId = event.target.getAttribute('data-id');
+      const confirmed = confirm('Are you sure you want to delete this patient?');
+
+      if (confirmed) {
+        try {
+          const response = await fetch(`/fhir/Patient/${patientId}`, {
+            method: 'DELETE'
+          });
+
+          if (response.ok) {
+            // Remove the corresponding row from the table
+            const row = event.target.closest('tr');
+            row.parentNode.removeChild(row);
+          } else {
+            console.error('Failed to delete patient');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+    });
+  });
+}
+
+function deleteResourceButtonEventListener() {
+  console.debug("deleteResourceButtonEventListener()");
   const deleteButtons = document.querySelectorAll('.delete-btn');
 
   deleteButtons.forEach(button => {

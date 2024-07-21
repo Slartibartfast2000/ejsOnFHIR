@@ -1,10 +1,9 @@
-<!-- views/partials/entryPartial.ejs -->
 <tr>
     <td><%= entry.resource.id %></td>
-    
     <td><%= entry.resource.resourceType %></td>
-    
     <td><%= entry.resource.meta.lastUpdated %></td>
-    
-    <!-- Add more fields as needed -->
+    <td>
+        <button class="delete-btn" adata-id="<%= entry.resource.id %>">Delete</button>
+    </td>    
+ 
 </tr>

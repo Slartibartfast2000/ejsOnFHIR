@@ -24,7 +24,7 @@ export async function searchResource(req, res) {
   const response = await axios.get(url);
 
 
-  res.render('partials/Search/searchResults', { entry: response.data.entry });
+  res.render('partials/Search/patientSearchResults', { entry: response.data.entry });
 
 
   //  } catch (error) {

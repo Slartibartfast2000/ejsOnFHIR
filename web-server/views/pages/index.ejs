@@ -22,7 +22,7 @@
             <%- include('../partials/Search/searchPatientForm', { entry: entry }) %>
               <br />
               <% if (entry && entry.length> 0) { %>
-                <%- include('../partials/Search/searchResults', { entry: entry }) %>
+                <%- include('../partials/Search/patientSearchResults', { entry: entry }) %>
                   <% } else { %>
                     <p>No results found.</p>
                     <% } %>
