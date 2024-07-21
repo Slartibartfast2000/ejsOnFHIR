@@ -1,16 +1,17 @@
 <!-- views/partials/entryPartial.ejs -->
-<h3>All Resources for this Patient</h3>
-<div style="background-color: lightblue; padding: 10px;">
-<div class="entry">
-  <table id="searchResourceResults">
-    <th>Id</th>
-    <th>Type</th>
-    <th>Date</th>
-    <% entries.forEach(entry=> { %>
-      <%- include('./entryPartial', { entry: entry }) %>
-        <% }) %>
-  
-  </table>
 
-</div>
+<div style="background-color: lightblue; padding: 10px;">
+  <h4>All Resources for this Patient</h4>
+  <div class="entry">
+    <table id="searchResourceResults">
+      <th>Id</th>
+      <th>Type</th>
+      <th>Date</th>
+      <% entries.forEach(entry=> { %>
+        <%- include('./entryPartial', { entry: entry }) %>
+          <% }) %>
+
+    </table>
+
+  </div>
 </div>
