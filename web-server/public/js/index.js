@@ -28,7 +28,6 @@ async function initNavBarEventListeners() {
       try {
         const response = await fetch(`/fhir/RenderResource/${resourceType}/${id}`);
 
-
         if (!response.ok) {
           throw new Error('Failed to render resourceDetail.');
         }
@@ -221,7 +220,8 @@ function submitResourceForm(resourceType) {
         const result = await response.json();
         console.debug("Result: ", result);
 
-        
+        document.getElementById('resourceDetail').innerHTML = "Saved.";
+
       } catch (error) {
         console.error('Error:', error);
         alert('Error updating patient details.');
