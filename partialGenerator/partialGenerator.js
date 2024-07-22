@@ -45,7 +45,6 @@ function elementDetail(type, element) {
             html += `   <label for='${type}.${name}'>${name}.given</label>` + crlf;
             html += `   <input type='text' id='${resourceType}.${name}' name='${name}[given]' title='${tooltip}'
                           value="<%= data && data.${name} ? data.${name}[0].given : '' %>">${type}</input>
-            
 
                          <label for='${type}.${name}'>${name}.family</label>
                          <input type='text' id='${resourceType}.${name}' name='${name}[family]' title='${tooltip}'
@@ -53,7 +52,8 @@ function elementDetail(type, element) {
                     </div>` + crlf;
             console.debug(html);
             break;
-
+       
+        
         default:
             html = `<div class="form-group">` + crlf;
             html += `<label for='${type}.${name}'>${name}</label>` + crlf;

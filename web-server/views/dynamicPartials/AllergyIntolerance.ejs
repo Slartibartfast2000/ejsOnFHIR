@@ -1,0 +1,103 @@
+<div>
+        <form id="AllergyIntolerance">
+        <h3>AllergyIntolerance Resource:</h3>
+        <label for='AllergyIntolerance.id'>id</label>
+        <input type="text" readonly id="AllergyIntolerance.id" name="id"
+                value="<%= data && data.id ? data.id : '0' %>"></input>
+        <label for='AllergyIntolerance.resourceType'>id</label>
+        <input type="text" readonly id="AllergyIntolerance.resourceType" name="resourceType" 
+                value="<%= data && data.resourceType ? data.resourceType : 'AllergyIntolerance' %>"></input>
+    <div class="form-group">
+<label for='Identifier.identifier'>identifier</label>
+<input type='text' id='AllergyIntolerance.identifier' name='identifier' title='name: identifier  minOccurs: 0  maxOccurs: unbounded  type: Identifier  '
+                value="<%= data && data.identifier ? data.identifier : '' %>">Identifier
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.clinicalStatus'>clinicalStatus</label>
+<input type='text' id='AllergyIntolerance.clinicalStatus' name='clinicalStatus' title='name: clinicalStatus  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+                value="<%= data && data.clinicalStatus ? data.clinicalStatus : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.verificationStatus'>verificationStatus</label>
+<input type='text' id='AllergyIntolerance.verificationStatus' name='verificationStatus' title='name: verificationStatus  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+                value="<%= data && data.verificationStatus ? data.verificationStatus : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='AllergyIntoleranceType.type'>type</label>
+<input type='text' id='AllergyIntolerance.type' name='type' title='name: type  minOccurs: 0  maxOccurs: 1  type: AllergyIntoleranceType  '
+                value="<%= data && data.type ? data.type : '' %>">AllergyIntoleranceType
+                </div>
+<div class="form-group">
+<label for='AllergyIntoleranceCategory.category'>category</label>
+<input type='text' id='AllergyIntolerance.category' name='category' title='name: category  minOccurs: 0  maxOccurs: unbounded  type: AllergyIntoleranceCategory  '
+                value="<%= data && data.category ? data.category : '' %>">AllergyIntoleranceCategory
+                </div>
+<div class="form-group">
+<label for='AllergyIntoleranceCriticality.criticality'>criticality</label>
+<input type='text' id='AllergyIntolerance.criticality' name='criticality' title='name: criticality  minOccurs: 0  maxOccurs: 1  type: AllergyIntoleranceCriticality  '
+                value="<%= data && data.criticality ? data.criticality : '' %>">AllergyIntoleranceCriticality
+                </div>
+<div class="form-group">
+<label for='CodeableConcept.code'>code</label>
+<input type='text' id='AllergyIntolerance.code' name='code' title='name: code  minOccurs: 0  maxOccurs: 1  type: CodeableConcept  '
+                value="<%= data && data.code ? data.code : '' %>">CodeableConcept
+                </div>
+<div class="form-group">
+<label for='Reference.patient'>patient</label>
+<input type='text' id='AllergyIntolerance.patient' name='patient[reference]' title='name: patient  minOccurs: 1  maxOccurs: 1  type: Reference  '
+                        value="<%= data && data.patient ? data.patient.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Reference.encounter'>encounter</label>
+<input type='text' id='AllergyIntolerance.encounter' name='encounter[reference]' title='name: encounter  minOccurs: 0  maxOccurs: 1  type: Reference  '
+                        value="<%= data && data.encounter ? data.encounter.reference : '' %>">Reference</input>
+            </div>
+<div class='form-group'>
+<label for='AllergyIntolerance.onsetDateTime'>onsetDateTime*</label>
+<input type='text' id='AllergyIntolerance.onsetDateTime' name='onsetDateTime'></div>
+<title='name: onsetDateTimetype: dateTime'></title><div class='form-group'>
+<label for='AllergyIntolerance.onsetAge'>onsetAge*</label>
+<input type='text' id='AllergyIntolerance.onsetAge' name='onsetAge'></div>
+<title='name: onsetDateTimetype: dateTimename: onsetAgetype: Age'></title><div class='form-group'>
+<label for='AllergyIntolerance.onsetPeriod'>onsetPeriod*</label>
+<input type='text' id='AllergyIntolerance.onsetPeriod' name='onsetPeriod'></div>
+<title='name: onsetDateTimetype: dateTimename: onsetAgetype: Agename: onsetPeriodtype: Period'></title><div class='form-group'>
+<label for='AllergyIntolerance.onsetRange'>onsetRange*</label>
+<input type='text' id='AllergyIntolerance.onsetRange' name='onsetRange'></div>
+<title='name: onsetDateTimetype: dateTimename: onsetAgetype: Agename: onsetPeriodtype: Periodname: onsetRangetype: Range'></title><div class='form-group'>
+<label for='AllergyIntolerance.onsetString'>onsetString*</label>
+<input type='text' id='AllergyIntolerance.onsetString' name='onsetString'></div>
+<title='name: onsetDateTimetype: dateTimename: onsetAgetype: Agename: onsetPeriodtype: Periodname: onsetRangetype: Rangename: onsetStringtype: string'></title><div class="form-group">
+<label for='dateTime.recordedDate'>recordedDate</label>
+<input type='text' id='AllergyIntolerance.recordedDate' name='recordedDate' title='name: recordedDate  minOccurs: 0  maxOccurs: 1  type: dateTime  '
+                value="<%= data && data.recordedDate ? data.recordedDate : '' %>">dateTime
+                </div>
+<div class="form-group">
+<label for='Reference.recorder'>recorder</label>
+<input type='text' id='AllergyIntolerance.recorder' name='recorder[reference]' title='name: recorder  minOccurs: 0  maxOccurs: 1  type: Reference  '
+                        value="<%= data && data.recorder ? data.recorder.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='Reference.asserter'>asserter</label>
+<input type='text' id='AllergyIntolerance.asserter' name='asserter[reference]' title='name: asserter  minOccurs: 0  maxOccurs: 1  type: Reference  '
+                        value="<%= data && data.asserter ? data.asserter.reference : '' %>">Reference</input>
+            </div>
+<div class="form-group">
+<label for='dateTime.lastOccurrence'>lastOccurrence</label>
+<input type='text' id='AllergyIntolerance.lastOccurrence' name='lastOccurrence' title='name: lastOccurrence  minOccurs: 0  maxOccurs: 1  type: dateTime  '
+                value="<%= data && data.lastOccurrence ? data.lastOccurrence : '' %>">dateTime
+                </div>
+<div class="form-group">
+<label for='Annotation.note'>note</label>
+<input type='text' id='AllergyIntolerance.note' name='note' title='name: note  minOccurs: 0  maxOccurs: unbounded  type: Annotation  '
+                value="<%= data && data.note ? data.note : '' %>">Annotation
+                </div>
+<div class="form-group">
+<label for='AllergyIntolerance.Reaction.reaction'>reaction</label>
+<input type='text' id='AllergyIntolerance.reaction' name='reaction' title='name: reaction  type: AllergyIntolerance.Reaction  minOccurs: 0  maxOccurs: unbounded  '
+                value="<%= data && data.reaction ? data.reaction : '' %>">AllergyIntolerance.Reaction
+                </div>
+   <button type="submit" id="saveResourceButton" name="saveResourceButton">Save Resource</button>
+        </form>
+
+    <div>
