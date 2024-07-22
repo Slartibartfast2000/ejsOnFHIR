@@ -221,6 +221,7 @@ function submitResourceForm(resourceType) {
         const result = await response.json();
         console.debug("Result: ", result);
 
+        
       } catch (error) {
         console.error('Error:', error);
         alert('Error updating patient details.');
