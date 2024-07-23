@@ -14,7 +14,6 @@ async function writeFile(filename, content) {
     }
 }
 
-
 function elementDetail(type, element) {
     const name = element.getAttribute('name');
     var tooltip = '';
@@ -92,7 +91,7 @@ function choiceDetail(type, element) {
     return newElement;
 }
 
-// Function to create an XPath evaluator with namespace support
+
 function createXPathEvaluator() {
     const select = xpath.useNamespaces({
         xs: 'http://www.w3.org/2001/XMLSchema'
@@ -100,7 +99,6 @@ function createXPathEvaluator() {
     return select;
 }
 
-//import  fileIO from './js/fileio.js';
 function runXPathQuery(doc, query) {
     console.debug("runXPathQuery: ", query);
     const select = createXPathEvaluator();
@@ -127,11 +125,10 @@ const tab = "\t";
 console.debug("reading schema: ", myparameters.xsdFilePath);
 const parsedData = parseXMLSchema(myparameters.xsdFilePath);
 console.debug("reading schema: done.");
-///xs:schema/xs:complexType/@name
+
 const resourceType = myparameters.resourceType;
 
 const xpathQuery = `//xs:complexType[@name="${resourceType}"]/xs:complexContent/xs:extension/xs:sequence/*`;
-// const xpathQuery = '//xs:complexType[@name="Patient"]/xs:complexContent/xs:extension/xs:sequence/*';
 
 const elements = runXPathQuery(parsedData, xpathQuery);
 
@@ -147,10 +144,8 @@ let partialEJS =
                 value="<%= data && data.resourceType ? data.resourceType : '${resourceType}' %>"></input>
     `;
 
-//partialEJS += "<form>" + crlf;
-// Output the selected elements
+
 elements.forEach((element) => {
-    // console.log(element.toString());
     console.debug(`Element tagname: [${element.tagName}]`);
     const attributes = element.attributes;
     for (let i = 0; i < attributes.length; i++) {
@@ -178,54 +173,6 @@ partialEJS +=
     <div>`;
 
 await writeFile(myparameters.outputFilename, partialEJS);
-/*
-await fs.promises.writeFile(myparameters.outputFilename, partialEJS, (err) => {
-    if (err) {
-        console.error('Error writing file:', err);
-        throw err; // Throw the error to handle it appropriately
-    };
-    console.log('File has been written successfully. ***');
-});
-*/
-//console.log('The end *********************************************************************');
 
 process.exit(0);
 
-let myPartialEJS = "";
-
-myPartialEJS += "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>My HTML Page</title><style></style></head><body>" + crlf;
-
-myPartialEJS += "<div><form><table>" + crlf + tab;
-
-for (const elementName in parsedData) {
-    if (parsedData.hasOwnProperty(elementName)) {
-        // console.log("Element Name:", elementName);
-
-        myPartialEJS += "<label for='text-input'>" + elementName + ":</label>" + crlf;
-
-        myPartialEJS += "<input type='text' id='" + elementName + "' name='text-input' placeholder='Enter text here'><br>" + crlf;
-
-        const attributes = parsedData[elementName];
-        for (const attributeName in attributes) {
-            if (attributes.hasOwnProperty(attributeName)) {
-                const attributeValue = attributes[attributeName];
-                // console.log("Attribute Name:", attributeName, ", Value:", attributeValue);
-            }
-        }
-    }
-}
-
-myPartialEJS += "<table></form></div>";
-myPartialEJS += "</body>";
-
-///const data = "hello";
-
-fileIO.writeToFile(myparameters.outputFilename, myPartialEJS, (err) => {
-    if (err) {
-        console.error('Error writing to file:', err);
-        return;
-    }
-    console.log('File written successfully.');
-});
-
-//console.log(myPartialEJS);
