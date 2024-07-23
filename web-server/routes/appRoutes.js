@@ -73,7 +73,7 @@ router.use('/fhir', fhirRoute);
 router.use('/patient', patientRoute);
 router.use('/search', searchRoute); // todo: move to patientroute?
 
-// Defining a route that uses the getApp method from appController
+
 router.get("/", authenticateJWT, (req, res) => { 
 
     console.debug("waaaa?");

@@ -1,3 +1,7 @@
+/* 
+    main web server entry file
+*/
+
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -17,17 +21,14 @@ import { appRoute } from './routes/appRoutes.js';
 import { checkFhirEndpoint } from './utilities/fhir.js';
 
 import multer from 'multer';
- 
-//const multer = require('multer');
 
-//const users = []; // This should be replaced with a proper database in a real application
- 
-//const secretKey = 'your-secret-keys'; // Store this in an environment variable in a real application
+
+//const secretKey = 'your-secret-keys'; - 
 //const secretKey = process.env.JWT_SECRET;
 
 /* Configuration */
 dotenv.config();
-const HOST_IP = process.env.HOST_IP || '0.0.0.0'; // default = listen on all interfaces
+const HOST_IP = process.env.HOST_IP || '0.0.0.0'; // default = listen on all interfaces - could be security risk any network device could connect.
 const PORT = process.env.PORT || 3000;
 const USE_HTTPS = process.env.USE_HTTPS || false;
 const CERT_FILE = process.env.CERT_FILE || './cert/mySelfSignedCert.pfx';
@@ -79,7 +80,6 @@ console.info("Using HTTPS?", USE_HTTPS);
 
 if (USE_HTTPS == 'true') {
 
-    // Start the server - run on any available ip
     https.createServer(options, app).listen(PORT, () => {
         console.log(`Server is running on https://localhost:${PORT}`);
     });
@@ -88,7 +88,7 @@ if (USE_HTTPS == 'true') {
     const server = app.listen(PORT, HOST_IP, () => {
         const host = server.address().address;
         const port = server.address().port;
-        console.log(`Server is running on http://${host}:${port}`);
+        console.log(`Server is running on http://${host}:${port}/index`);
     });
 
 }
@@ -116,7 +116,7 @@ app.post('/Patient', (req, res) => {
     });
 });
 */
-
+/*
 function readJSONFile(filepath) {
     return new Promise((resolve, reject) => {
         fs.readFile(filepath, 'utf8', (err, data) => {
@@ -134,4 +134,4 @@ function readJSONFile(filepath) {
     });
 }
 
-
+*/
