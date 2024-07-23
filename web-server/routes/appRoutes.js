@@ -39,9 +39,8 @@ router.get('/index', async (req, res) => { // Make the handler asynchronous
   }; 
 
   try {
-      // Build the resources menu asynchronously
       const resourcesMenu = await buildMenuFromFiles(directoryPath);
-     
+     /*
       const navbarItems = [
           { name: 'Home', link: '/' },
           { name: 'Register', link: '#' },
@@ -50,9 +49,16 @@ router.get('/index', async (req, res) => { // Make the handler asynchronous
           { name: 'About', link: '/about' }
           
         ];
-
-//      console.log(resourcesMenu); // Log the resources menu
-  //    console.debug(navbarItems); // Log the navbar items
+*/
+        
+      const navbarItems = [
+  //      { name: 'Home', link: '/' },
+    //    { name: 'Register', link: '#' },
+        resourcesMenu
+      //  { name: 'Contact', link: '/contact' },
+      //  { name: 'About', link: '/about' }
+       
+      ];
 
       console.debug('app.js: get/index - render patientSearch page');
 
