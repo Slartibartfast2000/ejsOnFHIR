@@ -36,7 +36,7 @@ npm run debug
 !!! Note
     The web-server application will expect a FHIR server to be configured and available. See docker container below.
 
-### 1. FHIR Server Container is running
+### FHIR Server Container set up
 
 1.1 Open a command prompt or terminal
 
@@ -56,33 +56,6 @@ npm run debug
 
 Simply browse to the default FHIR url http://127.0.0.1:8080 
 
-## create EJS based on xml schema
-
-```bash
-node src/go.js -s FHIR/Patient.schema.xml -o myFile.ejs -t partial
-```
-
-## FHIR Server for dev/test
-
-Docker Desktop installed and running, note: the pull only needs to happen on first run.
-
-1. Get the hapi FHIR server (note you only need to do this once):
-
-```bash
-  docker pull hapiproject/hapi:latest
-```
-
-2. Run the server
-```bash
-docker run -p 8080:8080 hapiproject/hapi:latest
-``` 
-
-3. Check fhir endpoint
-
-To check the fhir server is listening, browse to port 8080 (default port):
-```bash
-http://localhost:8080/
-```
 
 
 # Troubleshooting
@@ -100,82 +73,10 @@ docker stop <container id>
 ```
 
 
-## Node
-
-node dependencies
-
-```bash
-npm init -y
-npm install express
-npm install ejs
-npm install jsonpath-plus
-```
-
-```bash
-node ./partialGenerator -s ../FHIR/fhir-single.xsd -t Encounter -o patient.ejs 
-```
-
-## Installation
-
-npm installed - latest version -
-TODO- how do you do this?
-
-```bash
-
-nvm
-```
-
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
-
-Gone camping! :tent: Be back soon.
-
-That is so funny! :joy:
-
-```json
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-```
-
-## Prototype Steps
-
-Installed npm xml and dom
-
-```bash
-npm install @xmldom/xmldom
-```
-
-Added code to traverse the xml
-
-```bash
-src/xmlParser2.js
-```
-
-Created empty EJS Div template
-
-```bash
-src/views/base.ejs
-```
-
-## Test Harnesses
-
-```bash
-node web-server/webserver.js
-```
-
-Browse to
-
-```url
-http://localhost:3000/
-```
 
 
-
-## Dev-env Browser-sync config
+## Dev notes only:
+### Dev-env Browser-sync config
 
 Browser-sync is a useful debug tool for real time reload of web pages.
 
@@ -197,7 +98,6 @@ For Windows, browser-sync.ps1 should be used... note this will need local Admini
 
 ## Get FHIR Server if required
 
-Note this demo has no authentication configured
 
 ```js
 docker pull hapiproject/hapi:latest
