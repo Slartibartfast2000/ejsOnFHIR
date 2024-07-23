@@ -14,23 +14,47 @@ Example execution from a terminal:
 
 ```bash
 cd partialGenerator
-node ./partialGenerator -s ./FHIR/fhir-single.xsd -t Encounter -o Encounter.ejs
+npm install
+node ./partialGenerator -s ./FHIR/fhir-single.xsd -t AllergyIntolerance -o ../web-server/views/dynamicPartials/AllergyIntolerance.ejs
 ```
 
-## web-server
+parameters:
+s = location of the fhir schema - this will probably be static
+t = the name of the FHIR resource that will be used as the basis for the partial
+o = the output file. the location provided above will mean the partial is generated in the test harness web-server
 
-The web-server is a simple nodejs express application. To start the web-server simply:
+## Web-server
+
+The web-server is a simple nodejs express application. To start the web-server simply (see docker and fhir server below before proceeding, also reference Script.md):
 
 ```bash
 cd web-server
+npm install
 npm run debug
 ```
 
 !!! Note
-    The web-server application will expect a FHIR server to be configured and available. Please see the README.md in the web-server folder.
+    The web-server application will expect a FHIR server to be configured and available. See docker container below.
 
-FHIRR4
-FHIR Schema File
+### 1. FHIR Server Container is running
+
+1.1 Open a command prompt or terminal
+
+1.2 Get the hapi FHIR server release container
+
+```bash
+    docker pull hapiproject/hapi:latest
+```
+
+1.3 Run the container
+
+```bash
+    docker run -p 8080:8080 hapiproject/hapi:latest
+```
+
+1.4 Test the fhir endpoint
+
+Simply browse to the default FHIR url http://127.0.0.1:8080 
 
 ## create EJS based on xml schema
 
@@ -59,6 +83,9 @@ To check the fhir server is listening, browse to port 8080 (default port):
 ```bash
 http://localhost:8080/
 ```
+
+
+# Troubleshooting
 
 ## Docker toubleshooting commands
 
