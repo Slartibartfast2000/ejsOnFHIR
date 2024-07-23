@@ -174,5 +174,5 @@ partialEJS +=
 
 await writeFile(myparameters.outputFilename, partialEJS);
 
-process.exit(0);
+//process.exit(0);
 
